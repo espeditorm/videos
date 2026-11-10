@@ -34,10 +34,13 @@ def gen(s):
         if ok: return a
         if not extra and r > bs: best, bs = a, r
     print("  !! nenhuma tentativa perfeita, usando a melhor", flush=True); return best if best is not None else a
+OLD = {f["s"]: f for f in json.load(open("audio/frases.json"))} if os.path.exists("audio/frases.json") else {}
+OLDA = sf.read("audio/voz.wav", dtype="float32")[0] if OLD else None
 out = [np.zeros(int(0.3 * SR), np.float32)]; meta = []
 for i, s in enumerate(sents):
     print(i, s, flush=True)
-    a = gen(s)
+    if s in OLD: a = OLDA[int(OLD[s]["t0"] * SR):int(OLD[s]["t1"] * SR)]; print("  reaproveitada", flush=True)
+    else: a = gen(s)
     gap = 0.36 if s.startswith("O motivo") else 0.24
     if i: out.append(np.zeros(int(gap * SR), np.float32))
     t0 = sum(len(x) for x in out) / SR; out.append(a)

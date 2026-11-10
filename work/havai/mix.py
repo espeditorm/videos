@@ -4,7 +4,7 @@ from scipy.signal import resample_poly
 from scipy.ndimage import minimum_filter1d, uniform_filter1d
 from scipy.signal import butter, sosfiltfilt
 LP = butter(4, 9000, 'low', fs=48000, output='sos')
-SR = 48000; DUR = 61.7
+SR = 48000; DUR = 62.4
 def load(path, start=None, dur=None):
     cmd = ['ffmpeg', '-v', 'error']
     if start is not None: cmd += ['-ss', str(start)]

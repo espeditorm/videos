@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 (async () => {
-  const w = +process.argv[2], nw = +process.argv[3], total = Math.round(61.7 * 30);
+  const w = +process.argv[2], nw = +process.argv[3], total = Math.round(62.4 * 30);
   const per = Math.ceil(total / nw), f0 = w * per, f1 = Math.min(total, f0 + per);
   const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
