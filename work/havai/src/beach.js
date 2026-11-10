@@ -25,7 +25,7 @@ function palm(x, y, sc, a, ph) {
   for (const [cx, cy] of [[-14, 14], [12, 18], [0, 30]]) { ctx.beginPath(); ctx.arc(cx, cy, 15, 0, 6.283); ctx.fill(); }
   ctx.restore();
 }
-function drawBeach(a) {
+function drawBeach(a, opt = {}) {
   screenSpace(); ctx.fillStyle = '#2d8fd0'; ctx.fillRect(0, 0, W, H);
   applyCam();
   // céu de manhã
@@ -75,5 +75,5 @@ function drawBeach(a) {
   // coqueiros e sombra do personagem
   palm(-640, 230, 1.05, a, 0); palm(760, 260, .9, a, 2);
   ctx.save(); ctx.scale(-1, 1); palm(-1100, 200, .8, a, 4); ctx.restore();
-  ctx.fillStyle = 'rgba(122,82,53,.35)'; ctx.beginPath(); ctx.ellipse(MAN.x + 30, MAN.y + 4, 130, 18, 0, 0, 6.283); ctx.fill();
+  if (opt.shadow !== false) ctx.fillStyle = 'rgba(122,82,53,.35)', ctx.beginPath(), ctx.ellipse(MAN.x + 30, MAN.y + 4, 130, 18, 0, 0, 6.283), ctx.fill();
 }
