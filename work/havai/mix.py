@@ -2,6 +2,8 @@
 import json, os, subprocess, numpy as np, pyloudnorm as pyln, soundfile as sf
 from scipy.signal import resample_poly
 from scipy.ndimage import minimum_filter1d, uniform_filter1d
+from scipy.signal import butter, sosfiltfilt
+LP = butter(4, 9000, 'low', fs=48000, output='sos')
 SR = 48000; DUR = 61.4
 def load(path, start=None, dur=None):
     cmd = ['ffmpeg', '-v', 'error']
@@ -38,7 +40,10 @@ EV = [('pino', c['havai'] + .05, -8), ('buzz', c['vibram'] + .3, -7), ('alerta',
 EV += [('tick', x, -15) for x in np.arange(c['tres'] - .05, c['cinco'], .28)]
 for name, at, g in EV:
     f = next(p for p in [f'assets/sfx/{name}.{e}' for e in ('wav', 'ogg')] if os.path.exists(p))
-    x = load(f); e = np.abs(x).max(1); pk = int(np.argmax(e))
+    x = load(f)
+    x = sosfiltfilt(LP, x, axis=0).astype(np.float32)          # tira o agudo extremo que estoura no AAC
+    x[:96] *= np.linspace(0, 1, 96)[:, None]
+    e = np.abs(x).max(1); pk = int(np.argmax(e))
     x *= db(g) * vp / (e.max() + 1e-9)
     i0 = int(at * SR) - pk; a0, b0 = max(0, i0), min(N, i0 + len(x))
     out[a0:b0] += x[a0 - i0:b0 - i0]
