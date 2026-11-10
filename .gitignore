@@ -25,3 +25,6 @@ mech/prev_seq/
 work/havai/shots/
 work/havai/chunks/
 work/havai/out/*_master.mp4
+work/datacenter/shots/
+work/datacenter/chunks/
+work/datacenter/out/*_master.mp4
