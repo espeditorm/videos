@@ -10,3 +10,9 @@ work/assets/music/*.mp3
 *.png
 work/chunks/
 work/out/*_master.mp4
+mech/*.blend*
+mech/*.pkl
+mech/test*/
+mech/sheet_exr/
+mech/sheet_png/
+mech/__pycache__/
