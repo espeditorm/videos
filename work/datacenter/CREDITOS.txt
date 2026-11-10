@@ -1,0 +1,6 @@
+Música: "Comfortable Mystery 4" de Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0 http://creativecommons.org/licenses/by/4.0/
+Efeitos sonoros: Kenney (CC0), "Swishes Sound Pack" e "100 CC0 SFX" (OpenGameArt, CC0)
+Fonte: Fredoka (SIL Open Font License)
+Voz: XTTS-v2 (voz "Abrahan Mack"), local, licença CPML (uso não comercial); frases conferidas com faster-whisper
+Fatos: Futurism (matéria base); Fortune, 7/11/2026 (325 de 430 votos, 160 acres, Oracle); Newsweek

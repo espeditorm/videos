@@ -1,13 +1,11 @@
 import json, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont
 C = json.load(open('shots/cues.json'))
-B = [(1.5,'abertura 08:07'),(C['havai']+.6,'Havaí: ilhas'),(C['vibram']+.5,'vibram: pulso'),(C['homem']+.3,'mergulho: homem'),
- (C['carrey']+.4,'Jim Carrey'),(C['ameaca']+.6,'alerta no celular'),(C['isto']+.6,'não é simulado'),(C['se']+.6,'recuo: globo'),
- (C['vinte']+.5,'≈20 MIN no arco'),(C['voce']+.5,'você: pino'),(C['esconder']+.8,'esconderijos'),(C['quem']+.5,'e com quem: gato'),
- (C['vazio']+.5,'céu vazio'),(C['tres']+.8,'contador começa'),(C['lancamento']+.4,'08:10 nenhum lançamento'),(C['cinco']+.4,'08:45 frente de correção'),
- (C['trinta1']+.6,'38 MIN'),(C['tela']+.4,'a tela'),(C['real2']+.15,'clique no real'),(C['iguais']+.4,'mesma lista'),
- (C['dois2']+.4,'mesma confirmação'),(C['desmentir']+.5,'não existia'),(C['acordou']+.4,'Carrey acorda'),(C['dez']+.5,'10 minutos'),
- (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(62.1,"título")]
+B = [(1.0,'globo à noite, EUA'),(C['votam']+.8,'votam: urnas'),(C['nao1']+.5,'NÃO em cascata'),(C['uma']+.3,'uma: SIM'),
+ (C['harwood']+.6,'SIM voa até Harwood'),(C['menos2']+.4,'mergulho: a cidade'),(C['tres']+.9,'325 de 430 votos'),(C['bilhoes']+.6,'data center surge'),
+ (C['sua']+.4,'você: conta de luz'),(C['mark1']+.5,'Mark Kerkvliet'),(C['garantiram']+.6,'sem aumento'),(C['topou']+.5,'topou: joinha + frase'),
+ (C['imposto']+.9,'imposto: contador'),(C['seis']+.6,'6x a arrecadação'),(C['muitos']+.6,'recuo: pradaria'),(C['fargo']+.8,'Fargo a 16 km'),
+ (C['mas']+.8,'robô de IA chega'),(C['fa']+.5,'não virou fã'),(C['pais']+.2,'rewind 0,8 s'),(C['contas']+.6,'título'),(C['DUR']-.2,'fim')]
 fs = []
 subprocess.run(['node','shot.js','shots']+[f'{t:.2f}' for t,_ in B], check=True, capture_output=True)
 cols, tw, th = 4, 640, 360

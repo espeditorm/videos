@@ -15,8 +15,8 @@ db = lambda x: 10 ** (x / 20)
 meter = pyln.Meter(SR)
 c = json.load(open('shots/cues.json')); DUR = c['DUR']   # duração exportada pelo motor
 N = int(DUR * SR); out = np.zeros((N, 2), np.float32)
-TITLE = c['menu'] + .5
 voz = load('audio/voz.wav'); voz_l = meter.integrated_loudness(voz); out[:len(voz)] += voz
+TITLE = c['contas'] + .3
 MUS_OFF = 65.0 - TITLE            # acorde final da faixa cai no título
 mus = load('../assets/music/Comfortable_Mystery_4.mp3', start=MUS_OFF, dur=DUR)
 mus *= db(voz_l - 7 - meter.integrated_loudness(mus))
@@ -24,20 +24,18 @@ t = np.arange(len(mus)) / SR
 env = np.clip(t / 1.2, 0, 1) * db(5 * np.clip((t - (TITLE - 1.0)) / 1.0, 0, 1)) * np.clip((DUR - t) / 1.6, 0, 1)
 out[:len(mus)] += mus * env[:, None]
 vp = np.abs(voz).max()
-T1, T2, T3, T4, T5, T6 = c['homem'] - .2, c['se'] - .12, c['voce'] - .12, c['mas'] - .1, c['por'] - .05, c['jim2'] - .4
-RW0 = c['trinta2'] + .08
-EV = [('pino', c['havai'] + .05, -8), ('buzz', c['vibram'] + .3, -7), ('alerta', c['vibram'] + .05, -10),
-      ('mergulho', T1 + .3, -7), ('tick', c['ameaca'], -9), ('tick', c['procure'], -9), ('tick', c['isto'], -8),
-      ('whoosh', T2 + .3, -7), ('whoosh', T2 + 1.2, -10), ('tick', c['missil'], -10), ('mergulho', T3 + .3, -7),
-      ('pino', c['voce'] + .12, -7), ('plop_02', c['esconder'] + .05, -9), ('plop_02', c['esconder'] + .22, -9),
-      ('plop_02', c['esconder'] + .39, -9), ('plop_02', c['quem'] + .05, -8), ('whoosh', T4 + .3, -7),
-      ('revelacao', c['vazio'] + .1, -8), ('clarao', c['cinco'] + .15, -7), ('slam_01', c['trinta1'] + .05, -5),
-      ('mergulho', T5 + .3, -7), ('switch_01', c['click'], -6), ('pino', c['teste'] + .05, -9),
-      ('plop_02', c['confirmacao'], -8), ('plop_02', c['confirmacao'] + .2, -8), ('paper_02', c['existia'] + .3, -9),
-      ('impacto', c['desmentir'] + .08, -6), ('mergulho', T6 + .3, -7), ('tick', c['dez'], -8),
-      ('bell_02', c['FA'] + .05, -6), ('buzz', c['FA'] + .1, -12), ('rewind', RW0 + .4, -6),
-      ('switch_01', c['menu'], -6), ('revelacao', TITLE, -6)]
-EV += [('tick', x, -15) for x in np.arange(c['tres'] - .05, c['cinco'], .28)]
+T1, T2, T3, T4 = c['menos2'] - .45, c['agora'] - .1, c['e_imposto'] - .1, c['mas'] - .1
+RW0 = c['pais'] - .3
+TITLE = c['contas'] + .3
+EV = [('tick', c['votam'] + i * .05, -14) for i in range(0, 41, 4)]
+EV += [('pino', c['nao1'] - .1, -8), ('plop_02', c['uma'] + .02, -6), ('whoosh', c['uma'] + .35, -9),
+      ('mergulho', T1 + .3, -7), ('tick', c['tres'] + .1, -9), ('slam_01', c['bilhoes'] - .05, -6),
+      ('mergulho', T2 + .3, -7), ('pino', c['sua'] + .12, -7), ('tick', c['mark1'], -10), ('impacto', c['garantiram'] + .2, -8),
+      ('switch_01', c['topou'], -7), ('whoosh', T3 + .3, -7), ('clarao', c['dolares'] + .1, -9), ('bell_02', c['seis'] + .4, -8),
+      ('whoosh', c['muitos'] + .2, -9), ('whoosh', c['fargo'] + .1, -8), ('mergulho', T4 + .3, -7), ('plop_02', c['mas'] + .3, -9),
+      ('plop_02', c['fa'] + .1, -8), ('rewind', RW0 + .4, -6), ('revelacao', TITLE, -6)]
+EV += [('plop_02', c['seis'] + i * .07, -15) for i in range(6)]
+EV += [('tick', x, -16) for x in np.arange(c['imposto'], c['dolares'], .22)]
 for name, at, g in EV:
     f = next(p for p in [f'assets/sfx/{name}.{e}' for e in ('wav', 'ogg')] if os.path.exists(p))
     x = load(f)

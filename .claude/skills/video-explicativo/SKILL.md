@@ -58,7 +58,7 @@ cp .claude/skills/video-explicativo/motor_exemplo/lib_*.js work/<slug>/src/
 1. **Dependências** (se faltarem): `pip install kokoro-onnx faster-whisper soundfile pyloudnorm scipy pillow num2words fonttools brotli "coqui-tts[codec]"` e torch para CPU (`--index-url https://download.pytorch.org/whl/cpu`). Modelos Kokoro em `work/models/` (gitignored).
 2. **Roteiro** em `narracao.txt`, uma frase por linha, números por extenso. Mostre ao usuário uma tabela "frase → palavra que dispara → batida visual" e as fontes.
 3. **Voz:** `VOZ="Abrahan Mack" python3 tts_xtts.py 1.25`. Ela reaproveita o áudio das frases que não mudaram, então correções pontuais regeneram só a frase alterada. Depois rode `python3 align.py && python3 fix_times.py`, que prende os tempos de cada palavra ao intervalo real da frase, porque o Whisper sozinho erra nas fronteiras.
-4. **Motor:** `src/video.src.html`, partindo de `motor_exemplo/`. As deixas vêm de `cue('palavra', n)`. Defina `DUR = deixa da última palavra + 2,75 s`. Depois rode `python3 build.py`.
+4. **Motor:** `src/video.src.html`, partindo de `motor_exemplo/`. As deixas vêm de `cue('palavra', n)`. Defina `DUR = deixa da última palavra + 2,75 s` e exporte `C.DUR` e `C.TITLE` (início do título; o mix usa os dois). Depois rode `python3 build.py`.
 5. **Folha de contato:** um quadro por batida, com `sheet.py` (ajuste a lista `B`). **Mostre ao usuário antes de renderizar** e confira os quadros você mesmo.
 6. **Mix:** `python3 mix.py`. Ajuste a lista `EV` de efeitos para as deixas do tema. A trilha fica 7 dB abaixo da voz, sobe 5 dB no título e o acorde final cai no título. Master em −14 LUFS, com limitador em −3 dBTP para sobrar folga para o AAC.
 7. **Render:** cerca de 35 min para 60 s com 3 workers em SwiftShader.

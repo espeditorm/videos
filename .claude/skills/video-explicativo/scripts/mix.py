@@ -15,7 +15,7 @@ db = lambda x: 10 ** (x / 20)
 meter = pyln.Meter(SR)
 c = json.load(open('shots/cues.json')); DUR = c['DUR']   # duração exportada pelo motor
 N = int(DUR * SR); out = np.zeros((N, 2), np.float32)
-TITLE = c['menu'] + .5
+TITLE = c['TITLE']   # o motor exporta C.TITLE (início do título)
 voz = load('audio/voz.wav'); voz_l = meter.integrated_loudness(voz); out[:len(voz)] += voz
 MUS_OFF = 65.0 - TITLE            # acorde final da faixa cai no título
 mus = load('../assets/music/Comfortable_Mystery_4.mp3', start=MUS_OFF, dur=DUR)
