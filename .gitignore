@@ -1,3 +1,5 @@
 work/models/
 *.wav
 __pycache__/
+*.onnx
+*.onnx.json
