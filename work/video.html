@@ -809,7 +809,7 @@ function finish(t) {
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
   const k = Math.floor(t * 24), r = rng(k * 7 + 3);
   ctx.save(); ctx.globalAlpha = .06; ctx.globalCompositeOperation = 'overlay';
-  const tile = GRAIN[k % GRAIN.length], ox = -Math.floor(r() * 512), oy = -Math.floor(r() * 512);
+  const tile = GRAIN[((k % GRAIN.length) + GRAIN.length) % GRAIN.length], ox = -Math.floor(r() * 512), oy = -Math.floor(r() * 512);
   for (let y = oy; y < H; y += 512) for (let x = ox; x < W; x += 512) ctx.drawImage(tile, x, y);
   ctx.restore();
 }

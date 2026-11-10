@@ -8,3 +8,5 @@ work/assets/sfx_dl/
 work/assets/music/*.mp3
 !work/assets/music/Comfortable_Mystery_4.mp3
 *.png
+work/chunks/
+work/out/*_master.mp4
