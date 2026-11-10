@@ -16,3 +16,8 @@ mech/test*/
 mech/sheet_exr/
 mech/sheet_png/
 mech/__pycache__/
+mech/prev_*/
+mech/prev_*.log
+mech/preview.log
+mech/prev_tmp.mp4
+mech/story.log
