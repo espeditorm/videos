@@ -49,7 +49,7 @@ for name, at, g in EV:
     out[a0:b0] += x[a0 - i0:b0 - i0]
 # master: ganho para -14 LUFS e limitador de pico real (oversampling 4x) a -2,2 dBTP
 out *= db(-14 - meter.integrated_loudness(out))
-ceil = db(-2.5)
+ceil = db(-3.0)
 for _ in range(5):
     up = resample_poly(out, 4, 1, axis=0); pk = np.abs(up).max(1)
     g = np.minimum(1, ceil / np.maximum(pk, 1e-9))
@@ -60,7 +60,7 @@ for _ in range(5):
     out *= rel[:, None]
     L = meter.integrated_loudness(out)
     if L < -14.1: out *= db(-14 - L)
-    if np.abs(resample_poly(out, 4, 1, axis=0)).max() <= db(-2.2) and abs(meter.integrated_loudness(out) + 14) < .15: break
-out = np.clip(out, -db(-2.25), db(-2.25))
+    if np.abs(resample_poly(out, 4, 1, axis=0)).max() <= db(-2.9) and abs(meter.integrated_loudness(out) + 14) < .15: break
+out = np.clip(out, -db(-2.9), db(-2.9))
 print('LUFS', round(meter.integrated_loudness(out), 2), 'TP dB', round(20 * np.log10(np.abs(resample_poly(out, 4, 1, axis=0)).max()), 2))
 sf.write('audio/mix.wav', out, SR, subtype='PCM_24')
