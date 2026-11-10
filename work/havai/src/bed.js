@@ -8,16 +8,24 @@ function bathCam(s, a) {
 }
 function drawBedScene(s, t, a) {
   CAM = bathCam(s, a);
-  screenSpace(); drawBackground(a, 0);
+  screenSpace(); ctx.fillStyle = '#123150'; ctx.fillRect(0, 0, W, H);
   applyCam();
-  // parede do quarto com janela de manhã (sem contornos)
-  ctx.fillStyle = '#123150'; ctx.beginPath(); ctx.roundRect(-780, -760, 1560, 900, 60); ctx.fill();
+  // quarto fechado: parede, rodapé e piso de madeira (sem contornos)
+  ctx.fillStyle = '#123150'; ctx.fillRect(-4000, -3000, 8000, 3140);
+  ctx.fillStyle = '#0e2944'; ctx.fillRect(-4000, 120, 8000, 26);
+  ctx.fillStyle = '#8a5a3c'; ctx.fillRect(-4000, 146, 8000, 3000);
+  for (let k = 0; k < 8; k++) { ctx.fillStyle = k % 2 ? '#7f5236' : '#94623f'; ctx.fillRect(-4000, 146 + k * 60, 8000, 30); }
+  // quadro na parede
+  ctx.fillStyle = '#1b3f63'; ctx.beginPath(); ctx.roundRect(470, -620, 220, 160, 18); ctx.fill();
+  ctx.fillStyle = '#4dc7eb'; ctx.beginPath(); ctx.roundRect(486, -604, 188, 128, 10); ctx.fill();
+  ctx.fillStyle = '#f5c75f'; ctx.beginPath(); ctx.roundRect(486, -510, 188, 34, [0, 0, 10, 10]); ctx.fill();
   const wg = ctx.createLinearGradient(0, -660, 0, -300);
   wg.addColorStop(0, '#4dc7eb'); wg.addColorStop(1, '#ffd98a');
   ctx.fillStyle = '#1b3f63'; ctx.beginPath(); ctx.roundRect(-640, -680, 380, 400, 34); ctx.fill();
   ctx.fillStyle = wg; ctx.beginPath(); ctx.roundRect(-620, -660, 340, 360, 24); ctx.fill();
   ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.beginPath(); ctx.roundRect(-590, -560, 110, 26, 13); ctx.roundRect(-520, -590, 90, 24, 12); ctx.fill();
-  ctx.fillStyle = '#3a9d62'; ctx.beginPath(); ctx.ellipse(-450, -300, 200, 70, 0, Math.PI, 0); ctx.fill();
+  ctx.fillStyle = '#1a66b8'; ctx.fillRect(-620, -380, 340, 80);
+  ctx.fillStyle = 'rgba(255,255,255,.5)'; ctx.beginPath(); ctx.roundRect(-560 + 20 * Math.sin(a), -360, 80, 5, 3); ctx.roundRect(-430 - 20 * Math.sin(a), -340, 70, 5, 3); ctx.fill();
   ctx.fillStyle = '#1b3f63'; ctx.beginPath(); ctx.roundRect(-458, -680, 16, 400, 8); ctx.fill();
   ctx.fillStyle = 'rgba(4,10,24,.45)'; ctx.beginPath(); ctx.ellipse(40, 160, 520, 26, 0, 0, 6.283); ctx.fill();
   // cabeceira e travesseiro
