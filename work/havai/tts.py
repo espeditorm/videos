@@ -11,8 +11,12 @@ def trim(a, th=0.008):
     idx = np.where(np.abs(a) > th)[0]
     return a[max(idx[0]-240, 0):idx[-1]+480] if len(idx) else a
 for i, s in enumerate(sents):
-    say = s.replace("Jim Carrey", "Djim Keury")   # pronúncia pedida pelo usuário
-    a, sr = k.create(say, voice=style, speed=SPEED, lang="pt-br"); a = trim(a)
+    if "Jim Carrey" in s:   # pronúncia escolhida pelo usuário: /dʒɪm ˈkæɹi/, passada como fonemas
+        ph = k.tokenizer.phonemize(s.replace("Jim Carrey", "Djim Kéri"), "pt-br")
+        ph = re.sub(r"dʒˈ?i[mŋ]\s+kˈ?ɛɾi", "dʒˈɪm kˈæɹi", ph); assert "kˈæɹi" in ph, ph
+        a, sr = k.create(ph, voice=style, speed=SPEED, lang="pt-br", is_phonemes=True); a = trim(a)
+    else:
+        a, sr = k.create(s, voice=style, speed=SPEED, lang="pt-br"); a = trim(a)
     gap = 0.24
     if s.startswith("O motivo"): gap = 0.36          # pausa antes da grande revelação
     if i: out.append(np.zeros(int(gap*SR)))
