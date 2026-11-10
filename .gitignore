@@ -3,3 +3,8 @@ work/models/
 __pycache__/
 *.onnx
 *.onnx.json
+work/shots/
+work/assets/sfx_dl/
+work/assets/music/*.mp3
+!work/assets/music/Comfortable_Mystery_4.mp3
+*.png

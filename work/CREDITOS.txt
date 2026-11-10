@@ -1,0 +1,6 @@
+Música: "Comfortable Mystery 4" de Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0 http://creativecommons.org/licenses/by/4.0/
+Efeitos sonoros: Kenney (Sci-Fi Sounds, Interface Sounds) e "Swishes Sound Pack" (OpenGameArt), CC0
+Fonte: Fredoka (SIL Open Font License)
+Voz: Kokoro-82M (mistura pm_santa 70% + bm_george 30%), local
+Fato base: xkcd What If #73 "Lethal Neutrinos"
