@@ -1,0 +1,8 @@
+Música: "Comfortable Mystery 4" de Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0 http://creativecommons.org/licenses/by/4.0/
+Efeitos sonoros: Kenney (CC0), "Swishes Sound Pack" e "100 CC0 SFX" (OpenGameArt, CC0)
+Vibração do celular e tom de alerta (853 + 960 Hz): sintetizados localmente
+Fonte: Fredoka (SIL Open Font License)
+Voz: Kokoro-82M (mistura pm_santa 70% + bm_george 30%), local; tempos por palavra com faster-whisper
+Fatos: relatório da FCC sobre o alerta falso do Havaí (13/01/2018); post de Jim Carrey no X/Twitter em 13/01/2018
+O painel de alertas é uma reconstrução ilustrativa, não a tela real do sistema.
