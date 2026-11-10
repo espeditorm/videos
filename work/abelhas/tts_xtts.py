@@ -11,25 +11,37 @@ tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2")
 wm = WhisperModel("small", device="cpu", compute_type="int8")
 norm = lambda s: re.sub(r'[^a-z0-9 ]', '', unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode()).split()
 SAY = {"Jim Carrey": os.environ.get("JIM", "Jim Carrey")}
+# nomes em inglês falados com pronúncia inglesa: o trecho é gerado com language="en" e emendado na frase
+ENMAP = dict((w.split("=") + [w])[:2] for w in os.environ.get("EN", "").split("|") if w)   # "MIT=M. I. T.": como falar em inglês
+EN = list(ENMAP)
+def synth(say):
+    parts = re.split("(" + "|".join(re.escape(w) for w in EN) + ")", say) if EN else [say]
+    out = []
+    for p in parts:
+        if not p.strip(" ,"): continue
+        lang = "en" if p in EN else "pt"
+        txt = ENMAP.get(p, p).strip()
+        a = np.array(tts.tts(text=txt, speaker=SPK, language=lang, speed=SPEED, split_sentences=False), np.float32)
+        out += [trim(a), np.zeros(int(.06 * SR), np.float32)]
+    return np.concatenate(out[:-1])
 text = open("narracao.txt").read()
 sents = [s.strip() for s in re.split(r'(?<=[.?])\s+', text.replace("\n", " ")) if s.strip()]
 SR = 24000
 def trim(a, th=0.01):
     idx = np.where(np.abs(a) > th)[0]
-    return a[max(idx[0] - 240, 0):idx[-1] + 600] if len(idx) else a
+    return a[max(idx[0] - 1800, 0):idx[-1] + 600] if len(idx) else a
 def gen(s):
     say = s.rstrip('.')                      # sem ponto final; "?" fica para a entonação
     for k, v in SAY.items(): say = say.replace(k, v)
     best, bs = None, -1
     for tries in range(6):
-        a = np.array(tts.tts(text=say, speaker=SPK, language="pt", speed=SPEED, split_sentences=False), np.float32)
-        a = trim(a)
+        a = synth(say)
         segs, _ = wm.transcribe(resample_poly(a, 2, 3).astype(np.float32), language="pt")
         heard_txt = re.sub(r'\d+', lambda m: num2words(int(m.group()), lang='pt_BR'), " ".join(x.text for x in segs))
         heard = norm(heard_txt.replace('-', ' ')); want = norm(s)
         extra = [w for w in heard if w in ("ponto", "pontos", "interrogacao", "virgula")]
         r = difflib.SequenceMatcher(None, " ".join(heard), " ".join(want)).ratio()
-        ok = not extra and r >= .9
+        ok = not extra and r >= .93 and abs(len(heard) - len(want)) <= 1
         print(f"  try{tries} {'ok' if ok else 'RUIM'} {r:.2f} | {' '.join(heard)}", flush=True)
         if ok: return a
         if not extra and r > bs: best, bs = a, r
