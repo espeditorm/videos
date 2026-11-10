@@ -20,7 +20,7 @@ canvas{display:block}
 // =====================================================================
 const W = 1920, H = 1080, FPS = 30;
 const WORDS = __WORDS__;
-const DUR = 61.4;
+const DUR = 60.2;
 
 // ---------- utilidades ----------
 //@include lib_utils.js
@@ -34,12 +34,12 @@ function cue(w, n = 1) {
 }
 const C = {
   havai: cue('havaí'), vibram: cue('vibram'), homem: cue('um'), pega: cue('jim'), carrey: cue('carrey'),
-  ameaca: cue('ameaça'), balistico: cue('balístico'), procure: cue('procure'), isto: cue('isto'), simulado: cue('simulado'),
+  ameaca: cue('ameaça'), balistico: cue('balístico'), procure: cue('procure'), isto: cue('isto'), simulado: cue('simulação'),
   se: cue('se'), missil: cue('míssil', 2), vinte: cue('vinte'),
   voce: cue('você'), esconder: cue('esconder'), quem: cue('quem'),
   mas: cue('mas'), vazio: cue('vazio'), tres: cue('três'), confirmaram: cue('confirmaram'), lancamento: cue('lançamento'),
   so: cue('só'), correcao: cue('correção'), cinco: cue('cinco'), trinta1: cue('trinta', 1), depois: cue('depois'),
-  por: cue('por', 1), tela: cue('tela'), exercicio: cue('exercício'), escolheu: cue('escolheu'), real2: cue('real', 2),
+  por: cue('motivo') - .1, tela: cue('tela'), exercicio: cue('exercício'), escolheu: cue('escolheu'), real2: cue('real', 2),
   achou: cue('achou'), verdade: cue('verdade'), teste: cue('teste'), lista: cue('lista'), iguais: cue('iguais'),
   confirmacao: cue('confirmação'), dois2: cue('dois', 2), existia: cue('existia'), pronta: cue('pronta'), desmentir: cue('desmentir'),
   jim2: cue('jim', 2), escreveu: cue('escreveu'), acordou: cue('acordou'), dez: cue('dez'), vida: cue('vida'), trinta2: cue('trinta', 2), mundo: cue('mundo'),
@@ -817,7 +817,7 @@ function drawManScene(s, t, a) {
     const tx = 1500;
     pill([{ s: 'AMEAÇA DE MÍSSIL', px: 34, c: COL.white, ls: 4 }, { s: 'BALÍSTICO A CAMINHO', px: 34, c: COL.white, ls: 4 }], tx, 360, s, C.ameaca + .05, T.t2 - .1);
     pill([{ s: 'PROCURE ABRIGO', px: 34, c: COL.white, ls: 4 }], tx, 560, s, C.procure + .05, T.t2 - .1);
-    pill([{ s: 'NÃO É UM SIMULADO', px: 38, c: COL.coral, ls: 5 }], tx, 720, s, C.isto + .05, T.t2 - .1);
+    pill([{ s: 'NÃO É UMA SIMULAÇÃO', px: 38, c: COL.coral, ls: 5 }], tx, 720, s, C.isto + .05, T.t2 - .1);
   } else {
     applyCam();
     drawPin(MAN.x, MAN.y - 400, 1, 'VOCÊ', s, C.voce);
@@ -1013,7 +1013,7 @@ function drawBedScene(s, t, a) {
   drawCat(330, -60, .8, s, a, T.t6 + .3, s < C.FA ? hand : { x: 0, y: -300 });
   screenSpace();
   pill([{ s: 'JIM CARREY ESCREVEU', px: 32, c: COL.teal, ls: 5 }], W / 2, 100, s, C.escreveu, C.trinta2 - .1, { pad: 18 });
-  pill([{ s: 'ACORDOU NO HAVAÍ', px: 36, c: COL.white, ls: 5 }, { s: 'COM 10 MINUTOS DE VIDA', px: 36, c: COL.gold, ls: 5 }], 1500, 560, s, C.acordou, C.FA - .05);
+  pill([{ s: 'ACORDEI NO HAVAÍ', px: 36, c: COL.white, ls: 5 }, { s: 'COM 10 MINUTOS DE VIDA', px: 36, c: COL.gold, ls: 5 }], 1500, 560, s, C.acordou, C.FA - .05);
   pill([{ s: '08:45 · ALARME FALSO', px: 34, c: COL.gold, ls: 5 }], W / 2, H - 110, s, C.FA + .05, C.trinta2 + .3, { pad: 18 });
 }
 // =====================================================================

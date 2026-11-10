@@ -7,7 +7,7 @@ B = [(1.5,'abertura 08:07'),(C['havai']+.6,'Havaí: ilhas'),(C['vibram']+.5,'vib
  (C['vazio']+.5,'céu vazio'),(C['tres']+.8,'contador começa'),(C['lancamento']+.4,'08:10 nenhum lançamento'),(C['cinco']+.4,'08:45 frente de correção'),
  (C['trinta1']+.6,'38 MIN'),(C['tela']+.4,'a tela'),(C['real2']+.15,'clique no real'),(C['iguais']+.4,'mesma lista'),
  (C['dois2']+.4,'mesma confirmação'),(C['desmentir']+.5,'não existia'),(C['acordou']+.4,'Carrey acorda'),(C['dez']+.5,'10 minutos'),
- (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(61.0,'título')]
+ (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(59.9,"título")]
 fs = []
 subprocess.run(['node','shot.js','shots']+[f'{t:.2f}' for t,_ in B], check=True, capture_output=True)
 cols, tw, th = 4, 640, 360
