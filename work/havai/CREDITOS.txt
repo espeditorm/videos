@@ -3,6 +3,6 @@ Licença: Creative Commons: By Attribution 4.0 http://creativecommons.org/licens
 Efeitos sonoros: Kenney (CC0), "Swishes Sound Pack" e "100 CC0 SFX" (OpenGameArt, CC0)
 Vibração do celular e tom de alerta (853 + 960 Hz): sintetizados localmente
 Fonte: Fredoka (SIL Open Font License)
-Voz: Kokoro-82M (pf_dora), local; tempos por palavra com faster-whisper presos aos limites de cada frase
+Voz: XTTS-v2 (voz "Abrahan Mack"), local, licença CPML (uso não comercial); frases conferidas com faster-whisper
 Fatos: relatório da FCC sobre o alerta falso do Havaí (13/01/2018); post de Jim Carrey no X/Twitter em 13/01/2018
 O painel de alertas é uma reconstrução ilustrativa, não a tela real do sistema.
