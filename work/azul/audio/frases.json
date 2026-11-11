@@ -17,51 +17,56 @@
  {
   "s": "Preto, quase duzentas vezes; branco, cem vezes; vermelho, menos de quinze; e azul, nenhuma vez.",
   "t0": 11.946,
-  "t1": 19.078
+  "t1": 19.614
  },
  {
   "s": "Depois, o linguista Lazarus Geiger procurou o azul na Bíblia hebraica, no Alcorão e nos Vedas da Índia.",
-  "t0": 19.318,
-  "t1": 25.516
+  "t0": 19.854,
+  "t1": 26.052
  },
  {
   "s": "Também não achou.",
-  "t0": 25.756,
-  "t1": 26.649
+  "t0": 26.292,
+  "t1": 27.185
  },
  {
   "s": "E viu um padrão: as línguas nomeiam primeiro o preto e o branco, depois o vermelho, depois o amarelo e o verde, e só no fim o azul.",
-  "t0": 26.889,
-  "t1": 34.622
+  "t0": 27.425,
+  "t1": 35.158
  },
  {
   "s": "A exceção eram os egípcios, que sabiam fabricar tinta azul.",
-  "t0": 34.862,
-  "t1": 37.998
+  "t0": 35.398,
+  "t1": 38.534
  },
  {
   "s": "E pra você, de que cor é o céu?",
-  "t0": 38.238,
-  "t1": 40.466
+  "t0": 38.774,
+  "t1": 41.002
  },
  {
   "s": "O linguista Guy Deutscher ensinou as cores à filha, mas nunca disse a ela que o céu era azul.",
-  "t0": 40.706,
-  "t1": 46.612
+  "t0": 41.242,
+  "t1": 47.148
  },
  {
   "s": "Quando ele perguntou, ela demorou muito e respondeu que era branco.",
-  "t0": 46.852,
-  "t1": 50.812
+  "t0": 47.388,
+  "t1": 51.348
  },
  {
-  "s": "Nossos olhos sempre viram o azul.",
-  "t0": 51.052,
-  "t1": 52.492
+  "s": "Homero via o mesmo mar que a gente.",
+  "t0": 51.588,
+  "t1": 53.442
  },
  {
-  "s": "Só faltava uma palavra pra ele.",
-  "t0": 52.732,
-  "t1": 54.372
+  "s": "Só não tinha um nome pra ele.",
+  "t0": 53.682,
+  "t1": 55.169
+ },
+ {
+  "s": "E o que não tem nome, a gente demora a enxergar.",
+  "t0": 55.409,
+  "t1": 58.084
  }
 ]
