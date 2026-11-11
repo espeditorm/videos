@@ -1,0 +1,122 @@
+[
+ {
+  "s": "Dois séculos atrás, Mary Shelley escreveu Frankenstein.",
+  "t0": 0.3,
+  "t1": 4.22
+ },
+ {
+  "s": "Uma história sobre ambição, criação e consequências.",
+  "t0": 4.46,
+  "t1": 8.337
+ },
+ {
+  "s": "Hoje, a gente não cria monstros com costuras e eletricidade.",
+  "t0": 8.577,
+  "t1": 12.285
+ },
+ {
+  "s": "Cria algoritmos, robôs e inteligências artificiais.",
+  "t0": 12.525,
+  "t1": 15.803
+ },
+ {
+  "s": "Mas a pergunta continua: será que a tecnologia tá fugindo do controle de quem a criou?",
+  "t0": 16.043,
+  "t1": 20.304
+ },
+ {
+  "s": "No livro, Victor Frankenstein desafia os limites da ciência e cria vida.",
+  "t0": 20.544,
+  "t1": 25.808
+ },
+ {
+  "s": "Só que ele não pensa no impacto.",
+  "t0": 26.048,
+  "t1": 27.46
+ },
+ {
+  "s": "O resultado?",
+  "t0": 27.7,
+  "t1": 28.347
+ },
+ {
+  "s": "Uma criatura rejeitada, confusa, marginalizada e, no fim, perigosa.",
+  "t0": 28.587,
+  "t1": 33.739
+ },
+ {
+  "s": "E, inclusive, Frankenstein não é a criatura.",
+  "t0": 33.979,
+  "t1": 37.23
+ },
+ {
+  "s": "É o criador.",
+  "t0": 37.47,
+  "t1": 38.115
+ },
+ {
+  "s": "Hoje, a gente cria sistemas que aprendem sozinhos, que decidem por nós e que já superam humanos em várias áreas.",
+  "t0": 38.355,
+  "t1": 44.575
+ },
+ {
+  "s": "Pensa no carro autônomo: ele precisa decidir se desvia pra salvar uma vida ou se arrisca outra.",
+  "t0": 44.815,
+  "t1": 51.244
+ },
+ {
+  "s": "Ou nas inteligências artificiais que criam conteúdo tão realista que fica difícil separar verdade de manipulação.",
+  "t0": 51.484,
+  "t1": 57.911
+ },
+ {
+  "s": "Sistemas decidem quem recebe um empréstimo ou quem é chamado pra uma vaga.",
+  "t0": 58.151,
+  "t1": 62.835
+ },
+ {
+  "s": "E reproduzem nossos próprios preconceitos.",
+  "t0": 63.075,
+  "t1": 65.312
+ },
+ {
+  "s": "E o mais assustador?",
+  "t0": 65.552,
+  "t1": 66.607
+ },
+ {
+  "s": "Diferente do monstro de Shelley, nossas criações nem sempre têm forma visível.",
+  "t0": 66.847,
+  "t1": 71.781
+ },
+ {
+  "s": "Elas estão nos algoritmos, nas recomendações, nas decisões que a gente acha que toma sozinho.",
+  "t0": 72.021,
+  "t1": 77.87
+ },
+ {
+  "s": "Mary Shelley escreveu Frankenstein como um aviso: não basta criar.",
+  "t0": 78.11,
+  "t1": 81.726
+ },
+ {
+  "s": "É preciso pensar no impacto do que se cria.",
+  "t0": 81.966,
+  "t1": 84.713
+ },
+ {
+  "s": "Então, as tecnologias de hoje são nossas aliadas ou nossos futuros monstros?",
+  "t0": 84.953,
+  "t1": 90.418
+ },
+ {
+  "s": "Porque, no fim, Frankenstein não é sobre um monstro.",
+  "t0": 90.658,
+  "t1": 94.002
+ },
+ {
+  "s": "É sobre o que acontece quando a gente cria algo sem pensar nas consequências.",
+  "t0": 94.242,
+  "t1": 98.316
+ }
+]
