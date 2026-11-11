@@ -185,6 +185,7 @@ function riseText(str, x, y, px, color, t, t0, t1 = 1e9, opt = {}) {
 }
 // pílula arredondada com linhas que sobem
 function pill(lines, cx, cy, t, t0, t1 = 1e9, opt = {}) {
+  if (window.NO_TEXT) return;   // quadros limpos para miniaturas
   if (t < t0 || t > t1 + .6) return;
   ctx.save();
   const pad = opt.pad ?? 26, gap = opt.gap ?? 10;
