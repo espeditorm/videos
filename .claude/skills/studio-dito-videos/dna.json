@@ -1,0 +1,54 @@
+{
+  "palette": "Dusk Arcade",
+  "character_build": "Big round heads, dot eyes, small bodies",
+  "font": "Archivo Black",
+  "card_style": "square-offset",
+  "hud_position": "top-right",
+  "tag_style": "triangle-pointer",
+  "text_entry": "word-pop",
+  "motion": "Punchy",
+  "camera": "slow-push",
+  "shot_transition": "push-vertical",
+  "chapter_transition": "paint-swipe",
+  "narrator": "gravelly older storyteller",
+  "music": "warm orchestral strings",
+  "host": "recurring host",
+  "intro_sting": "host-presents-title",
+  "outro_sting": "motif-final-state",
+  "places_per_minute": 9,
+  "new_every_s": 2.04,
+  "card": {
+    "radius": 4,
+    "offset": 8
+  },
+  "colours": {
+    "ink": "#1c2340",
+    "alert": "#ce222d",
+    "warm": "#eb9147",
+    "highlight": "#eae43e",
+    "success": "#26b06b",
+    "dark": "#1c2340",
+    "headlineA": "#b35388",
+    "headlineB": "#407d81",
+    "label": "#8b8f9c",
+    "card": "#fcf3de",
+    "transition": "#f9eac3"
+  },
+  "palette_colours": {
+    "deep plum": "#4a2545",
+    "muted cyan": "#6fb3b8",
+    "dusty magenta": "#b5578a",
+    "midnight blue": "#1c2340",
+    "warm butter yellow": "#f2d17a"
+  },
+  "channel_name": "Studio Dito",
+  "slug": "studio-dito",
+  "seeds": [
+    {
+      "seed": 8737978303937417221,
+      "what": "channel",
+      "at": "2026-11-11T09:35:20"
+    }
+  ],
+  "frozen": true
+}
