@@ -273,7 +273,7 @@ function drawLab(s, t, a) {
 // ---------------------------------------------------------------------
 const FARM_BEES = (() => { const r = rng(77), a = []; for (let i = 0; i < 14; i++) a.push({ x: -800 + r() * 1600, y: -560 + Math.floor(r() * 3) * 280, ph: r() * 6, sp: .6 + r() * .6 }); return a; })();
 function farmCam(s, a) {
-  let c = keyed([[T.t4, 0, -300, .5], [T.t4 + .9, 0, -320, .82], [C.sombrio, 0, -320, .9], [C.black1, 0, -300, .8], [C.hackeia, 0, -320, .9], [C.armas, 0, -300, 1.35], [T.t5, 0, -300, 1.5]], s);
+  let c = keyed([[T.t4, 0, -300, .5], [T.t4 + .9, 0, -320, .82], [C.sombrio, 0, -320, .9], [C.hackeia, 0, -320, .9], [C.armas, 0, -300, 1.35], [C.black1, 0, -300, .75], [T.t5, 0, -300, .85]], s);
   c = breathe(c, a);
   return shake(c, 10 * kick(s - C.sombrio, .4, 18) + 26 * kick(s - C.armas, .35, 22) + 14 * kick(s - C.hackeia, .4, 20), a);
 }
@@ -322,8 +322,8 @@ function drawFarm(s, t, a) {
     for (let i = 0; i < 8; i++) { const y = r() * H, h = 6 + r() * 40, dx = (r() - .5) * 120 * gk; ctx.drawImage(ctx.canvas, 0, y, W, h, dx, y, W, h); }
   }
   pill([{ s: 'FAZENDAS INDOOR', px: 40, c: COL.white, ls: 7 }], W / 2, 120, s, C.fazendas - .05, C.sombrio - .2);
-  pill([{ s: 'BLACK MIRROR', px: 46, c: COL.white, ls: 9 }, { s: 'HATED IN THE NATION · 2016', px: 28, c: COL.teal, ls: 5, w: 600 }], W / 2, 130, s, C.black1 - .05, C.hackeia - .2);
-  pill([{ s: 'ALGUÉM HACKEIA O SISTEMA', px: 40, c: COL.coral, ls: 6 }], W / 2, H - 130, s, C.hackeia, T.t5 - .2);
+  pill([{ s: 'BLACK MIRROR', px: 46, c: COL.white, ls: 9 }, { s: 'HATED IN THE NATION · 2016', px: 28, c: COL.teal, ls: 5, w: 600 }], W / 2, H / 2 - 40, s, C.black1 - .05, T.t5 - .2);
+  pill([{ s: 'ALGUÉM HACKEIA O SISTEMA', px: 40, c: COL.coral, ls: 6 }], W / 2, H - 130, s, C.hackeia, C.black1 - .3);
 }
 
 // ---------------------------------------------------------------------

@@ -6,7 +6,7 @@ cues = '''const C = {
   mais: cue('mais', 1), flores: cue('flores'), comida: cue('comida'), tres: cue('três'), quatro: cue('quatro'), real: cue('real'),
   so: cue('só', 1), robos: cue('abelhas-robôs', 1), pesquisadores: cue('pesquisadores'), mit1: cue('mit', 1), clipe: cue('clipe'),
   dezessete: cue('dezessete'), futuro: cue('futuro'), fazendas: cue('fazendas'), sombrio: cue('sombrio'), black1: cue('black', 1),
-  hackeia: cue('hackeia'), armas: cue('armas'), agora: cue('agora'), mit2: cue('mit', 2), quem: cue('quem'), culpado: cue('culpado'),
+  hackeia: cue('hackeia'), armas: cue('armas'), agora: cue('traz'), mit2: cue('mit', 2), quem: cue('quem'), culpado: cue('culpado'),
   fabricante: cue('fabricante'), hacker: cue('hacker'), nos: cue('nós'), abelha: cue('abelha'), carro: cue('carro'), drone: cue('drone'),
   lista: cue('lista'), cresce: cue('cresce'), tecnologia1: cue('tecnologia', 1), quanto: cue('quanto'), riscos1: cue('riscos', 1),
   riscos2: cue('riscos', 2), ponto: cue('ponto'), questionar: cue('questionar'), porque: cue('tem'), parece: cue('parece'), salva: cue('salva'), condena: cue('condena')
