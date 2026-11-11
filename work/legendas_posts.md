@@ -136,3 +136,52 @@ Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licen
 #frankenstein #inteligenciaartificial #etica
 
 **Tags:** frankenstein, mary shelley, frankenstein não é o monstro, inteligência artificial, ética na ia, viés algorítmico, carro autônomo, algoritmos, literatura clássica, tecnologia e sociedade
+
+---
+
+## O AZUL FOI A ÚLTIMA COR (por que Homero nunca disse "azul")
+
+### Instagram (Reels)
+
+Homero nunca chamou o mar de azul. 🌊
+
+Na Odisseia, o mar é "cor de vinho". No século 19, William Gladstone contou as cores dos poemas: preto, quase 200 vezes; branco, 100; vermelho, menos de 15; azul, nenhuma.
+
+E não era só Homero. Lazarus Geiger procurou o azul na Bíblia hebraica, no Alcorão e nos Vedas e também não achou. Nas línguas, as cores ganham nome quase sempre na mesma ordem: preto e branco, vermelho, amarelo e verde… e o azul por último. A exceção? Os egípcios, que fabricavam tinta azul.
+
+E pra você, de que cor é o céu? A filha de um linguista, que nunca ouviu ninguém dizer, respondeu: branco.
+
+Homero via o mesmo mar que a gente. Só não tinha um nome pra ele. 👇
+
+Fontes: Gladstone, Studies on Homer (1858); Lazarus Geiger (1868); Guy Deutscher, Through the Language Glass (2010); BBC Brasil (2016).
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com), licença CC BY 4.0.
+
+#cores #azul #linguagem #historia #curiosidades #homero #odisseia #linguistica #ciencia
+
+### YouTube
+
+**Título:** Por que Homero nunca disse "azul"?
+
+**Descrição:**
+Na Odisseia, Homero descreve o mar como "cor de vinho" e em nenhum momento fala em azul. Em 1858, o britânico William Gladstone contou as cores dos poemas: preto aparece quase 200 vezes, branco cerca de 100, vermelho menos de 15, e azul nenhuma.
+
+Anos depois, o linguista Lazarus Geiger encontrou a mesma ausência na Bíblia hebraica, no Alcorão e nos Vedas, e percebeu um padrão: as línguas nomeiam primeiro o preto e o branco, depois o vermelho, depois o amarelo e o verde, e só no fim o azul. A exceção eram os egípcios, que fabricavam o azul egípcio, o pigmento sintético mais antigo de que se tem notícia.
+
+E o céu? O linguista Guy Deutscher ensinou as cores à filha, mas nunca disse a ela de que cor era o céu. Quando perguntou, ela demorou muito e respondeu: branco.
+
+Nossos olhos sempre viram o azul. O que mudou foi a palavra.
+
+Fontes:
+• BBC Brasil, "Por que civilizações antigas não reconheciam a cor azul?" (2016)
+• W. E. Gladstone, Studies on Homer and the Homeric Age (1858)
+• Lazarus Geiger, Ursprung und Entwicklung der menschlichen Sprache und Vernunft (1868)
+• Guy Deutscher, Through the Language Glass (2010); Radiolab, "Why Isn't the Sky Blue?" (2012)
+• Berlin & Kay, Basic Color Terms (1969)
+
+Créditos:
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licenses/by/4.0/
+
+#cores #linguagem #curiosidades
+
+**Tags:** cor azul, por que o céu é azul, homero, odisseia mar cor de vinho, gladstone homero cores, lazarus geiger, guy deutscher, história das cores, linguística, curiosidades históricas
