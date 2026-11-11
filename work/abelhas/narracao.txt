@@ -7,10 +7,9 @@ Pesquisadores do MIT criaram um robô-inseto que imita o voo das abelhas.
 Ele pesa menos que um clipe de papel e voa por dezessete minutos.
 No futuro, pode polinizar grandes fazendas indoor.
 Mas aí entra um detalhe sombrio. Agora imagina que abelhas-robôs substituem as abelhas que sumiram. Até que alguém hackeia o sistema e transforma essas máquinas em armas.
-Esse é o episódio: Black Mirror, Hated in the Nation.
-Traz isso pra realidade: e se alguém fizesse isso com os robôs do MIT?
+Esse é um episódio de Black Mirror, inclusive.
+E se alguém fizesse isso com os robôs do MIT?
 Quem seria o culpado? O fabricante? O hacker? Ou nós, tão ansiosos por inovação que esquecemos dos riscos?
-E não é só abelha. É carro autônomo que falha, drone usado na guerra, e a lista só cresce.
+E não é só abelha. É carro autônomo que falha, drone usado na guerra, e a lista só aumenta.
 A gente precisa da tecnologia pra resolver problemas reais. Mas quanto mais avança, mais fica exposto a riscos que ninguém sabe controlar.
 Até que ponto dá pra confiar sem questionar?
-E, se tem uma lição de Black Mirror, é essa: a tecnologia salva, mas também condena.

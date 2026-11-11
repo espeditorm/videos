@@ -60,63 +60,58 @@
   "t1": 46.147
  },
  {
-  "s": "Esse é o episódio: Black Mirror, Hated in the Nation.",
+  "s": "Esse é um episódio de Black Mirror, inclusive.",
   "t0": 46.387,
-  "t1": 49.042
+  "t1": 48.549
  },
  {
-  "s": "Traz isso pra realidade: e se alguém fizesse isso com os robôs do MIT?",
-  "t0": 49.282,
-  "t1": 53.262
+  "s": "E se alguém fizesse isso com os robôs do MIT?",
+  "t0": 48.789,
+  "t1": 50.796
  },
  {
   "s": "Quem seria o culpado?",
-  "t0": 53.502,
-  "t1": 54.76
+  "t0": 51.035,
+  "t1": 52.294
  },
  {
   "s": "O fabricante?",
-  "t0": 55.0,
-  "t1": 56.437
+  "t0": 52.533,
+  "t1": 53.97
  },
  {
   "s": "O hacker?",
-  "t0": 56.677,
-  "t1": 57.192
+  "t0": 54.211,
+  "t1": 54.726
  },
  {
   "s": "Ou nós, tão ansiosos por inovação que esquecemos dos riscos?",
-  "t0": 57.432,
-  "t1": 61.607
+  "t0": 54.965,
+  "t1": 59.14
  },
  {
   "s": "E não é só abelha.",
-  "t0": 61.847,
-  "t1": 62.864
+  "t0": 59.38,
+  "t1": 60.398
  },
  {
-  "s": "É carro autônomo que falha, drone usado na guerra, e a lista só cresce.",
-  "t0": 63.104,
-  "t1": 67.867
+  "s": "É carro autônomo que falha, drone usado na guerra, e a lista só aumenta.",
+  "t0": 60.638,
+  "t1": 65.134
  },
  {
   "s": "A gente precisa da tecnologia pra resolver problemas reais.",
-  "t0": 68.107,
-  "t1": 71.545
+  "t0": 65.374,
+  "t1": 68.812
  },
  {
   "s": "Mas quanto mais avança, mais fica exposto a riscos que ninguém sabe controlar.",
-  "t0": 71.785,
-  "t1": 76.228
+  "t0": 69.052,
+  "t1": 73.495
  },
  {
   "s": "Até que ponto dá pra confiar sem questionar?",
-  "t0": 76.468,
-  "t1": 78.413
- },
- {
-  "s": "E, se tem uma lição de Black Mirror, é essa: a tecnologia salva, mas também condena.",
-  "t0": 78.653,
-  "t1": 84.135
+  "t0": 73.735,
+  "t1": 75.68
  }
 ]

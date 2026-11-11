@@ -31,7 +31,7 @@ def synth(say):
         lang = "en" if p in EN else "pt"
         txt = ENMAP.get(p, p).strip(" ,")
         for k in range(5):
-            a = trim(np.array(tts.tts(text=txt, speaker=SPK, language=lang, speed=SPEED, split_sentences=False), np.float32), pre=240 if len(parts) > 1 else 1800, post=240 if len(parts) > 1 else 600)
+            a = trim(np.array(tts.tts(text=txt, speaker=SPK, language=lang, speed=SPEED, split_sentences=False), np.float32), pre=(1800 if not out else 240) if len(parts) > 1 else 1800, post=240 if len(parts) > 1 else 600)
             if len(parts) == 1 or seg_ok(a, txt, lang): break
             print(f"    trecho refeito ({lang}): {txt}", flush=True)
         out.append(a)
