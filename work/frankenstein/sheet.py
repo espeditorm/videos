@@ -1,13 +1,12 @@
 import json, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont
 C = json.load(open('shots/cues.json'))
-B = [(1.5,'abertura 08:07'),(C['havai']+.6,'Havaí: ilhas'),(C['vibram']+.5,'vibram: pulso'),(C['homem']+.3,'mergulho: homem'),
- (C['carrey']+.4,'Jim Carrey'),(C['ameaca']+.6,'alerta no celular'),(C['isto']+.6,'não é simulado'),(C['se']+.6,'recuo: globo'),
- (C['vinte']+.5,'≈20 MIN no arco'),(C['voce']+.5,'você: pino'),(C['esconder']+.8,'esconderijos'),(C['quem']+.5,'e com quem: gato'),
- (C['vazio']+.5,'céu vazio'),(C['tres']+.8,'contador começa'),(C['lancamento']+.4,'08:10 nenhum lançamento'),(C['cinco']+.4,'08:45 frente de correção'),
- (C['trinta1']+.6,'38 MIN'),(C['tela']+.4,'a tela'),(C['real2']+.15,'clique no real'),(C['iguais']+.4,'mesma lista'),
- (C['dois2']+.4,'mesma confirmação'),(C['desmentir']+.5,'não existia'),(C['acordou']+.4,'Carrey acorda'),(C['dez']+.5,'10 minutos'),
- (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(62.1,"título")]
+B = [(1.0,'escrivaninha 1818'),(C['frank1']+.3,'o livro abre'),(C['vida']+.1,'raio: cria vida'),(C['consequencias']+.6,'ele vira as costas'),
+ (C['rejeitada']+.5,'rejeitada'),(C['perigosa']+.3,'a sombra: perigosa'),(C['criatura2']+.4,'FRANKENSTEIN ✗ criatura'),(C['criador']+.6,'✓ é o criador'),
+ (C['costuras']+.4,'costuras e eletricidade'),(C['inteligencias']+.6,'vira rede de IA'),(C['decidem']+.4,'decidem por nós'),(C['proteger']+.4,'carro: quem proteger'),
+ (C['emprestimo']+.6,'empréstimo, vaga'),(C['preconceitos']+.5,'PRECONCEITO'),(C['rosto']+.6,'sem rosto'),(C['recomendacoes']+.5,'recomendações'),
+ (C['decisoes']+.8,'fios nas decisões'),(C['aviso']+.3,'o livro: um aviso'),(C['criar']+.6,'não basta criar'),(C['aliadas']+.4,'aliadas'),
+ (C['monstros2']+.4,'ou monstros'),(C['RW0']+.4,'rewind 0,8 s'),(C['TITLE']+1.0,'título'),(C['DUR']-.2,'fim')]
 fs = []
 subprocess.run(['node','shot.js','shots']+[f'{t:.2f}' for t,_ in B], check=True, capture_output=True)
 cols, tw, th = 4, 640, 360
