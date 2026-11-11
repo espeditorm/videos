@@ -24,20 +24,17 @@ t = np.arange(len(mus)) / SR
 env = np.clip(t / 1.2, 0, 1) * db(5 * np.clip((t - (TITLE - 1.0)) / 1.0, 0, 1)) * np.clip((DUR - t) / 1.6, 0, 1)
 out[:len(mus)] += mus * env[:, None]
 vp = np.abs(voz).max()
-T1, T2, T3, T4, T5, T6 = c['homem'] - .2, c['se'] - .12, c['voce'] - .12, c['mas'] - .1, c['por'] - .05, c['jim2'] - .4
-RW0 = c['trinta2'] + .08
-EV = [('pino', c['havai'] + .05, -8), ('buzz', c['vibram'] + .3, -7), ('alerta', c['vibram'] + .05, -10),
-      ('mergulho', T1 + .3, -7), ('tick', c['ameaca'], -9), ('tick', c['procure'], -9), ('tick', c['isto'], -8),
-      ('whoosh', T2 + .3, -7), ('whoosh', T2 + 1.2, -10), ('tick', c['missil'], -10), ('mergulho', T3 + .3, -7),
-      ('pino', c['voce'] + .12, -7), ('plop_02', c['esconder'] + .05, -9), ('plop_02', c['esconder'] + .22, -9),
-      ('plop_02', c['esconder'] + .39, -9), ('plop_02', c['quem'] + .05, -8), ('whoosh', T4 + .3, -7),
-      ('revelacao', c['vazio'] + .1, -8), ('clarao', c['cinco'] + .15, -7), ('slam_01', c['trinta1'] + .05, -5),
-      ('mergulho', T5 + .3, -7), ('switch_01', c['click'], -6), ('pino', c['teste'] + .05, -9),
-      ('plop_02', c['confirmacao'], -8), ('plop_02', c['confirmacao'] + .2, -8), ('paper_02', c['existia'] + .3, -9),
-      ('impacto', c['desmentir'] + .08, -6), ('mergulho', T6 + .3, -7), ('tick', c['dez'], -8),
-      ('bell_02', c['FA'] + .05, -6), ('buzz', c['FA'] + .1, -12), ('rewind', RW0 + .4, -6),
-      ('switch_01', c['menu'], -6), ('revelacao', TITLE, -6)]
-EV += [('tick', x, -15) for x in np.arange(c['tres'] - .05, c['cinco'], .28)]
+T = dict(t1=c['quem'] - .15, t2=c['depois1'] - .15, t3=c['viu'] - .45, t4=c['egipcios'] - .45, t5=c['pra'] - .3, t7=c['homero2'] - .3)
+RW0 = c['RW0']
+EV = [('whoosh', c['vinho'] - .1, -10), ('pino', c['azul1'], -8), ('mergulho', T['t1'] + .3, -8), ('switch_01', c['contou'], -9),
+      ('slam_01', c['nenhuma'], -7), ('whoosh', T['t2'] + .3, -8), ('pino', c['biblia'], -10), ('pino', c['alcorao'], -10), ('pino', c['vedas'], -10),
+      ('impacto', c['achou'], -9), ('mergulho', T['t3'] + .3, -8), ('plop_02', c['preto2'], -9), ('plop_02', c['branco2'], -9), ('plop_02', c['vermelho2'], -9),
+      ('plop_02', c['amarelo'], -9), ('plop_02', c['verde'], -9), ('revelacao', c['azul3'], -5), ('clarao', c['azul3'] + .1, -9),
+      ('mergulho', T['t4'] + .3, -8), ('bell_02', c['tinta'], -9), ('mergulho', T['t5'] + .3, -8), ('pino', c['voce'], -8),
+      ('whoosh', c['ceu2'] - .3, -9), ('bell_02', c['branco3'], -7), ('mergulho', T['t7'] + .3, -8), ('pino', c['nome'] - .05, -7),
+      ('rewind', RW0 + .4, -6), ('revelacao', TITLE, -6)]
+EV += [('tick', c['preto'] + i * .25, -15) for i in range(6)]
+EV += [('tick', c['demorou'] + i * .33, -16) for i in range(4)]
 for name, at, g in EV:
     f = next(p for p in [f'assets/sfx/{name}.{e}' for e in ('wav', 'ogg')] if os.path.exists(p))
     x = load(f)
