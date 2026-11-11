@@ -92,3 +92,47 @@ Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licen
 #abelhas #robotica #blackmirror
 
 **Tags:** abelhas robôs, robô inseto mit, abelhas robo, polinização, black mirror hated in the nation, ética na tecnologia, robótica, fazenda vertical, inteligência artificial, mit 2025
+
+---
+
+## QUEM É O MONSTRO? (Frankenstein e a IA)
+
+### Instagram (Reels)
+
+Frankenstein não é o monstro. 🧪
+
+No livro de Mary Shelley (1818), Frankenstein é o cientista que cria vida sem pensar nas consequências. A criatura nem tem nome.
+
+Hoje a gente não costura monstros com eletricidade. Cria inteligências artificiais que aprendem sozinhas e já decidem por nós: quem o carro autônomo protege num acidente, quem recebe um empréstimo, quem é chamado pra uma vaga. E muitas vezes elas repetem os nossos preconceitos.
+
+O livro foi um aviso: não basta criar, é preciso pensar no que se cria.
+
+As máquinas de hoje são nossas aliadas ou nossos futuros monstros? 👇
+
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com), licença CC BY 4.0.
+
+#frankenstein #maryshelley #inteligenciaartificial #ia #tecnologia #etica #literatura #algoritmos #futuro
+
+### YouTube
+
+**Título:** Frankenstein não é o monstro. E a IA pode ser a próxima criatura
+
+**Descrição:**
+Há mais de dois séculos, em 1818, Mary Shelley publicou Frankenstein: a história de um cientista que cria vida e não pensa no impacto do que fez. E um detalhe que muita gente esquece: Frankenstein não é a criatura. É o criador.
+
+Hoje, as criações são outras. Sistemas de inteligência artificial aprendem sozinhos e já tomam decisões por nós, como:
+• o carro autônomo que precisa escolher quem proteger num acidente
+• o algoritmo que decide quem recebe um empréstimo ou é chamado para uma vaga, e pode repetir os nossos preconceitos
+• as recomendações que moldam decisões que a gente acha que toma sozinho
+
+O livro foi escrito como um aviso: não basta criar, é preciso pensar no que se cria. Então, as máquinas de hoje são nossas aliadas ou nossos futuros monstros?
+
+Fonte: Mary Shelley, "Frankenstein; or, The Modern Prometheus" (1818)
+
+Créditos:
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licenses/by/4.0/
+
+#frankenstein #inteligenciaartificial #etica
+
+**Tags:** frankenstein, mary shelley, frankenstein não é o monstro, inteligência artificial, ética na ia, viés algorítmico, carro autônomo, algoritmos, literatura clássica, tecnologia e sociedade
