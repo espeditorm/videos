@@ -188,10 +188,13 @@ function drawLab(s, t, a) {
   // o cientista: puxa a alavanca em "vida", depois vira as costas em "consequências"
   const away = easeIO((s - C.consequencias) / 1.0) * (1 - easeIO((s - C.detalhe) / .8));
   const lever = spring(s - (C.vida - .3), .5, 12) * (1 - easeIO((s - C.consequencias) / .4));
-  drawMan(SCI.x - away * 260, SCI.y, 1.05, s, a, { ...COAT, phoneUp: lever, worry: s > C.vida ? .6 : 0, look: away > .5 ? { x: -1200, y: -300 } : { x: CRE.x, y: -300 }, kicks: [C.vida, C.consequencias, C.criador] });
-  // alavanca
-  ctx.fillStyle = '#8a9bb5'; ctx.beginPath(); ctx.roundRect(SCI.x + 120, -120, 40, 360, 12); ctx.fill();
-  ctx.save(); ctx.translate(SCI.x + 140, -120); ctx.rotate(lerp(-.6, .6, lever)); ctx.fillStyle = '#c9d6e3'; ctx.beginPath(); ctx.roundRect(-8, -150, 16, 150, 8); ctx.fill(); ctx.fillStyle = '#ff8a7a'; ctx.beginPath(); ctx.arc(0, -150, 22, 0, 6.283); ctx.fill(); ctx.restore();
+  // alavanca perto do cientista: puxada em direção ao corpo na palavra "vida"
+  const LP = { x: SCI.x + 130, y: 100 }, th = lerp(.35, -.35, lever), knob = { x: LP.x + 110 * Math.sin(th), y: LP.y - 110 * Math.cos(th) };
+  ctx.fillStyle = '#8a9bb5'; ctx.beginPath(); ctx.roundRect(LP.x - 22, LP.y - 10, 44, 150, 12); ctx.fill();
+  ctx.save(); ctx.translate(LP.x, LP.y); ctx.rotate(th); ctx.fillStyle = '#c9d6e3'; ctx.beginPath(); ctx.roundRect(-8, -110, 16, 110, 8); ctx.fill(); ctx.fillStyle = '#ff8a7a'; ctx.beginPath(); ctx.arc(0, -110, 20, 0, 6.283); ctx.fill(); ctx.restore();
+  // a mão vai até a manopla um pouco antes, segura, puxa e solta quando ele vira as costas
+  const grab = smooth(C.vida - 1.0, C.vida - .45, s) * (1 - smooth(C.consequencias - .1, C.consequencias + .3, s));
+  drawMan(SCI.x - away * 260, SCI.y, 1.05, s, a, { ...COAT, longSleeve: true, reach: knob, reachW: grab, handR: grab > .6 ? 'punho' : 'aberta', worry: s > C.vida ? .6 : 0, look: away > .5 ? { x: -1200, y: -300 } : { x: CRE.x, y: -300 }, kicks: [C.vida, C.consequencias, C.criador] });
   nameTag(0, 0, s, a);
   // clarão em tela cheia no raio
   screenSpace();

@@ -256,6 +256,44 @@ function inPoly(x, y, P) { let c = false; for (let i = 0, j = P.length - 1; i < 
 // =====================================================================
 const SKIN = '#e9b48f', SKIN_D = '#d99c78', SHIRT = '#1fa3a8', SHORTS = '#2b4f7a', HAIR = '#3b2a2e';
 function blink(a, seed = 0) { const p = (a * .37 + seed) % 1; return p > .965 ? Math.sin((p - .965) / .035 * Math.PI) : 0; }
+// ---------- braço com cotovelo (cinemática inversa de 2 ossos) e mão com dedos ----------
+function seg(p, q, w, col) {
+  const L = Math.hypot(q.x - p.x, q.y - p.y);
+  ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(q.y - p.y, q.x - p.x));
+  ctx.fillStyle = col; ctx.beginPath(); ctx.roundRect(-w / 2, -w / 2, L + w, w, w / 2); ctx.fill(); ctx.restore();
+}
+// pose: relax | aberta | punho | aponta | joinha | pare ; th = lado do polegar (+1 / -1)
+function drawHand(wr, ang, pose, th, skin) {
+  ctx.save(); ctx.translate(wr.x, wr.y); ctx.rotate(ang); ctx.fillStyle = skin;
+  const R = (x, y, w, h, r) => { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); };
+  if (pose === 'aberta' || pose === 'relax' || pose === 'pare') {
+    const curl = pose === 'relax' ? .55 : 1, spread = pose === 'pare' ? .16 : .05;
+    R(-2, -12, 22, 24, 9);
+    for (let i = 0; i < 4; i++) { ctx.save(); ctx.translate(17, -9 + i * 6); ctx.rotate((i - 1.5) * spread); R(0, -2.7, 15 * curl, 5.4, 2.7); ctx.restore(); }
+    ctx.save(); ctx.translate(6, 9 * th); ctx.rotate(th * (pose === 'pare' ? .9 : .5)); R(0, -3.5, 13, 7, 3.5); ctx.restore();
+  } else {
+    R(-2, -13, 25, 26, 10);   // punho fechado
+    ctx.fillStyle = 'rgba(0,0,0,.10)'; for (let i = 0; i < 3; i++) R(19, -9 + i * 7, 4, 4, 2); ctx.fillStyle = skin;
+    if (pose === 'aponta') R(20, -12, 20, 6, 3);
+    if (pose === 'joinha') { ctx.save(); ctx.translate(8, -10 * th); R(-3.5, -20 * (th > 0 ? 0 : 1), 7, 20, 3.5); ctx.restore(); }
+    else { ctx.save(); ctx.translate(6, 6 * th); R(0, -3.5, 14, 7, 3.5); ctx.restore(); }   // polegar sobre os dedos
+  }
+  ctx.restore();
+}
+// desenha o braço do ombro até o alvo; devolve o punho. bend: lado para onde o cotovelo aponta
+function drawArm(sh, tgt, L1, L2, bend, sleeve, longSleeve, pose, th) {
+  const dx = tgt.x - sh.x, dy = tgt.y - sh.y, d = Math.min(Math.hypot(dx, dy), L1 + L2 - .5), a0 = Math.atan2(dy, dx);
+  const cb = clamp((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d), -1, 1), b = Math.acos(cb);
+  const el = { x: sh.x + Math.cos(a0 + bend * b) * L1, y: sh.y + Math.sin(a0 + bend * b) * L1 };
+  const fa = Math.atan2(sh.y + Math.sin(a0) * d - el.y, sh.x + Math.cos(a0) * d - el.x);
+  const wr = { x: el.x + Math.cos(fa) * L2, y: el.y + Math.sin(fa) * L2 };
+  seg(el, wr, 21, longSleeve ? sleeve : SKIN);
+  if (longSleeve) { ctx.fillStyle = '#d7e2ec'; ctx.save(); ctx.translate(wr.x, wr.y); ctx.rotate(fa); ctx.beginPath(); ctx.roundRect(-12, -12, 12, 24, 5); ctx.fill(); ctx.restore(); }
+  seg(sh, el, 27, sleeve);
+  if (!longSleeve) { const m = { x: lerp(sh.x, el.x, .55), y: lerp(sh.y, el.y, .55) }; seg(m, el, 22, SKIN); }
+  drawHand(wr, fa, pose, th, SKIN);
+  return wr;
+}
 // homem visto de frente: pés em (x,y), ~340 de altura em sc=1
 function drawMan(x, y, sc, s, a, o = {}) {
   let sq = 0; for (const k of (o.kicks || [])) sq += kick(s - k, .45, 13) * .14;
@@ -273,13 +311,10 @@ function drawMan(x, y, sc, s, a, o = {}) {
     ctx.fillStyle = (o.pants || SHORTS); ctx.beginPath(); ctx.roundRect(-52, -128, 104, 62, 18); ctx.fill();
     ctx.fillStyle = '#244469'; ctx.beginPath(); ctx.roundRect(-4, -100, 8, 34, 4); ctx.fill();
   }
-  // braço esquerdo (do personagem à direita da tela fica o celular)
+  // braço esquerdo: pende relaxado, com balanço
   const armSw = .08 * Math.sin(a * 1.2);
-  ctx.save(); ctx.translate(-50, -228); ctx.rotate(.18 + armSw + (o.hug || 0) * -1.2);
-  ctx.fillStyle = (o.shirt || SHIRT); ctx.beginPath(); ctx.roundRect(-14, -6, 28, 46, 13); ctx.fill();
-  ctx.fillStyle = SKIN; ctx.beginPath(); ctx.roundRect(-11, 34, 22, 56, 11); ctx.fill();
-  ctx.beginPath(); ctx.arc(0, 92, 13, 0, 6.283); ctx.fill();
-  ctx.restore();
+  const leftT = o.reachL ? o.reachL : { x: -70 - 20 * armSw * 4, y: -118 };
+  const drawLeft = () => drawArm({ x: -50, y: -228 }, leftT, 58, 56, -1, (o.shirt || SHIRT), !!o.longSleeve, o.handL || 'relax', -1);
   // tronco: camisa havaiana
   ctx.save();
   ctx.fillStyle = (o.shirt || SHIRT); ctx.beginPath(); ctx.roundRect(-58, -246, 116, 132, 36); ctx.fill();
@@ -297,6 +332,7 @@ function drawMan(x, y, sc, s, a, o = {}) {
   }
   ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.beginPath(); ctx.roundRect(-58, -136, 116, 22, 10); ctx.fill();
   ctx.restore();
+  drawLeft();
   // gola em V
   ctx.fillStyle = SKIN; ctx.beginPath(); ctx.moveTo(-16, -246); ctx.lineTo(16, -246); ctx.lineTo(0, -222); ctx.closePath(); ctx.fill();
   // pescoço e cabeça
@@ -326,16 +362,12 @@ function drawMan(x, y, sc, s, a, o = {}) {
   else if ((o.worry || 0) > .5) { ctx.beginPath(); ctx.ellipse(0, 34, 7, 9 * (o.worry || 0), 0, 0, 6.283); ctx.fill(); }
   else { ctx.beginPath(); ctx.roundRect(-9, 30, 18, 6, 3); ctx.fill(); }
   ctx.restore();
-  // braço direito segura o celular
+  // braço direito: alcança o alvo (o.reach, em coordenadas do mundo) ou segura o celular
   const up = o.phoneUp ?? 0;
-  const sh = { x: 50, y: -228 };
-  const hand = { x: lerp(66, 74, up), y: lerp(-150, -300, up) };
-  const ang = Math.atan2(hand.y - sh.y, hand.x - sh.x) - Math.PI / 2;
-  const len = Math.hypot(hand.x - sh.x, hand.y - sh.y);
-  ctx.save(); ctx.translate(sh.x, sh.y); ctx.rotate(ang);
-  ctx.fillStyle = (o.shirt || SHIRT); ctx.beginPath(); ctx.roundRect(-14, -6, 28, 46, 13); ctx.fill();
-  ctx.fillStyle = SKIN; ctx.beginPath(); ctx.roundRect(-11, 30, 22, Math.max(10, len - 30), 11); ctx.fill();
-  ctx.restore();
+  let hand = { x: lerp(66, 74, up), y: lerp(-150, -300, up) };
+  if (o.reach) { const w = o.reachW ?? 1; const lx = (o.reach.x - x) / (sc * sx), ly = (o.reach.y - y) / (sc * sy) + bob * (o.sit ? .4 : 1); hand = { x: lerp(hand.x, lx, w), y: lerp(hand.y, ly, w) }; }
+  const wr = drawArm({ x: 50, y: -228 }, hand, 58, 56, 1, (o.shirt || SHIRT), !!o.longSleeve, o.handR || (up > .3 || o.reach ? 'punho' : 'relax'), 1);
+  hand = wr;
   ctx.restore();
   // mão e celular em coordenadas do mundo
   const hw = { x: x + hand.x * sc * sx, y: y + (hand.y - bob * (o.sit ? .4 : 1)) * sc * sy };
