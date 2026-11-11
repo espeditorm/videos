@@ -2,121 +2,121 @@
  {
   "s": "Imagina um mundo onde as abelhas não existem mais.",
   "t0": 0.3,
-  "t1": 2.814
+  "t1": 2.672
  },
  {
   "s": "Sem aquele zumbido no jardim, sem a dança nas flores.",
-  "t0": 3.054,
-  "t1": 6.274
+  "t0": 2.912,
+  "t1": 6.132
  },
  {
   "s": "E com bem menos comida: três em cada quatro culturas que dão frutos e sementes dependem, pelo menos em parte, de polinizadores.",
-  "t0": 6.514,
-  "t1": 14.145
+  "t0": 6.372,
+  "t1": 14.003
  },
  {
   "s": "Parece filme apocalíptico, mas é uma preocupação real.",
-  "t0": 14.385,
-  "t1": 17.675
+  "t0": 14.243,
+  "t1": 17.533
  },
  {
   "s": "Só que, pra cada problema, a humanidade arranja uma solução.",
-  "t0": 17.915,
-  "t1": 22.04
+  "t0": 17.773,
+  "t1": 21.898
  },
  {
   "s": "Abelhas-robôs.",
-  "t0": 22.28,
-  "t1": 23.246
+  "t0": 22.138,
+  "t1": 23.173
  },
  {
   "s": "Pesquisadores do MIT criaram um robô-inseto que imita o voo das abelhas.",
-  "t0": 23.486,
-  "t1": 28.944
+  "t0": 23.413,
+  "t1": 27.687
  },
  {
   "s": "Ele pesa menos que um clipe de papel e voa por dezessete minutos.",
-  "t0": 29.184,
-  "t1": 33.313
+  "t0": 27.927,
+  "t1": 32.056
  },
  {
   "s": "No futuro, pode polinizar grandes fazendas indoor.",
-  "t0": 33.553,
-  "t1": 36.656
+  "t0": 32.296,
+  "t1": 36.187
  },
  {
   "s": "Mas aí entra um detalhe sombrio.",
-  "t0": 36.896,
-  "t1": 38.499
+  "t0": 36.427,
+  "t1": 38.03
  },
  {
-  "s": "Assim que eu li essa notícia, lembrei de um episódio: Black Mirror, Hated in the Nation.",
-  "t0": 38.739,
-  "t1": 43.35
- },
- {
-  "s": "Lá, abelhas-robôs substituem as abelhas que sumiram.",
-  "t0": 43.59,
-  "t1": 46.641
+  "s": "Agora imagina que abelhas-robôs substituem as abelhas que sumiram.",
+  "t0": 38.27,
+  "t1": 42.298
  },
  {
   "s": "Até que alguém hackeia o sistema e transforma essas máquinas em armas.",
-  "t0": 46.881,
-  "t1": 50.49
+  "t0": 42.538,
+  "t1": 46.147
  },
  {
-  "s": "Agora traz isso pra realidade: e se alguém fizesse isso com os robôs do MIT?",
-  "t0": 50.73,
-  "t1": 57.125
+  "s": "Esse é o episódio: Black Mirror, Hated in the Nation.",
+  "t0": 46.387,
+  "t1": 49.042
+ },
+ {
+  "s": "Traz isso pra realidade: e se alguém fizesse isso com os robôs do MIT?",
+  "t0": 49.282,
+  "t1": 53.262
  },
  {
   "s": "Quem seria o culpado?",
-  "t0": 57.365,
-  "t1": 58.623
+  "t0": 53.502,
+  "t1": 54.76
  },
  {
   "s": "O fabricante?",
-  "t0": 58.863,
-  "t1": 60.3
+  "t0": 55.0,
+  "t1": 56.437
  },
  {
   "s": "O hacker?",
-  "t0": 60.54,
-  "t1": 61.055
+  "t0": 56.677,
+  "t1": 57.192
  },
  {
   "s": "Ou nós, tão ansiosos por inovação que esquecemos dos riscos?",
-  "t0": 61.295,
-  "t1": 65.47
+  "t0": 57.432,
+  "t1": 61.607
  },
  {
   "s": "E não é só abelha.",
-  "t0": 65.71,
-  "t1": 66.537
+  "t0": 61.847,
+  "t1": 62.864
  },
  {
   "s": "É carro autônomo que falha, drone usado na guerra, e a lista só cresce.",
-  "t0": 66.777,
-  "t1": 71.54
+  "t0": 63.104,
+  "t1": 67.867
  },
  {
   "s": "A gente precisa da tecnologia pra resolver problemas reais.",
-  "t0": 71.78,
-  "t1": 75.218
+  "t0": 68.107,
+  "t1": 71.545
  },
  {
   "s": "Mas quanto mais avança, mais fica exposto a riscos que ninguém sabe controlar.",
-  "t0": 75.458,
-  "t1": 79.901
+  "t0": 71.785,
+  "t1": 76.228
  },
  {
   "s": "Até que ponto dá pra confiar sem questionar?",
-  "t0": 80.141,
-  "t1": 82.086
+  "t0": 76.468,
+  "t1": 78.413
  },
  {
   "s": "E, se tem uma lição de Black Mirror, é essa: a tecnologia salva, mas também condena.",
-  "t0": 82.326,
-  "t1": 88.053
+  "t0": 78.653,
+  "t1": 84.135
  }
 ]
