@@ -1,0 +1,60 @@
+1
+00:00:00,300 --> 00:00:03,957
+Há mais de dois séculos, Mary Shelley escreveu Frankenstein
+
+2
+00:00:04,047 --> 00:00:07,696
+No livro, um cientista cria vida e não pensa nas consequências
+
+3
+00:00:07,786 --> 00:00:12,960
+O resultado é uma criatura rejeitada, confusa e, no fim, perigosa
+
+4
+00:00:13,050 --> 00:00:18,175
+E tem um detalhe que muita gente esquece: Frankenstein não é a criatura
+
+5
+00:00:18,265 --> 00:00:19,036
+É o criador
+
+6
+00:00:19,126 --> 00:00:22,170
+Hoje a gente não cria monstros com costuras e eletricidade
+
+7
+00:00:22,260 --> 00:00:24,147
+Cria inteligências artificiais
+
+8
+00:00:24,237 --> 00:00:27,986
+Sistemas que aprendem sozinhos e já decidem por nós
+
+9
+00:00:28,076 --> 00:00:31,460
+Um carro autônomo pode ter que escolher quem proteger num acidente
+
+10
+00:00:31,550 --> 00:00:36,864
+Um algoritmo escolhe quem recebe um empréstimo ou uma vaga, e repete os nossos preconceitos
+
+11
+00:00:36,954 --> 00:00:40,321
+E, diferente do monstro do livro, essas criações não têm rosto
+
+12
+00:00:40,411 --> 00:00:43,860
+Estão nas recomendações e nas decisões que a gente acha que toma sozinho
+
+13
+00:00:43,950 --> 00:00:47,091
+O livro foi escrito como um aviso: não basta criar
+
+14
+00:00:47,181 --> 00:00:48,866
+É preciso pensar no que se cria
+
+15
+00:00:48,956 --> 00:00:54,199
+Então, as máquinas de hoje são nossas aliadas ou nossos futuros monstros?
+
