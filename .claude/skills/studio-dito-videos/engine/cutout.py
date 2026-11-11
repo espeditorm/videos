@@ -20,6 +20,11 @@ def key_mask(rgb, key='green'):
     n,lab = cv2.connectedComponents(bgc,connectivity=4)
     edge = set(np.unique(np.concatenate([lab[0],lab[-1],lab[:,0],lab[:,-1]]))) - {0}
     bg = np.isin(lab, list(edge))
+    # enclosed key-colour pockets (e.g. between head and shoulders): strict rule, sizeable blobs only
+    strict = (dom > 70) & (np.linalg.norm(rgb.astype(np.float32)-med,axis=2) < 55) & ~bg
+    n2,lab2,st2,_ = cv2.connectedComponentsWithStats(strict.astype(np.uint8),connectivity=4)
+    for i in range(1,n2):
+        if st2[i][4] >= 30: bg |= (lab2==i)
     return bg, med
 
 def cut(rgb, key='green'):

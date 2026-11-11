@@ -23,7 +23,7 @@ def dominant(rgb, mask, k=1):
 
 def find_eyes(rgb, alpha, head_box, skin):
     x0,y0,x1,y1=head_box; sub=rgb[y0:y1,x0:x1].astype(int); a=alpha[y0:y1,x0:x1]
-    dark=(sub.sum(axis=2)<140)&(a>200)
+    dark=(sub.sum(axis=2)<min(200,sum(skin)*0.55))&(a>200)
     # restrict to the face band (35-80% of the head height)
     hh=y1-y0; band=np.zeros_like(dark); band[int(hh*.35):int(hh*.8)]=1; dark&=band.astype(bool)
     n,lab,st,cen=cv2.connectedComponentsWithStats(dark.astype(np.uint8))
@@ -44,7 +44,9 @@ def find_eyes(rgb, alpha, head_box, skin):
     return out
 
 def rig(path, outdir, name):
-    im=np.array(Image.open(path).convert('RGBA')); H,W=im.shape[:2]; rgb=im[...,:3]; al=im[...,3]
+    im=np.array(Image.open(path).convert('RGBA')); H,W=im.shape[:2]
+    im[im[...,3]==0,:3]=0           # never let hidden key colour leak through inpaint/filters
+    rgb=im[...,:3]; al=im[...,3]
     ys=np.nonzero(al.max(axis=1)>128)[0]; top,bot=ys[0],ys[-1]; fh=bot-top
     w=rows_width(al)
     lo,hi=top+int(fh*0.35),top+int(fh*0.78)
@@ -60,7 +62,8 @@ def rig(path, outdir, name):
     sockets={'l':{'x':int(sxs[0]+inset),'y':int(sh_y)},'r':{'x':int(sxs[-1]-inset),'y':int(sh_y)}}
     # colours
     head_mask=np.zeros_like(al,bool); head_mask[top:neck_y]=al[top:neck_y]>200
-    skin=dominant(rgb,head_mask & (rgb.sum(axis=2)>200))
+    warm=(rgb[...,0].astype(int)-rgb[...,2].astype(int)>40)
+    skin=dominant(rgb,head_mask & warm) if (head_mask&warm).sum()>200 else dominant(rgb,head_mask)
     sl_mask=np.zeros_like(al,bool); sl_mask[sh_y:sh_y+int(fh*0.08),:]=al[sh_y:sh_y+int(fh*0.08),:]>200
     sleeve=dominant(rgb,sl_mask)
     hx=np.nonzero(al[top:neck_y].max(axis=0)>128)[0]; head_box=(int(hx[0]),int(top),int(hx[-1]+1),int(neck_y))
@@ -71,7 +74,11 @@ def rig(path, outdir, name):
     body=im.copy(); body[:neck_y]=0
     # inpaint a collar band [neck_y-ov, neck_y+ov] from body colours so the gap under a nodding head is filled
     band=np.zeros((H,W),np.uint8); band[neck_y-ov:neck_y+1]=255
-    nw=int((xs[-1]-xs[0])*1.25); band[:, :max(0,neck_x-nw//2)]=0; band[:, neck_x+nw//2:]=0
+    span=np.nonzero(al[min(H-1,neck_y+2)]>128)[0]              # the collar row just under the neck
+    band[:, :span[0]]=0; band[:, span[-1]+1:]=0
+    band[al==0]=band[al==0]*0 + band[al==0]  # (kept) inside body width only
+    # only fill pixels that sit between opaque pixels of the head above and body below
+    band &= ((al>0)|(np.roll(al,-ov,axis=0)>0)).astype(np.uint8)*255
     fill_src=im.copy(); fill_src[:neck_y,...,3]=0
     rgbfill=cv2.inpaint(np.ascontiguousarray(rgb),band,5,cv2.INPAINT_TELEA)
     body[band>0,:3]=rgbfill[band>0]; body[band>0,3]=255
@@ -81,7 +88,7 @@ def rig(path, outdir, name):
     Image.fromarray(body).save(os.path.join(outdir,f'{name}_body.png'))
     L=fh
     R=dict(w=W,h=H,top=int(top),bottom=int(bot),figH=int(fh),neck=dict(x=neck_x,y=int(neck_y)),head=dict(zip('xywh',[head_box[0],head_box[1],head_box[2]-head_box[0],head_box[3]-head_box[1]])),
-           sockets=sockets,eyes=eyes,skin=skin,sleeve=sleeve,L1=round(0.13*L,1),L2=round(0.12*L,1),T=round(0.04*L,1),
+           sockets=sockets,eyes=eyes,skin=skin,sleeve=sleeve,L1=round(0.145*L,1),L2=round(0.135*L,1),T=round(0.05*L,1),
            head_img=f'{name}_head.png',body_img=f'{name}_body.png')
     p=os.path.join(outdir,'rig.js'); txt=open(p).read() if os.path.exists(p) else 'window.RIG=window.RIG||{};\n'
     txt+=f'RIG[{json.dumps(name)}]={json.dumps(R)};\n'; open(p,'w').write(txt)

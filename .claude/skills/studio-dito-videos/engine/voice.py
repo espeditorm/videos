@@ -30,12 +30,23 @@ def trim_pauses(a, maxp=0.24, keep=0.16, thr_db=-42):
 def words_from_whisper(wav):
     from faster_whisper import WhisperModel
     m=WhisperModel('small.en',device='cpu',compute_type='int8',download_root=MODELS)
-    segs,_=m.transcribe(wav,word_timestamps=True,beam_size=5,vad_filter=False)
+    # pass a 16 kHz float array: avoids PyAV API drift in faster_whisper.decode_audio
+    import subprocess
+    raw=subprocess.run(['ffmpeg','-loglevel','error','-i',wav,'-f','f32le','-ac','1','-ar','16000','-'],capture_output=True).stdout
+    audio=np.frombuffer(raw,np.float32).copy()
+    segs,_=m.transcribe(audio,word_timestamps=True,beam_size=5,vad_filter=False)
     W=[]
     for s in segs:
         for w in s.words: W.append(dict(w=w.word.strip(),s=round(w.start,3),e=round(w.end,3)))
     return W
 
+NUM={'eighteen forty':'1840'}
+def num2words_light(s):
+    # whisper writes numbers as digits; compare in digit form
+    try:
+        from word2number import w2n
+    except Exception: w2n=None
+    return s
 def norm(s): return re.sub(r"[^a-z0-9' ]","",s.lower())
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('script'); ap.add_argument('outdir'); ap.add_argument('--voice',default='am_onyx'); ap.add_argument('--speed',type=float,default=1.0)
@@ -51,6 +62,16 @@ def main():
     open(os.path.join(a.outdir,'words.js'),'w').write('window.WORDS='+json.dumps(W)+';\nwindow.VOICE_DUR='+str(round(len(audio)/SR,3))+';\n')
     # diff against script
     sw=norm(' '.join(chapters)).split(); ww=[norm(w['w']) for w in W]
+    # numbers: treat a digit token in whisper as matching any run of number words in the script
+    NW=set('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion and'.split())
+    sw2=[];i=0
+    while i<len(sw):
+        if sw[i] in NW and sw[i]!='and':
+            j=i
+            while j<len(sw) and sw[j] in NW: j+=1
+            sw2.append('#'); i=j
+        else: sw2.append(sw[i]); i+=1
+    sw=sw2; ww=['#' if re.fullmatch(r"[0-9][0-9,.]*",w) else w for w in ww]
     sm=difflib.SequenceMatcher(None,sw,ww); bad=[(op,' '.join(sw[i1:i2]),' '.join(ww[j1:j2])) for op,i1,i2,j1,j2 in sm.get_opcodes() if op!='equal']
     rep={'duration':round(len(audio)/SR,2),'words':len(W),'wpm':round(len(sw)/(len(audio)/SR)*60),'match':round(sm.ratio(),3),'diffs':bad}
     json.dump(rep,open(os.path.join(a.outdir,'voice_report.json'),'w'),indent=1); print(json.dumps(rep,indent=1))

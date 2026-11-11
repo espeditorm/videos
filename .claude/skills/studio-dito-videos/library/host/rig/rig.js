@@ -1,0 +1,2 @@
+window.RIG=window.RIG||{};
+RIG["host"]={"w": 242, "h": 457, "top": 9, "bottom": 446, "figH": 437, "neck": {"x": 124, "y": 211}, "head": {"x": 9, "y": 9, "w": 223, "h": 202}, "sockets": {"l": {"x": 52, "y": 264}, "r": {"x": 195, "y": 264}}, "eyes": [{"x": 70, "y": 119, "w": 30, "h": 31}, {"x": 157, "y": 118, "w": 30, "h": 31}], "skin": [177, 107, 51], "sleeve": [71, 148, 162], "L1": 63.4, "L2": 59.0, "T": 21.8, "head_img": "host_head.png", "body_img": "host_body.png"};
