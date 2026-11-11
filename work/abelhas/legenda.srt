@@ -1,0 +1,96 @@
+1
+00:00:00,300 --> 00:00:02,964
+Imagina um mundo onde as abelhas não existem mais
+
+2
+00:00:03,054 --> 00:00:06,424
+Sem aquele zumbido no jardim, sem a dança nas flores
+
+3
+00:00:06,514 --> 00:00:14,295
+E com bem menos comida: três em cada quatro culturas que dão frutos e sementes dependem, pelo menos em parte, de polinizadores
+
+4
+00:00:14,385 --> 00:00:17,825
+Parece filme apocalíptico, mas é uma preocupação real
+
+5
+00:00:17,915 --> 00:00:22,190
+Só que, pra cada problema, a humanidade arranja uma solução
+
+6
+00:00:22,280 --> 00:00:23,396
+Abelhas-robôs
+
+7
+00:00:23,486 --> 00:00:29,094
+Pesquisadores do MIT criaram um robô-inseto que imita o voo das abelhas
+
+8
+00:00:29,184 --> 00:00:33,463
+Ele pesa menos que um clipe de papel e voa por dezessete minutos
+
+9
+00:00:33,553 --> 00:00:36,806
+No futuro, pode polinizar grandes fazendas indoor
+
+10
+00:00:36,896 --> 00:00:38,649
+Mas aí entra um detalhe sombrio
+
+11
+00:00:38,739 --> 00:00:43,500
+Assim que eu li essa notícia, lembrei de um episódio: Black Mirror, Hated in the Nation
+
+12
+00:00:43,590 --> 00:00:46,791
+Lá, abelhas-robôs substituem as abelhas que sumiram
+
+13
+00:00:46,881 --> 00:00:50,640
+Até que alguém hackeia o sistema e transforma essas máquinas em armas
+
+14
+00:00:50,730 --> 00:00:57,275
+Agora traz isso pra realidade: e se alguém fizesse isso com os robôs do MIT?
+
+15
+00:00:57,365 --> 00:00:58,773
+Quem seria o culpado?
+
+16
+00:00:58,863 --> 00:01:00,450
+O fabricante?
+
+17
+00:01:00,540 --> 00:01:01,205
+O hacker?
+
+18
+00:01:01,295 --> 00:01:05,620
+Ou nós, tão ansiosos por inovação que esquecemos dos riscos?
+
+19
+00:01:05,710 --> 00:01:06,687
+E não é só abelha
+
+20
+00:01:06,777 --> 00:01:11,690
+É carro autônomo que falha, drone usado na guerra, e a lista só cresce
+
+21
+00:01:11,780 --> 00:01:15,368
+A gente precisa da tecnologia pra resolver problemas reais
+
+22
+00:01:15,458 --> 00:01:20,051
+Mas quanto mais avança, mais fica exposto a riscos que ninguém sabe controlar
+
+23
+00:01:20,141 --> 00:01:22,236
+Até que ponto dá pra confiar sem questionar?
+
+24
+00:01:22,326 --> 00:01:28,203
+E, se tem uma lição de Black Mirror, é essa: a tecnologia salva, mas também condena
+
