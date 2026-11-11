@@ -115,7 +115,7 @@ Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com), licença CC B
 
 ### YouTube
 
-**Título:** Frankenstein não é o monstro. E a IA pode ser a próxima criatura
+**Título:** Aliadas ou futuros monstros? O aviso de Frankenstein sobre a IA
 
 **Descrição:**
 Há mais de dois séculos, em 1818, Mary Shelley publicou Frankenstein: a história de um cientista que cria vida e não pensa no impacto do que fez. E um detalhe que muita gente esquece: Frankenstein não é a criatura. É o criador.
