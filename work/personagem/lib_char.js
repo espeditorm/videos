@@ -37,21 +37,12 @@ function tube(p, c, q, w0, w1, col, light = true) {
 }
 // mão em mitene com dedos curtos. pose: relax | aberta | punho | aponta | joinha | pare
 function hand2(wr, ang, pose, th, skin) {
+  // mão sem dedos: uma ponta arredondada, com um leve brilho
   ctx.save(); ctx.translate(wr.x, wr.y); ctx.rotate(ang);
-  const sk = skin, sh = shade(skin, -.15);
-  const C = (x, y, r, col) => { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill(); };
-  const RR = (x, y, w, h, r, col) => { ctx.fillStyle = col; ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); };
-  if (pose === 'punho' || pose === 'aponta' || pose === 'joinha') {
-    RR(0, -12, 24, 24, 10, sh); RR(-1, -13, 23, 23, 10, sk);
-    for (let i = 0; i < 3; i++) C(21, -7 + i * 7, 4, sh);
-    if (pose === 'aponta') RR(20, -12, 22, 8, 4, sk);
-    if (pose === 'joinha') RR(6, th > 0 ? -30 : 8, 9, 22, 4.5, sk); else RR(6, th * 5 - 3.5, 15, 8, 4, sk);
-  } else {
-    const ext = pose === 'relax' ? 9 : 15, spr = pose === 'pare' ? .2 : .07;
-    RR(0, -12, 22, 24, 10, sk);
-    for (let i = 0; i < 3; i++) { ctx.save(); ctx.translate(18, -8 + i * 8); ctx.rotate((i - 1) * spr); RR(-2, -3.5, ext, 7, 3.5, i === 2 ? sh : sk); ctx.restore(); }
-    ctx.save(); ctx.translate(6, th * 10); ctx.rotate(th * (pose === 'pare' ? 1 : .6)); RR(0, -4, 13, 8, 4, sk); ctx.restore();
-  }
+  const r = pose === 'punho' ? 15 : 13;
+  ctx.fillStyle = shade(skin, -.15); ctx.beginPath(); ctx.arc(6, 1.5, r, 0, 6.283); ctx.fill();
+  ctx.fillStyle = skin; ctx.beginPath(); ctx.arc(5, 0, r - 1.5, 0, 6.283); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.ellipse(2, -5, 5, 3, -.4, 0, 6.283); ctx.fill();
   ctx.restore();
 }
 // braço: ombro -> alvo com cotovelo (IK de 2 ossos) desenhado como tubo curvo; devolve o punho
@@ -82,9 +73,8 @@ function drawPerson(x, y, sc, s, a, o = {}) {
   // pernas curtas e sapatos
   if (!o.sit) {
     for (const dd of [-1, 1]) {
-      volume(() => { ctx.beginPath(); ctx.roundRect(dd * 25 - 20, -96, 40, 86, 18); }, P.pants, [dd * 25 - 20, -96, dd * 25 + 20, -10], 'rgba(255,255,255,.12)', 3);
-      ctx.fillStyle = P.shoe; ctx.beginPath(); ctx.ellipse(dd * 27 + dd * 6, -8, 28, 13, 0, 0, 6.283); ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.ellipse(dd * 28 + dd * 2, -12, 12, 4, 0, 0, 6.283); ctx.fill();
+      const leg = () => { ctx.beginPath(); ctx.moveTo(dd * 25 - 21, -96); ctx.lineTo(dd * 25 + 21, -96); ctx.bezierCurveTo(dd * 25 + 20, -50, dd * 25 + 16, -10, dd * 25, -4); ctx.bezierCurveTo(dd * 25 - 16, -10, dd * 25 - 20, -50, dd * 25 - 21, -96); ctx.closePath(); };
+      volume(leg, P.pants, [dd * 25 - 21, -96, dd * 25 + 21, -4], 'rgba(255,255,255,.14)', 3);
     }
   }
   // tronco em "feijão": ombros estreitos, base larga e arredondada
@@ -117,10 +107,10 @@ function drawPerson(x, y, sc, s, a, o = {}) {
   const bl = blink(a, .3), ex = look.x * 7, ey = look.y * 5, w = o.worry || 0;
   ctx.fillStyle = P.blush; ctx.beginPath(); ctx.ellipse(-36, 26, 13, 8, 0, 0, 6.283); ctx.ellipse(36, 26, 13, 8, 0, 0, 6.283); ctx.fill();
   for (const dd of [-1, 1]) {
-    const eh = 11 * (1 - bl * .92) * (o.relief ? .35 : 1) * (1 + w * .15);
-    ctx.fillStyle = '#241a33'; ctx.beginPath(); ctx.ellipse(dd * 22 + ex, 4 + ey, 8.5, eh, 0, 0, 6.283); ctx.fill();
-    if (eh > 4) { ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(dd * 22 + ex - 3, ey, 3, 0, 6.283); ctx.fill(); }
-    ctx.save(); ctx.translate(dd * 24, -16 - w * 5); ctx.rotate(dd * -w * .35 + (o.relief ? dd * .15 : 0));
+    const eh = 17 * (1 - bl * .92) * (o.relief ? .3 : 1) * (1 + w * .12);
+    ctx.fillStyle = '#241a33'; ctx.beginPath(); ctx.ellipse(dd * 24 + ex * .6, 2 + ey * .6, 13, eh, 0, 0, 6.283); ctx.fill();
+    if (eh > 6) { ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(dd * 24 + ex * .6 - 4, -4 + ey * .6, 4.5, 0, 6.283); ctx.fill(); ctx.beginPath(); ctx.arc(dd * 24 + ex * .6 + 4, 7 + ey * .6, 2, 0, 6.283); ctx.fill(); }
+    ctx.save(); ctx.translate(dd * 24, -24 - w * 5); ctx.rotate(dd * -w * .35 + (o.relief ? dd * .15 : 0));
     ctx.fillStyle = shade(P.hair, -.1); ctx.beginPath(); ctx.roundRect(-11, -3.5, 22, 7, 3.5); ctx.fill(); ctx.restore();
   }
   ctx.fillStyle = shade(P.skin, -.12); ctx.beginPath(); ctx.ellipse(2, 18, 6, 8, 0, 0, 6.283); ctx.fill();
