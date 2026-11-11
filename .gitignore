@@ -22,3 +22,6 @@ mech/preview.log
 mech/prev_tmp.mp4
 mech/story.log
 mech/prev_seq/
+!.claude/skills/*/library/**/*.png
+!.claude/skills/*/library/*.png
+.claude/skills/*/work/
