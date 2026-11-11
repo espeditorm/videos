@@ -14,15 +14,26 @@ SAY = {"Jim Carrey": os.environ.get("JIM", "Jim Carrey")}
 # nomes em inglês falados com pronúncia inglesa: o trecho é gerado com language="en" e emendado na frase
 ENMAP = dict((w.split("=") + [w])[:2] for w in os.environ.get("EN", "").split("|") if w)   # "MIT=M. I. T.": como falar em inglês
 EN = list(ENMAP)
+def seg_ok(a, txt, lang):
+    # confere um trecho sozinho: o whisper deve ouvir exatamente as palavras pedidas (pega sílabas inventadas)
+    segs, _ = wm.transcribe(resample_poly(a, 2, 3).astype(np.float32), language=lang)
+    h = norm(re.sub(r'\d+', lambda m: num2words(int(m.group()), lang='pt_BR' if lang == 'pt' else 'en'), " ".join(x.text for x in segs)).replace('-', ' '))
+    w = norm(txt.replace('-', ' '))
+    if lang == 'en' and len(w) > 0 and all(len(x) == 1 for x in w): w = [''.join(w)]   # sigla soletrada: "m i t"
+    r = difflib.SequenceMatcher(None, " ".join(h), " ".join(w)).ratio()
+    return len(h) <= len(w) + (0 if lang == 'en' else 1) and r >= (.6 if lang == 'en' else .85)
 def synth(say):
     parts = re.split("(" + "|".join(re.escape(w) for w in EN) + ")", say) if EN else [say]
     out = []
     for p in parts:
-        if not p.strip(" ,"): continue
+        if not re.search(r"\w", p): continue          # pontuação solta ("?") não vira trecho de áudio
         lang = "en" if p in EN else "pt"
-        txt = ENMAP.get(p, p).strip()
-        a = np.array(tts.tts(text=txt, speaker=SPK, language=lang, speed=SPEED, split_sentences=False), np.float32)
-        out += [trim(a), np.zeros(int(.06 * SR), np.float32)]
+        txt = ENMAP.get(p, p).strip(" ,")
+        for k in range(5):
+            a = trim(np.array(tts.tts(text=txt, speaker=SPK, language=lang, speed=SPEED, split_sentences=False), np.float32))
+            if len(parts) == 1 or seg_ok(a, txt, lang): break
+            print(f"    trecho refeito ({lang}): {txt}", flush=True)
+        out += [a, np.zeros(int(.06 * SR), np.float32)]
     return np.concatenate(out[:-1])
 text = open("narracao.txt").read()
 sents = [s.strip() for s in re.split(r'(?<=[.?])\s+', text.replace("\n", " ")) if s.strip()]
@@ -39,7 +50,7 @@ def gen(s):
         segs, _ = wm.transcribe(resample_poly(a, 2, 3).astype(np.float32), language="pt")
         heard_txt = re.sub(r'\d+', lambda m: num2words(int(m.group()), lang='pt_BR'), " ".join(x.text for x in segs))
         heard = norm(heard_txt.replace('-', ' ')); want = norm(s)
-        extra = [w for w in heard if w in ("ponto", "pontos", "interrogacao", "virgula")]
+        extra = [w for w in set(heard) if w in ("ponto", "pontos", "interrogacao", "virgula") and heard.count(w) > want.count(w)]
         r = difflib.SequenceMatcher(None, " ".join(heard), " ".join(want)).ratio()
         ok = not extra and r >= .93 and abs(len(heard) - len(want)) <= 1
         print(f"  try{tries} {'ok' if ok else 'RUIM'} {r:.2f} | {' '.join(heard)}", flush=True)
@@ -51,7 +62,7 @@ OLDA = sf.read("audio/voz.wav", dtype="float32")[0] if OLD else None
 out = [np.zeros(int(0.3 * SR), np.float32)]; meta = []
 for i, s in enumerate(sents):
     print(i, s, flush=True)
-    if s in OLD: a = OLDA[int(OLD[s]["t0"] * SR):int(OLD[s]["t1"] * SR)]; print("  reaproveitada", flush=True)
+    if s in OLD and not (os.environ.get("FORCE") and re.search(os.environ["FORCE"], s)): a = OLDA[int(OLD[s]["t0"] * SR):int(OLD[s]["t1"] * SR)]; print("  reaproveitada", flush=True)
     else: a = gen(s)
     gap = 0.36 if s.startswith("O motivo") else 0.24
     if i: out.append(np.zeros(int(gap * SR), np.float32))
