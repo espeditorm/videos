@@ -1,1 +1,20 @@
-[]
+[
+ {
+  "topic": "Abelhas-robôs: a tecnologia salva, mas também condena",
+  "slug": "abelhas-robos",
+  "length_s": 127,
+  "date": "2026-11-11",
+  "lang": "pt-BR",
+  "voice": "pm_alex",
+  "picks": {
+   "script_shape": "\"what if\" escalation",
+   "hook": "a direct question to the viewer",
+   "motif": "big chapter number stamped on each chapter's first plate",
+   "thumbnail": "before and after split",
+   "accent": "warm butter yellow",
+   "seed": 16957957852923206782
+  },
+  "images": 15,
+  "places": 22
+ }
+]

@@ -82,7 +82,8 @@ def main():
     r=subprocess.run(['ffmpeg','-hide_banner','-i',tmp,'-af','loudnorm=I=-14:TP=-1:LRA=11:print_format=json','-f','null','-'],capture_output=True,text=True).stderr
     m=json.loads(r[r.rindex('{'):r.rindex('}')+1])
     af=f"loudnorm=I=-14:TP=-1:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true"
-    subprocess.run(['ffmpeg','-loglevel','error','-y','-i',tmp,'-af',af,'-ar',str(SR),a.out],check=True); os.remove(tmp)
+    # loudnorm's linear mode can overshoot the true-peak target by ~0.5 dB -> brickwall limiter after it
+    subprocess.run(['ffmpeg','-loglevel','error','-y','-i',tmp,'-af',af+',alimiter=limit=0.84:level=false:attack=1:release=50','-ar',str(SR),a.out],check=True); os.remove(tmp)
     rep={'voice_over_bg_median_db':round(med,1),'bg_louder_frac':round(louder,4),'gate_ok':med>=15 and louder<0.01}
     print(json.dumps(rep)); return rep
 if __name__=='__main__': main()

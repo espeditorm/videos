@@ -155,6 +155,7 @@ Copy `final.mp4` + `thumbnail.png` to `library/videos/<slug>/`, send both to the
 Look test: `library/looktest/looktest.mp4` (`work/looktest/shots.js` is the reference shot file). Stings sample: `library/stings/stings_sample.mp4` (`work/stings/shots.js`).
 
 ## Engine notes (bugs fixed — keep adding)
+- audio.py: loudnorm (linear) left true peak at −0.6 dB → a limiter at 0.84 now follows it (−1.2 dBTP measured). Music at `--music-db -24` passed the gate (16.4 dB); −19 failed (11.8 dB).
 - render.js: `waitForFunction(fn, arg, options)` — the timeout must be the 3rd argument (passing it 2nd silently kept the 30 s default and killed a parallel render). BOOT's event pass now runs at 10 fps, not every frame.
 - Phrase lookup (`at()`) is accent-insensitive and splits hyphenated words ("abelhas-robôs" → two tokens); anchor shots on words whisper actually printed (check `words.js`), e.g. respelled words come back as whisper heard them.
 - Rig eye finder: blobs must be small (<16% of head width), round, filled, and ringed by skin — goggles/hair at the sides of a face were picked as eyes before.
