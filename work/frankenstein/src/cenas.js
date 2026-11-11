@@ -44,9 +44,10 @@ function drawCreature(x, y, sc, s, a, o = {}) {
   ctx.fillStyle = '#3b4a3f'; for (let k = 0; k < 6; k++) { ctx.beginPath(); ctx.roundRect(-64 + k * 12, -8, 4, 12, 2); ctx.fill(); }
   for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.roundRect(4, 22 + k * 12, 12, 4, 2); ctx.fill(); }
   // cabelo
-  // cabelo desgrenhado em tufos arredondados (sem topo reto)
-  ctx.fillStyle = '#5a3a4a';
-  for (let k = 0; k < 7; k++) { const an = Math.PI * (1.05 + k * .15); ctx.beginPath(); ctx.ellipse(Math.cos(an) * 66, -10 + Math.sin(an) * 76, 24, 30, an + 1.57, 0, 6.283); ctx.fill(); }
+  // careca: cicatriz de costura no alto da cabeça (pontos preenchidos) e brilho na calva
+  ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.beginPath(); ctx.ellipse(-22, -52, 26, 12, -.3, 0, 6.283); ctx.fill();
+  ctx.fillStyle = '#5c7480'; ctx.beginPath(); ctx.roundRect(-50, -58, 100, 6, 3); ctx.fill();
+  ctx.fillStyle = '#3b4a3f'; for (let k = 0; k < 7; k++) { ctx.beginPath(); ctx.roundRect(-46 + k * 15, -66, 4, 22, 2); ctx.fill(); }
   // olhos desiguais
   const open = o.open ?? 1, bl = blink(a, .5);
   const ec = o.red ? '#ff5f6d' : '#ffd98a';
