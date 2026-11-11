@@ -16,7 +16,7 @@ for fi, f in enumerate(F):
         cur.append(w)
         txt = ' '.join(clean(x['w']) for x in cur)
         nxt = ws[k + 1] if k + 1 < len(ws) else None
-        brk = (w['w'][-1] in ',:?' or len(cur) >= 3 or len(txt) >= 16 or nxt is None) and not (w['w'] == 'Jim' and nxt is not None)
+        brk = (w['w'][-1] in ',:?' or len(cur) >= 3 or len(txt) >= 16 or nxt is None) and not (w['w'] in ('Jim', 'Black') and nxt is not None)
         if brk: chunks.append(cur); sent_of.append(fi); cur = []
 GOLD, WHITE = '&H008AD9FF&', '&H00FFFFFF&'
 # original 16:9: para cada frase, legenda embaixo ou em cima, onde a faixa estiver mais livre
