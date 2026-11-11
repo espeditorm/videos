@@ -9,12 +9,12 @@ cues = '''const C = {
   hackeia: cue('hackeia'), armas: cue('armas'), agora: cue('agora'), mit2: cue('mit', 2), quem: cue('quem'), culpado: cue('culpado'),
   fabricante: cue('fabricante'), hacker: cue('hacker'), nos: cue('nós'), abelha: cue('abelha'), carro: cue('carro'), drone: cue('drone'),
   lista: cue('lista'), cresce: cue('cresce'), tecnologia1: cue('tecnologia', 1), quanto: cue('quanto'), riscos1: cue('riscos', 1),
-  riscos2: cue('riscos', 2), ponto: cue('ponto'), questionar: cue('questionar'), porque: cue('lição') - .7, salva: cue('salva'), condena: cue('condena')
+  riscos2: cue('riscos', 2), ponto: cue('ponto'), questionar: cue('questionar'), porque: cue('tem'), parece: cue('parece'), salva: cue('salva'), condena: cue('condena')
 };
 C.DUR = DUR; C.TITLE = C.condena + .35;'''
 rw = '''// ---------- dois relógios: rewind de 0,8 s em "Porque" de volta à abelha-robô reanimando a flor ----------
-const RW0 = C.porque - .25, RW1 = RW0 + .8, SLOW = .08;
-const RW_BACK = C.robos + .55;'''
+const RW0 = C.porque - .25, RW1 = RW0 + .8, SLOW = .05;
+const RW_BACK = C.robos + .2;'''
 base = base.replace('//@@CUES@@', cues).replace('//@@RW@@', rw)
 base = base.replace('<title>38 Minutos</title>', '<title>Salva ou Condena</title>').replace('//  38 MINUTOS. Cada frame', '//  SALVA OU CONDENA. Cada frame')
 base = re.sub(r'const DUR = [0-9.]+;', f'const DUR = {round(w[-1]["t1"] + 2.75, 1)};', base)

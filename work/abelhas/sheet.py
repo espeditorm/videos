@@ -1,13 +1,12 @@
 import json, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont
 C = json.load(open('shots/cues.json'))
-B = [(1.5,'abertura 08:07'),(C['havai']+.6,'Havaí: ilhas'),(C['vibram']+.5,'vibram: pulso'),(C['homem']+.3,'mergulho: homem'),
- (C['carrey']+.4,'Jim Carrey'),(C['ameaca']+.6,'alerta no celular'),(C['isto']+.6,'não é simulado'),(C['se']+.6,'recuo: globo'),
- (C['vinte']+.5,'≈20 MIN no arco'),(C['voce']+.5,'você: pino'),(C['esconder']+.8,'esconderijos'),(C['quem']+.5,'e com quem: gato'),
- (C['vazio']+.5,'céu vazio'),(C['tres']+.8,'contador começa'),(C['lancamento']+.4,'08:10 nenhum lançamento'),(C['cinco']+.4,'08:45 frente de correção'),
- (C['trinta1']+.6,'38 MIN'),(C['tela']+.4,'a tela'),(C['real2']+.15,'clique no real'),(C['iguais']+.4,'mesma lista'),
- (C['dois2']+.4,'mesma confirmação'),(C['desmentir']+.5,'não existia'),(C['acordou']+.4,'Carrey acorda'),(C['dez']+.5,'10 minutos'),
- (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(62.1,"título")]
+B = [(1.0,'jardim com abelhas'),(C['mais']+.6,'abelhas somem'),(C['flores']+.6,'flores murcham'),(C['tres']+.9,'75% das culturas'),
+ (C['parece']+1.0,'recuo: globo'),(C['so']+1.2,'volta ao jardim'),(C['robos']+.5,'abelha-robô'),(C['mit1']+.4,'MIT 2025'),
+ (C['clipe']+.5,'menos que um clipe'),(C['dezessete']+1.0,'17 min de voo'),(C['fazendas']+.4,'fazenda indoor'),(C['sombrio']+.4,'sombrio: luzes falham'),
+ (C['black1']+.6,'Black Mirror'),(C['hackeia']+.5,'hackeada'),(C['armas']+.2,'enxame: armas'),(C['mit2']+.5,'e se hackeassem o MIT'),
+ (C['culpado']+.5,'quem é o culpado'),(C['nos']+.5,'nós: pino VOCÊ'),(C['drone']+.5,'carro, drone'),(C['cresce']+.6,'a lista cresce'),
+ (C['riscos2']+.4,'balança'),(C['questionar']+.2,'close na abelhinha'),(C['porque']+.3,'rewind 0,8 s'),(C['TITLE']+.8,'título'),(C['DUR']-.2,'fim')]
 fs = []
 subprocess.run(['node','shot.js','shots']+[f'{t:.2f}' for t,_ in B], check=True, capture_output=True)
 cols, tw, th = 4, 640, 360

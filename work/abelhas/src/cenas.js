@@ -2,7 +2,7 @@
 //  SALVA OU CONDENA? Abelhas-robôs
 // =====================================================================
 const T = {
-  t1: C.real - .9,            // jardim -> globo (recuo)
+  t1: C.parece - .1,          // jardim -> globo (recuo)
   t2: C.so - .1,              // globo -> jardim (solução)
   t3: C.pesquisadores - .15,  // jardim -> laboratório
   t4: C.futuro - .1,          // laboratório -> fazenda vertical
@@ -179,7 +179,7 @@ function drawGarden(s, t, a) {
     const kin = spring(s - (C.robos - .25), .45, 12);
     if (kin > 0) drawRoboBee(lerp(fx + 500, fx + 10, easeOutCubic((s - C.robos + .25) / .8)), fy - 80, 1.4 * kin, s, a, { kicks: [C.robos, C.robos + .5], look: { x: fx, y: fy } });
     screenSpace();
-    pill([{ s: 'ABELHAS-ROBÔS', px: 52, c: COL.gold, ls: 8 }], W / 2, 130, s, C.robos, T.t3 - .2);
+    if (CUR_T < RW0) pill([{ s: 'ABELHAS-ROBÔS', px: 52, c: COL.gold, ls: 8 }], W / 2, 130, s, C.robos, T.t3 - .2);
   }
 }
 
@@ -305,7 +305,7 @@ function drawFarm(s, t, a) {
     const sw = easeIO((s - C.hackeia - .2) / 1.2);
     const ang = b.ph + a * 2.2, rr = 130 + 40 * Math.sin(b.ph * 3);
     x = lerp(x, Math.cos(ang) * rr, sw); y = lerp(y, -300 + Math.sin(ang) * rr * .6, sw);
-    drawRoboBee(x, y, .55 + sw * .25, s, a + b.ph, { hacked: hack, look: { x: 0, y: -300 } });
+    drawRoboBee(x, y, .85 + sw * .25, s, a + b.ph, { hacked: hack, look: { x: 0, y: -300 } });
   }
   // vinheta vermelha nas armas
   screenSpace();
@@ -379,8 +379,8 @@ function drawStudio(s, t, a) {
   drawPin(480, -270, 1.1, 'VOCÊ', s, C.nos + .1);
   // a abelhinha procura o culpado e aponta para si mesma
   const point = spring(s - (C.culpado + .2), .5, 12) * (1 - easeIO((s - C.fabricante) / .3));
-  drawRoboBee(-60, -430 + 20 * Math.sin(a), 1.2, s, a, { look: s < C.fabricante ? { x: -200 + 400 * Math.sin(a * 3), y: -430 } : { x: 600, y: -100 }, point, kicks: [C.culpado + .2, C.fabricante, C.hacker, C.nos], tilt: point * .15 });
-  if (point > .3) { ctx.save(); ctx.translate(40, -560); ctx.scale(point, point); ctx.fillStyle = COL.gold; ctx.font = FONT(700, 70); ctx.textAlign = 'center'; ctx.fillText('?', 0, 0); ctx.restore(); }
+  drawRoboBee(-60, -330 + 20 * Math.sin(a), 1.2, s, a, { look: s < C.fabricante ? { x: -200 + 400 * Math.sin(a * 3), y: -430 } : { x: 600, y: -100 }, point, kicks: [C.culpado + .2, C.fabricante, C.hacker, C.nos], tilt: point * .15 });
+  if (point > .3) { ctx.save(); ctx.translate(40, -460); ctx.scale(point, point); ctx.fillStyle = COL.gold; ctx.font = FONT(700, 70); ctx.textAlign = 'center'; ctx.fillText('?', 0, 0); ctx.restore(); }
   // lista que só cresce
   const L0 = 2400;
   if (s > C.abelha - .3) {

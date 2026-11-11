@@ -21,7 +21,7 @@ def seg_ok(a, txt, lang):
     w = norm(txt.replace('-', ' '))
     if lang == 'en' and len(w) > 0 and all(len(x) == 1 for x in w): w = [''.join(w)]   # sigla soletrada: "m i t"
     r = difflib.SequenceMatcher(None, " ".join(h), " ".join(w)).ratio()
-    return len(h) <= len(w) + (0 if lang == 'en' else 1) and r >= (.6 if lang == 'en' else .85)
+    return len(h) <= len(w) and r >= (.6 if lang == 'en' else .85)
 def synth(say):
     parts = re.split("(" + "|".join(re.escape(w) for w in EN) + ")", say) if EN else [say]
     out = []
