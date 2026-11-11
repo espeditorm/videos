@@ -1,16 +1,11 @@
-Dois séculos atrás, Mary Shelley escreveu Frankenstein.
-Uma história sobre ambição, criação e consequências.
-Hoje, a gente não cria monstros com costuras e eletricidade. Cria algoritmos, robôs e inteligências artificiais.
-Mas a pergunta continua: será que a tecnologia tá fugindo do controle de quem a criou?
-No livro, Victor Frankenstein desafia os limites da ciência e cria vida. Só que ele não pensa no impacto.
-O resultado? Uma criatura rejeitada, confusa, marginalizada e, no fim, perigosa.
-E, inclusive, Frankenstein não é a criatura. É o criador.
-Hoje, a gente cria sistemas que aprendem sozinhos, que decidem por nós e que já superam humanos em várias áreas.
-Pensa no carro autônomo: ele precisa decidir se desvia pra salvar uma vida ou se arrisca outra.
-Ou nas inteligências artificiais que criam conteúdo tão realista que fica difícil separar verdade de manipulação.
-Sistemas decidem quem recebe um empréstimo ou quem é chamado pra uma vaga. E reproduzem nossos próprios preconceitos.
-E o mais assustador? Diferente do monstro de Shelley, nossas criações nem sempre têm forma visível.
-Elas estão nos algoritmos, nas recomendações, nas decisões que a gente acha que toma sozinho.
-Mary Shelley escreveu Frankenstein como um aviso: não basta criar. É preciso pensar no impacto do que se cria.
-Então, as tecnologias de hoje são nossas aliadas ou nossos futuros monstros?
-Porque, no fim, Frankenstein não é sobre um monstro. É sobre o que acontece quando a gente cria algo sem pensar nas consequências.
+Há mais de dois séculos, Mary Shelley escreveu Frankenstein.
+No livro, um cientista cria vida e não pensa nas consequências.
+O resultado é uma criatura rejeitada, confusa e, no fim, perigosa.
+E tem um detalhe que muita gente esquece: Frankenstein não é a criatura. É o criador.
+Hoje a gente não cria monstros com costuras e eletricidade. Cria inteligências artificiais.
+Sistemas que aprendem sozinhos e já decidem por nós.
+Um carro autônomo pode ter que escolher quem proteger num acidente.
+Um algoritmo escolhe quem recebe um empréstimo ou uma vaga, e repete os nossos preconceitos.
+E, diferente do monstro do livro, essas criações não têm rosto. Estão nas recomendações e nas decisões que a gente acha que toma sozinho.
+O livro foi escrito como um aviso: não basta criar. É preciso pensar no que se cria.
+Então, as máquinas de hoje são nossas aliadas ou nossos futuros monstros?

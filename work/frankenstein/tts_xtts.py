@@ -53,15 +53,22 @@ def gen(s):
     best, bs = None, -1
     for tries in range(6):
         a = synth(say)
-        segs, _ = wm.transcribe(resample_poly(a, 2, 3).astype(np.float32), language="pt")
+        segs, _ = wm.transcribe(resample_poly(a, 2, 3).astype(np.float32), language="pt", word_timestamps=True)
+        segs = list(segs)
+        # pausas no meio da frase: silêncio > 0,3 s entre palavras sem pontuação no roteiro (ex.: "Mary ... Shelley")
+        hw = [x for sg in segs for x in sg.words]; sw = s.split(); pausa = None
+        if len(hw) == len(sw):
+            for k in range(len(hw) - 1):
+                g = hw[k + 1].start - hw[k].end
+                if g > (.6 if sw[k][-1] in ',:;?' else .3): pausa = f"{sw[k]} … {sw[k + 1]} ({g:.2f}s)"
         heard_txt = re.sub(r'\d+', lambda m: num2words(int(m.group()), lang='pt_BR'), " ".join(x.text for x in segs))
         heard = norm(heard_txt.replace('-', ' ')); want = norm(s)
         extra = [w for w in set(heard) if w in ("ponto", "pontos", "interrogacao", "virgula") and heard.count(w) > want.count(w)]
         r = difflib.SequenceMatcher(None, " ".join(heard), " ".join(want)).ratio()
-        ok = not extra and r >= .93 and abs(len(heard) - len(want)) <= 1
-        print(f"  try{tries} {'ok' if ok else 'RUIM'} {r:.2f} | {' '.join(heard)}", flush=True)
+        ok = not extra and r >= .93 and abs(len(heard) - len(want)) <= 1 and not pausa
+        print(f"  try{tries} {'ok' if ok else 'RUIM'} {r:.2f} | {' '.join(heard)}" + (f"  [pausa: {pausa}]" if pausa else ""), flush=True)
         if ok: return a
-        if not extra and r > bs: best, bs = a, r
+        if not extra and r - (.05 if pausa else 0) > bs: best, bs = a, r - (.05 if pausa else 0)
     print("  !! nenhuma tentativa perfeita, usando a melhor", flush=True); return best if best is not None else a
 OLD = {f["s"]: f for f in json.load(open("audio/frases.json"))} if os.path.exists("audio/frases.json") else {}
 OLDA = sf.read("audio/voz.wav", dtype="float32")[0] if OLD else None
