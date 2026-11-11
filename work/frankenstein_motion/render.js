@@ -15,7 +15,8 @@ const { spawn } = require('child_process');
   const c = p.locator('#c'); const t0 = Date.now();
   for (let f = f0; f < f1; f++) {
     await p.evaluate(i => window.renderFrame(i), f);
-    const buf = await c.screenshot({ type: 'png' });
+    let buf;   // falha momentânea do Chromium na captura: tenta de novo até 4 vezes
+    for (let k = 0; ; k++) { try { buf = await c.screenshot({ type: 'png', timeout: 60000 }); break; } catch (e) { if (k >= 3) throw e; console.log(`w${w} retry ${f}`); await new Promise(r => setTimeout(r, 2000)); await p.evaluate(i => window.renderFrame(i), f); } }
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if ((f - f0) % 50 === 0) console.log(`w${w} ${f - f0}/${f1 - f0} ${((Date.now() - t0) / 1000).toFixed(0)}s`);
   }

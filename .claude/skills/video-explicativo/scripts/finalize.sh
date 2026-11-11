@@ -11,3 +11,5 @@ ffmpeg -v error -y -f concat -safe 0 -i chunks/list.txt -i audio/mix.wav -map 0:
 ffmpeg -v error -y -i out/${NOME}_master.mp4 -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p \
   -c:a aac -b:a 256k -movflags +faststart out/${NOME}.mp4
 ls -la out
+# os pedaços sem perda ocupam GBs: apaga depois de codificar (o master fica em out/)
+rm -f chunks/part_0.mkv chunks/part_1.mkv chunks/part_2.mkv
