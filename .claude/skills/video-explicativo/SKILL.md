@@ -42,7 +42,6 @@ Cada frase da narração ganha um movimento de câmera ou uma transformação; n
 - **Paleta:** terra #5fc47a, floresta #48ad6b, deserto #f5c75f, gelo #f1f8ff, oceano #4dc7eb → #1a66b8; destaques teal #8fd8e6, dourado #ffd98a, coral #ff8a7a.
 - **Tipografia:** só Fredoka 600/700, em maiúsculas com espaçamento de 3 a 6 px, dentro de pílulas rgb(6,20,40) a 62%. Cada linha sobe 1,3x a própria altura num recorte, com ease-out-quint. Nunca ponto final em texto de tela.
 - **Movimento:** câmera em easeInOutCubic, zoom interpolado em espaço log e cada "pop" é uma mola amortecida (damping 0,42–0,5, frequência 12–16). Transições em íris (abre no ponto de foco, fecha encolhendo a cena no ponto).
-- **Motion design:** aplique a `/motion-design-lottie` em cada batida, com antecipação antes da palavra, squash & stretch, continuação, ação secundária, arcos, destaque do herói e regra de 1/3. As funções ficam em `.claude/skills/motion-design-lottie/lib_motion.js`.
 - **Acabamento:** vinheta rgba(4,4,20,.45) e grão de 6% sorteado 24 vezes por segundo.
 - **Proibido:** contornos, *flares*, infográfico estático, texto que aparece inteiro de uma vez, imagem ou vídeo de IA, personagens do Kurzgesagt, recriação de obra existente.
 
