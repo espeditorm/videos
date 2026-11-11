@@ -56,7 +56,10 @@ The user wants **minimum work on their side**: never ask them to download, uploa
   4. `edit-design` `finalize:"commit"` (the user approved this flow once for all future runs).
   5. `export-design` png, `pages:[…]`, width 1920, height 1080, lossless, pro → curl the URLs into `library/…` / `work/<slug>/art/`.
   Native Canva size is 1680x944; export upsamples to 1920x1080 (fine for plates; quad tiles therefore stay ≤1.25x zoom).
-- **Voice:** Kokoro (`work/models/kokoro-v1.0.onnx`, `voices-v1.0.bin`; re-download from the kokoro-onnx GitHub release `model-files-v1.0` if missing) + faster-whisper `small.en` for word times.
+- **Voice:** Kokoro (`work/models/kokoro-v1.0.onnx`, `voices-v1.0.bin`; re-download from the kokoro-onnx GitHub release `model-files-v1.0` if missing) + faster-whisper for word times (`small.en` for English, multilingual `small` otherwise).
+  - **English** scripts: `--voice am_onyx --lang en-us`.
+  - **Portuguese (pt-BR)** scripts: `--voice pm_alex --lang pt-br` (male, ~175 wpm). Kokoro reads English names with Portuguese phonemes, so keep `script.txt` as written (on-screen spelling) and feed the voice a `script_tts.txt` with phonetic respellings, e.g. `Black Mirror→Bléqui Mírror`, `Hated in the Nation→Rêitid in dê Nêichon`, `hacker→réquer`, `hackeou→réqueou`, `indoor→índór`, `MIT→ême-i-tê`; write numbers/fractions out in words. Whisper then hears the real English words. Expected diff noise: whisper writes "pra" as "para".
+  - On-screen text follows the script language (HUD labels: `window.HUD_LABELS={date:'DATA:',place:'LOCAL:'}`).
 - **Music:** Pixabay is blocked (403) and Mixkit listing pages refuse automated clients — do not try to get around that. Use `engine/music.py` (synthesized warm string beds, seeded per video: `--mood calm|tense|bright`). If the user supplies tracks, drop them in `library/music/` and pass them to `audio.py --music`.
 - **SFX:** `engine/audio.py` synthesizes pop/tick/whoosh/thud/hit/ding/boing tuned to Punchy. Real files placed in `library/sfx/<name>.wav|mp3` override the synth automatically.
 - **Python deps** (install if missing, tell the user): `opencv-python-headless faster-whisper kokoro-onnx soundfile numpy pillow`. Playwright + Chromium are preinstalled globally: run node scripts with `NODE_PATH=$(npm root -g)`.
@@ -152,6 +155,13 @@ Copy `final.mp4` + `thumbnail.png` to `library/videos/<slug>/`, send both to the
 Look test: `library/looktest/looktest.mp4` (`work/looktest/shots.js` is the reference shot file). Stings sample: `library/stings/stings_sample.mp4` (`work/stings/shots.js`).
 
 ## Engine notes (bugs fixed — keep adding)
+- render.js: `waitForFunction(fn, arg, options)` — the timeout must be the 3rd argument (passing it 2nd silently kept the 30 s default and killed a parallel render). BOOT's event pass now runs at 10 fps, not every frame.
+- Phrase lookup (`at()`) is accent-insensitive and splits hyphenated words ("abelhas-robôs" → two tokens); anchor shots on words whisper actually printed (check `words.js`), e.g. respelled words come back as whisper heard them.
+- Rig eye finder: blobs must be small (<16% of head width), round, filled, and ringed by skin — goggles/hair at the sides of a face were picked as eyes before.
+- Intro title wraps after hyphens, so a single long hyphenated word still fills the board.
+- Banner takes `{color, textColor}`: a light accent (butter) needs ink text; white caps only on headline A/B.
+- Shot helper pattern (see `work/abelhas-robos/shots.js`): `shot(phrase, plate, camA, camB, inner, overlay, {shake:[t,A], cut:'hard'})` and `fly(t, sprite, {t0,t1,h,path,seed})` for insects/drones — copy them into new shot files.
+- People behind furniture (podiums, desks): clip the figure above the furniture top (`behind(yCut, fn)`).
 - faster-whisper + installed PyAV: `decode_audio` breaks (`metadata_errors`) → voice.py feeds a 16 kHz float array.
 - Rig: eye dots are ~(46,44,58) inside glasses → dark threshold is relative to skin; skin is picked from warm pixels (hair is grey-blue).
 - Cutout: green pockets enclosed between head and shoulders survive a border-only key → strict second pass (dom > 70, within 55 of key) for blobs ≥30 px.

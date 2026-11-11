@@ -8,7 +8,7 @@ const page_=path.resolve(a[0]), out=a[1]; const fps=+opt('fps',30), blur=+opt('b
   const p=await b.newPage({viewport:{width:1920,height:1080}});
   p.on('console',m=>{ if(m.type()==='error') console.error('[page]',m.text()); });
   p.on('pageerror',e=>console.error('[pageerror]',e.message));
-  await p.goto('file://'+page_); await p.waitForFunction('window.READY===true',{timeout:120000});
+  await p.goto('file://'+page_); await p.waitForFunction('window.READY===true',null,{timeout:900000});
   const END=await p.evaluate('window.END'); const from=+opt('from',0), to=+opt('to',END);
   fs.writeFileSync(out.replace(/\.mp4$/,'')+'.events.json',JSON.stringify(await p.evaluate('window.EV')));
   const ff=spawn('ffmpeg',['-loglevel','error','-y','-f','image2pipe','-framerate',String(fps),'-i','-','-c:v','libx264','-preset','medium','-crf',String(crf),'-pix_fmt','yuv420p',out],{stdio:['pipe','inherit','inherit']});

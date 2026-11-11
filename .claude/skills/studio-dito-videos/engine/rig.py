@@ -27,9 +27,19 @@ def find_eyes(rgb, alpha, head_box, skin):
     # restrict to the face band (35-80% of the head height)
     hh=y1-y0; band=np.zeros_like(dark); band[int(hh*.35):int(hh*.8)]=1; dark&=band.astype(bool)
     n,lab,st,cen=cv2.connectedComponentsWithStats(dark.astype(np.uint8))
-    blobs=[(st[i],cen[i]) for i in range(1,n) if 20<st[i][4]<0.01*hh*hh*4]
-    # eye dots: roughly round, similar size, side by side
-    blobs=[b for b in blobs if 0.5<b[0][2]/max(1,b[0][3])<2.0]
+    hw=x1-x0; sk=np.array(skin)
+    def skin_ring(stt):
+        bx,by,bw,bh=stt[0],stt[1],stt[2],stt[3]; pad=max(3,int(bw*0.35))
+        X0,Y0,X1,Y1=max(0,bx-pad),max(0,by-pad),min(sub.shape[1],bx+bw+pad),min(sub.shape[0],by+bh+pad)
+        reg=sub[Y0:Y1,X0:X1]; m=np.ones(reg.shape[:2],bool); m[by-Y0:by-Y0+bh,bx-X0:bx-X0+bw]=False
+        d=np.linalg.norm(reg[m]-sk,axis=1); return (d<60).mean() if m.any() else 0
+    blobs=[]
+    for i in range(1,n):
+        x,y,w,h,ar=st[i]
+        if ar<20 or w>0.16*hw or h>0.16*hw: continue                    # eye dots are small
+        if not (0.6<w/max(1,h)<1.6) or ar/(w*h)<0.55: continue          # round and filled
+        if skin_ring(st[i])<0.5: continue                               # sitting in the face, not in hair
+        blobs.append((st[i],cen[i]))
     blobs.sort(key=lambda b:-b[0][4]); best=None
     for i in range(len(blobs)):
         for j in range(i+1,len(blobs)):

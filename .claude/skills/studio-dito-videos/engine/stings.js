@@ -9,11 +9,12 @@ const HOME_BOARD=window.HOME_BOARD||[0,0,0,0];   // set from library/stings/home
 window.STING={
   INTRO:2.8, OUTRO:3.6,
   intro(t0,title,opts={}){
-    const E=ENG,G=E.G,C=E.C; const words=title.toUpperCase().split(' ');
+    const E=ENG,G=E.G,C=E.C; const words=title.toUpperCase().split(/\s+|(?<=-)(?=\S)/).map(w=>w.trim()).filter(Boolean);
     // split the title over at most 2 lines
     // greedy wrap into lines of ~12 characters (max 3 lines), so the title fills the board big
     const lines=[]; let cur='';
-    for(const w of words){ if(cur && (cur+' '+w).length>12 && lines.length<2){ lines.push(cur); cur=w; } else cur=cur?cur+' '+w:w; }
+    const join=(a,b)=>a.endsWith('-')?a+b:a+' '+b;
+    for(const w of words){ if(cur && join(cur,w).length>12 && lines.length<2){ lines.push(cur); cur=w; } else cur=cur?join(cur,w):w; }
     lines.push(cur);
     const tWalkEnd=t0+0.85, tTitle=t0+0.95;
     E.ev(t0+0.02,'whoosh',0.6); E.ev(tWalkEnd,'pop',0.7); G.writeEvents(tTitle,lines); E.ev(tTitle+0.9,'ding',0.5);

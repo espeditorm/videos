@@ -50,22 +50,18 @@ function load(name,src){ return new Promise(r=>{const i=new Image(); i.onload=()
 
 // ---------------------------------------------------------------- words / S()
 // WORDS = [{w:'word',s:start,e:end}]. S('exact words',n) -> start time of nth occurrence - 0.08
-function norm(s){ return s.toLowerCase().replace(/[^a-z0-9' ]/g,'').trim(); }
-function at(phrase,occ=1){
-  const ws=(window.WORDS||[]).map(w=>norm(w.w)); const ph=norm(phrase).split(/\s+/);
-  let seen=0;
-  for(let i=0;i+ph.length<=ws.length;i++){
-    let ok=true; for(let j=0;j<ph.length;j++) if(ws[i+j]!==ph[j]){ok=false;break;}
-    if(ok && ++seen===occ) return window.WORDS[i].s;
-  }
+function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/-/g,' ').replace(/[^a-z0-9' ]/g,'').trim(); }
+// flat token list: a WORDS entry like "abelhas-robôs" becomes two tokens that both point at that word
+let TOK=null;
+function tokens(){ if(TOK) return TOK; TOK=[]; (window.WORDS||[]).forEach((w,i)=>{ for(const p of norm(w.w).split(/\s+/)) if(p) TOK.push({t:p,i}); }); return TOK; }
+function findPhrase(phrase,occ){
+  const T=tokens(), ph=norm(phrase).split(/\s+/); let seen=0;
+  for(let i=0;i+ph.length<=T.length;i++){ let ok=true; for(let j=0;j<ph.length;j++) if(T[i+j].t!==ph[j]){ok=false;break;}
+    if(ok && ++seen===occ) return [T[i].i,T[i+ph.length-1].i]; }
   throw new Error('phrase not found: '+phrase+' #'+occ);
 }
-function atEnd(phrase,occ=1){
-  const ws=(window.WORDS||[]).map(w=>norm(w.w)); const ph=norm(phrase).split(/\s+/); let seen=0;
-  for(let i=0;i+ph.length<=ws.length;i++){ let ok=true; for(let j=0;j<ph.length;j++) if(ws[i+j]!==ph[j]){ok=false;break;}
-    if(ok && ++seen===occ) return window.WORDS[i+ph.length-1].e; }
-  throw new Error('phrase not found: '+phrase);
-}
+function at(phrase,occ=1){ return window.WORDS[findPhrase(phrase,occ)[0]].s; }
+function atEnd(phrase,occ=1){ return window.WORDS[findPhrase(phrase,occ)[1]].e; }
 // is speaker talking at t? (spans list [[s,e],..])
 function talking(spans,t){ return (spans||[]).some(([s,e])=>t>=s&&t<=e); }
 
@@ -157,7 +153,7 @@ G.hud=function(t,t0,kind,value,slot=0){
   if(kind==='date'){ X.fillStyle=C.warm; X.beginPath(); X.roundRect(-30,-26,60,56,8); X.fill(); X.fillStyle=C.card; X.fillRect(-22,-10,44,32); X.fillStyle=C.warm; for(let i=0;i<3;i++) X.fillRect(-16+i*13,-2,8,8); X.fillStyle=C.dark; X.fillRect(-18,-34,6,14); X.fillRect(12,-34,6,14); }
   else { X.fillStyle=C.alert; X.beginPath(); X.arc(0,-8,22,Math.PI,0); X.lineTo(0,34); X.closePath(); X.fill(); X.fillStyle=C.card; X.beginPath(); X.arc(0,-8,9,0,7); X.fill(); }
   X.restore();
-  X.fillStyle=C.label; X.font=font(26); X.fillText(kind==='date'?'DATE:':'PLACE:',112,46);
+  X.fillStyle=C.label; X.font=font(26); const HL=window.HUD_LABELS||{date:'DATE:',place:'PLACE:'}; X.fillText(kind==='date'?HL.date:HL.place,112,46);
   entryText(value.toUpperCase(),112,96,44,t0+0.2,t);
   X.restore();
 };
@@ -217,7 +213,7 @@ G.banner=function(t,t0,y,label,opts={}){
   const dExit=opts.out!=null?t-opts.out:-1; const ex=dExit>0?ease.in(dExit/0.22):0;
   X.save(); X.translate(-W*(1-p)+W*ex,y); X.rotate(-0.02);
   X.fillStyle=C.dark; X.fillRect(-40+8,8,W+80,150); X.fillStyle=col; X.fillRect(-40,0,W+80,150);
-  X.fillStyle='#fff'; X.font=font(92); X.textAlign='center'; X.fillText(label.toUpperCase(),W/2,108); X.restore();
+  X.fillStyle=opts.textColor||'#fff'; X.font=font(opts.px||92); X.textAlign='center'; X.fillText(label.toUpperCase(),W/2,108); X.restore();
 };
 // Speech bubble with tail pointing to (tx,ty)
 G.bubble=function(t,t0,x,y,text,tx,ty,opts={}){
@@ -419,7 +415,8 @@ window.BOOT=async function(assets){
   if(window.BUILD) window.BUILD();
   shots.sort((a,b)=>a.t0-b.t0); for(let i=0;i<shots.length;i++) shots[i].t1=(shots[i+1]?shots[i+1].t0:window.END)+0.3;
   // dry run to collect sound events
-  for(let t=0;t<window.END;t+=1/30) render(t);
+  // light pass to catch events registered while drawing (most are registered in BUILD)
+  for(let t=0;t<window.END;t+=0.1) render(t);
   window.EV.sort((a,b)=>a.t-b.t);
   render(0); window.READY=true;
 };
