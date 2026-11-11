@@ -49,10 +49,10 @@ def num2words_light(s):
     return s
 def norm(s): return re.sub(r"[^a-z0-9' ]","",s.lower())
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('script'); ap.add_argument('outdir'); ap.add_argument('--voice',default='am_onyx'); ap.add_argument('--speed',type=float,default=1.0)
+    ap=argparse.ArgumentParser(); ap.add_argument('script'); ap.add_argument('outdir'); ap.add_argument('--voice',default='am_onyx'); ap.add_argument('--speed',type=float,default=1.0); ap.add_argument('--offset',type=float,default=0.0,help='extra silence before the narration (intro sting length)')
     a=ap.parse_args(); os.makedirs(a.outdir,exist_ok=True)
     chapters=[c.strip() for c in open(a.script).read().split('\n---\n') if c.strip()]
-    parts=[np.zeros(int(0.3*SR),np.float32)]
+    parts=[np.zeros(int((0.3+a.offset)*SR),np.float32)]
     for i,c in enumerate(chapters):
         au=trim_pauses(tts(' '.join(c.split()),a.voice,a.speed))
         parts.append(au)

@@ -240,7 +240,7 @@ G.vignette=function(k=0.35){ const g=X.createRadialGradient(W/2,H/2,H*0.35,W/2,H
 G.tint=function(col,a){ X.save(); X.globalAlpha=a; X.fillStyle=col; X.fillRect(0,0,W,H); X.restore(); };
 // Write words onto a blank rectangle in the plate (plate coords, drawn inside the camera transform)
 G.write=function(t,t0,rect,lines,opts={}){
-  const [x,y,w,h]=rect; const n=lines.length; let px=opts.px||Math.min(h/(n*1.35),90);
+  const [x,y,w,h]=rect; const n=lines.length; let px=opts.px||Math.min(h/(n*1.35),opts.maxPx||90);
   for(const s of lines) while(textW(s.toUpperCase(),px)>w*0.9&&px>12) px-=2;
   const lh=h/n; let acc=0;
   lines.forEach((s,i)=>{ entryText(s.toUpperCase(),x+w/2,y+lh*i+lh/2+px*0.36,px,t0+i*0.3+acc/28,t,{align:'center',color:opts.color||C.ink}); acc+=s.length+1; });
