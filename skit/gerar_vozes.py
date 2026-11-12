@@ -20,7 +20,7 @@ FALAS = [
     ("dito", "Quando não sabe, inventa com confiança."),
     ("pc",   "Igual você em reunião."),
     ("dito", "Três jeitos de pegar ela no flagra."),
-    ("dito", "Um, peça a fonte, e abra o link."),
+    ("dito", "Número um, peça a fonte, e abra o link."),
     ("pc",   "Eu invento link também."),
     ("dito", "Dois, pergunte de novo, de outro jeito."),
     ("dito", "Se a resposta mudar, desconfie."),

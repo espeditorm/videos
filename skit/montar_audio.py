@@ -16,7 +16,7 @@ ROTEIRO = [
     ("S2",  "Quando não sabe, inventa com confiança."),
     ("S3b", "Igual você em reunião."),
     ("S4",  "Três jeitos de pegar ela no flagra."),
-    ("S6",  "Um, peça a fonte, e abra o link."),
+    ("S6",  "Número um, peça a fonte, e abra o link."),
     ("S3",  "Eu invento link também."),
     ("S6",  "Dois, pergunte de novo, de outro jeito."),
     ("S6",  "Se a resposta mudar, desconfie."),

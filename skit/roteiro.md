@@ -16,7 +16,7 @@ Sem CTA. Termina na piada do "dois Oscars".
 | 07 | S2    | Você   | Quando não sabe, inventa com confiança. | |
 | 08 | S3    | PC     | Igual você em reunião. | Alfinetada rápida |
 | 09 | S4    | Você   | Três jeitos de pegar ela no flagra. | Ignorando a provocação |
-| 10 | S6    | Você   | Um, peça a fonte, e abra o link. | Card 1: PEÇA A FONTE |
+| 10 | S6    | Você   | Número um, peça a fonte, e abra o link. | Card 1: PEÇA A FONTE |
 | 11 | S3    | PC     | Eu invento link também. | Orgulhoso de novo |
 | 12 | S6    | Você   | Dois, pergunte de novo, de outro jeito. | Card 2: PERGUNTE DE NOVO |
 | 13 | S6    | Você   | Se a resposta mudar, desconfie. | |
