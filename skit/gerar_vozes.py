@@ -30,23 +30,22 @@ FALAS = [
     ("dito", "Que bonito."),
     ("pc",   "Por isso você ganhou dois Óscars."),
 ]
-norm = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
+NUM = {"2019": "dois mil e dezenove", "3": "tres", "2": "dois", "1": "um"}
+norm = lambda s: re.sub(r"\b(2019|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
+norm0 = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
 
 w = WhisperModel("small", device="cpu", compute_type="int8")
 def ouvir(a, sr):
     a16 = librosa.resample(a, orig_sr=sr, target_sr=16000).astype(np.float32)
+    a16 = np.concatenate([np.zeros(8000, np.float32), a16, np.zeros(8000, np.float32)])  # folga pro Whisper ouvir a 1ª palavra
     return " ".join(s.text.strip() for s in w.transcribe(a16, language="pt")[0])
 
-# referência do Dito: primeiros segmentos até ~10 s
+# referência do Dito: os primeiros 6,25 s, cortados num silêncio de verdade.
+# (Se o áudio de referência tiver um pedaço de palavra que não está no texto, o modelo engole o começo das falas.)
 ref, rsr = librosa.load("voz/dito_ref.wav", sr=24000)
-segs = list(w.transcribe(librosa.resample(ref, orig_sr=rsr, target_sr=16000).astype(np.float32), language="pt")[0])
-fim, txt = 0, []
-for s in segs:
-    if s.end > 11 and txt: break
-    fim, txt = s.end, txt + [s.text.strip()]
-ref_cut = ref[: int((fim + 0.15) * rsr)]
-sf.write("voz/dito_ref10.wav", ref_cut, rsr)
-log("ref dito:", f"{fim:.1f}s", " ".join(txt))
+sf.write("voz/dito_ref10.wav", ref[: int(6.25 * rsr)], rsr)
+txt = ["Imagina um mundo onde as abelhas não existem mais, sem aquele zumbido tranquilo no jardim."]
+log("ref dito: 6.25s", txt[0])
 
 m = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
 sr = m.sampling_rate
@@ -61,8 +60,11 @@ def trim(a, th=0.01):
     i = np.where(np.abs(a) > th)[0]
     return a[max(i[0] - int(0.03 * sr), 0): i[-1] + int(0.08 * sr)] if len(i) else a
 
-meta = []
+import sys, os
+SO = [int(x) for x in sys.argv[1:]]          # ex.: python gerar_vozes.py 2 5 7  (refaz só essas)
+meta = json.load(open("audio/falas.json")) if SO and os.path.exists("audio/falas.json") else []
 for n, (quem, texto) in enumerate(FALAS, 1):
+    if SO and n not in SO: continue
     melhor = None
     for tent in range(3):
         torch.manual_seed(1000 * n + tent)
@@ -70,7 +72,7 @@ for n, (quem, texto) in enumerate(FALAS, 1):
         a = a[0] if isinstance(a, (list, tuple)) else a
         a = trim(a.squeeze().cpu().numpy() if hasattr(a, "cpu") else np.asarray(a).squeeze())
         ouvido = ouvir(a, sr)
-        nota = difflib.SequenceMatcher(None, norm(texto), norm(ouvido)).ratio()
+        nota = difflib.SequenceMatcher(None, norm0(norm(texto)), norm0(norm(ouvido))).ratio()
         if not melhor or nota > melhor[0]: melhor = (nota, a, ouvido)
         if nota >= 0.9: break
     nota, a, ouvido = melhor
@@ -81,7 +83,8 @@ for n, (quem, texto) in enumerate(FALAS, 1):
                         f"asetrate={sr}*0.92,aresample={sr},atempo=1/0.92", nome + ".wav"], check=True)
     else:
         sf.write(nome + ".wav", a, sr)
+    meta = [x for x in meta if x["n"] != n]
     meta.append({"n": n, "quem": quem, "texto": texto, "ouvido": ouvido, "nota": round(nota, 2), "dur": round(len(a) / sr, 2)})
     log(f"{n:02d} {quem:4s} {nota:.2f} {len(a)/sr:.1f}s | {ouvido}")
-json.dump(meta, open("audio/falas.json", "w"), ensure_ascii=False, indent=1)
-log("fim, total", round(sum(x["dur"] for x in meta), 1), "s de fala")
+    json.dump(sorted(meta, key=lambda x: x["n"]), open("audio/falas.json", "w"), ensure_ascii=False, indent=1)
+meta = json.load(open("audio/falas.json")); log("fim, total", round(sum(x["dur"] for x in meta), 1), "s de fala")
