@@ -1,38 +1,40 @@
-# Skit 01 — "Eu inventei isso, mas falei com confiança"
+# Skit 01 — "Interrogatório" (alucinação de IA)
 
-Formato: Dito (você) conversa com o Dito PC (o computadorzinho), que rouba a cena.
-Duração alvo: ~42 s, 1080x1920, 30 fps. Uma fala a cada ~2,3 s, cada fala é um corte.
-Entrega: o que é alucinação + 3 jeitos rápidos de checar uma resposta de IA.
-Sem CTA. Termina na piada do "dois Oscars".
+Formato: Dito (você) interroga o Dito PC (o computadorzinho), que inventa provas e rouba a cena.
+Duração alvo: ~45 s, 1080x1920, 30 fps. Uma fala a cada ~2–2,5 s, cada fala é um corte.
+Entrega: o que é alucinação + 3 jeitos de checar uma resposta de IA (viram as "provas do processo").
+Sem CTA. Termina no pedido de "advogado".
 
-| #  | Plano | Quem   | Fala | Direção |
-|----|-------|--------|------|---------|
-| 01 | S7→S1 | PC     | Dito, você ganhou um Oscar em 2019. | Orgulhoso, solene. Câmera desce da estufa até a mesa |
-| 02 | S4    | Você   | Eu nunca ganhei um Oscar. | Seco, sem paciência |
-| 03 | S3    | PC     | Mas soou verdade, né? | Convencido |
-| 04 | S2    | Você   | E isso tem nome: é alucinação. | Didático, olhando pro PC |
-| 05 | S2    | Você   | A IA não consulta fatos, ela prevê palavras. | Explicando |
-| 06 | S3    | PC     | E eu prevejo muito bem. | Vaidoso |
-| 07 | S2    | Você   | Quando a IA não sabe de algo, mas inventa com confiança. | |
-| 08 | S3    | PC     | Igual você em reunião. | Alfinetada rápida |
-| 09 | S4    | Você   | Três jeitos de pegar ela no flagra. | Ignorando a provocação |
-| 10 | S6    | Você   | Número um, peça a fonte, e abra o link. | Card 1: PEÇA A FONTE |
-| 11 | S3    | PC     | Eu invento link também. | Orgulhoso de novo |
-| 12 | S6    | Você   | Dois, pergunte de novo, de outro jeito. | Card 2: PERGUNTE DE NOVO |
-| 13 | S6    | Você   | Se a resposta mudar, desconfie. | |
-| 14 | S6    | Você   | Três, número, data ou citação, confira fora dela. | Card 3: CONFIRA FORA |
-| 15 | S5    | PC     | Dito, eu não minto por maldade. | Sincero, olhos ternos, push-in forte |
-| 16 | S5    | PC     | Eu só quero te agradar. | Baixinho |
-| 17 | S4    | Você   | Que bonito. | Amolecendo |
-| 18 | S3    | PC     | Por isso você ganhou dois Oscars. | Volta convencido (quebra o momento) |
-| —  | S7    | —      | (sem fala, ~1,5 s) | Corte seco pra estufa de longe, só música, fim |
+| #  | Plano | Quem | Fala | Direção |
+|----|-------|------|------|---------|
+| 01 | S7→S1 | PC   | Nós ganhamos um Oscar em 2019! | Orgulhoso. Câmera desce da estufa até a mesa |
+| 02 | S4    | Você | E de onde você tirou isso? | Desconfiado |
+| 03 | S2    | Você | Onde você estava em 2019? | Tom de promotor |
+| 04 | S3    | PC   | Ganhando um Oscar, com você. | Convencido |
+| 05 | S2b   | Você | É mesmo? Quero provas. | |
+| 06 | S3    | PC   | Eu tenho um link. | |
+| 07 | S6    | Você | Então abre o link. | Card 1: PEÇA A FONTE |
+| 08 | S3b   | PC   | Erro 404. | Tela vira "404" em pixel |
+| —  | S3b   | —    | (segundos depois, ~1,3 s) | Silêncio, só o 404 na tela |
+| 09 | S2    | Você | Vou repetir a pergunta. | Sorrindo |
+| 10 | S6    | Você | Onde você estava em 2019? | Card 2: PERGUNTE DE NOVO (mesma frase da 03) |
+| 11 | S3    | PC   | Em casa. Sozinho. Sem Oscar. | Contradiz a 04 |
+| 12 | S4b   | Você | A resposta mudou. | "Te peguei" |
+| 13 | S2    | Você | E isso tem nome: alucinação. | |
+| 14 | S2b   | Você | A IA prevê palavras, não confere fatos. | |
+| 15 | S6    | Você | E toda prova se confere fora daqui. | Card 3: CONFIRA FORA |
+| 16 | S5    | PC   | Dito, eu só queria ganhar um Oscar com você. | Sincero, olhos ternos |
+| 17 | S4    | Você | Que fofo. | Amolecendo |
+| 18 | S5b   | PC   | Gostou? | Esperançoso |
+| 19 | S4b   | Você | Não. | Seco, corte rápido |
+| 20 | S3c   | PC   | Quero falar com o meu desenvolvedor. | Ofendido, push-in, fim |
 
 ## Cards (S6, céu estrelado)
 1. PEÇA A FONTE — e abra o link
 2. PERGUNTE DE NOVO — se mudar, desconfie
-3. CONFIRA FORA — números, datas e citações
+3. CONFIRA FORA — em outra fonte
 
 ## Legenda do post
-Ele jura que eu ganhei um Oscar em 2019 🏆
+Ele jura que a gente ganhou um Oscar em 2019 🏆
 3 jeitos de pegar a IA no flagra estão no vídeo.
 E você, qual foi a maior mentira que uma IA já te contou?

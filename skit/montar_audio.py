@@ -7,28 +7,30 @@ SR = 48000
 INTRO, OUTRO = 1.5, 1.9
 # texto da legenda (como aparece na tela) e plano de cada fala
 ROTEIRO = [
-    ("S1",  "Dito, você ganhou um Oscar em 2019."),
-    ("S4",  "Eu nunca ganhei um Oscar."),
-    ("S3",  "Mas soou verdade, né?"),
-    ("S2",  "E isso tem nome: é alucinação."),
-    ("S2b", "A IA não consulta fatos, ela prevê palavras."),
-    ("S3",  "E eu prevejo muito bem."),
-    ("S2",  "Quando a IA não sabe de algo, mas inventa com confiança."),
-    ("S3b", "Igual você em reunião."),
-    ("S4",  "Três jeitos de pegar ela no flagra."),
-    ("S6",  "Número um, peça a fonte, e abra o link."),
-    ("S3",  "Eu invento link também."),
-    ("S6",  "Dois, pergunte de novo, de outro jeito."),
-    ("S6",  "Se a resposta mudar, desconfie."),
-    ("S6",  "Três, número, data ou citação, confira fora dela."),
-    ("S5",  "Dito, eu não minto por maldade."),
-    ("S5b", "Eu só quero te agradar."),
-    ("S4b", "Que bonito."),
-    ("S3c", "Por isso você ganhou dois Oscars."),
+    ("S1",  "Nós ganhamos um Oscar em 2019!"),
+    ("S4",  "E de onde você tirou isso?"),
+    ("S2",  "Onde você estava em 2019?"),
+    ("S3",  "Ganhando um Oscar, com você."),
+    ("S2b", "É mesmo? Quero provas."),
+    ("S3",  "Eu tenho um link."),
+    ("S6",  "Então abre o link."),
+    ("S3b", "Erro 404."),
+    ("S2",  "Vou repetir a pergunta."),
+    ("S6",  "Onde você estava em 2019?"),
+    ("S3",  "Em casa. Sozinho. Sem Oscar."),
+    ("S4b", "A resposta mudou."),
+    ("S2",  "E isso tem nome: alucinação."),
+    ("S2b", "A IA prevê palavras, não confere fatos."),
+    ("S6",  "E toda prova se confere fora daqui."),
+    ("S5",  "Dito, eu só queria ganhar um Oscar com você."),
+    ("S4",  "Que fofo."),
+    ("S5b", "Gostou?"),
+    ("S4b", "Não."),
+    ("S3c", "Quero falar com o meu desenvolvedor."),
 ]
 # pausas curtas entre falas (método do Notion: tira o silêncio de cada fala e junta com respiros curtos)
 MESMO, TROCA = 0.18, 0.28          # mesma pessoa continua / outra pessoa responde
-PAUSA = {10: 0.32, 12: 0.3, 14: 0.3, 15: 0.6, 17: 0.4, 18: 0.35}   # respiros especiais antes da fala n
+PAUSA = {7: 0.3, 9: 1.3, 10: 0.3, 15: 0.3, 16: 0.6, 17: 0.4, 19: 0.3, 20: 0.3}   # respiros especiais antes da fala n (9: "segundos depois" do 404)
 
 def limpar(a, sr, lead=0.05, tail=0.08, max_pausa=0.28):
     """Corta silêncio do começo/fim (pelo volume) e encurta pausas internas longas."""

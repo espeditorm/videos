@@ -76,9 +76,11 @@ def fechamento(q, t):
     return 0.0
 
 # ---------- expressão do PC por fala
+L_ = lambda n: next(l for l in LIN if l["n"] == n)
 def expressao_pc(t):
-    a = next(l for l in LIN if l["n"] == 15)["t0"] - 0.6; b = next(l for l in LIN if l["n"] == 16)["t1"] + 0.6
-    return "terno" if a <= t <= b else "convencido"
+    if L_(8)["t0"] - 0.05 <= t < L_(9)["t0"] - 0.15: return "404"          # tela de erro na pausa "segundos depois"
+    if L_(16)["t0"] - 0.6 <= t <= L_(18)["t1"] + 0.3: return "terno"
+    return "convencido"
 
 OLHOS = {
  "convencido": ["111111", "111111", "011111", "001110"],
@@ -86,6 +88,7 @@ OLHOS = {
  "terno":      ["011110", "111001", "111001", "111111", "111111", "011110"],
  "fechado":    ["000000", "000000", "111111"],
 }
+DIG = {"4": ["101", "101", "111", "001", "001"], "0": ["111", "101", "101", "101", "111"]}
 def boca_pc(k, expr):
     if k == 0: return ["011110"] if expr == "terno" else ["000110", "011100"]
     return ["011110"] + ["111111"] * (k - 1) + ["011110"]
@@ -94,8 +97,17 @@ def desenha_pc(img, f, t, falando):
     (ex0, ey0, ex1, ey1), (fx0, fy0, fx1, fy1) = f["eyes"]
     u = ((ex1 - ex0) + (fx1 - fx0)) / 12
     expr = expressao_pc(t)
-    shape = OLHOS["fechado"] if fechamento("pc", t) > 0.5 else OLHOS[expr]
     cel = []
+    if expr == "404":  # escreve 404 em pixel no meio da tela, sem olhos nem boca
+        x0, y0, x1, y1 = f["screen"]; U = u * 1.25
+        gx = (x0 + x1) / 2 - 5.5 * U; gy = (ey0 + ey1 + fy0 + fy1) / 4 - 2.5 * U + u
+        for k, ch in enumerate("404"):
+            for r, row in enumerate(DIG[ch]):
+                for c, v in enumerate(row):
+                    if v == "1": cel.append((gx + (k * 4 + c) * U, gy + r * U))
+        falando = 0; u = U
+    shape = OLHOS["fechado"] if fechamento("pc", t) > 0.5 else OLHOS.get(expr, OLHOS["convencido"])
+    if expr == "404": shape = []
     for (x0, y0, x1, y1) in f["eyes"]:
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
         gx, gy = cx - 3 * u, cy - len(shape) * u / 2
@@ -103,7 +115,7 @@ def desenha_pc(img, f, t, falando):
             for c, v in enumerate(row):
                 if v == "1": cel.append((gx + c * u, gy + r * u))
     k = int(round(falando * 3.2)) if falando > 0.08 else 0
-    bm = boca_pc(min(k, 3), expr)
+    bm = [] if expr == "404" else boca_pc(min(k, 3), expr)
     mx = (ex0 + ex1 + fx0 + fx1) / 4; my = max(ey1, fy1) + 2.2 * u
     for r, row in enumerate(bm):
         for c, v in enumerate(row):
@@ -193,7 +205,7 @@ def legenda(draw, t, y):
                 x += pw
             return
 
-CARDS = [(10, "1", "PEÇA A FONTE", "e abra o link"), (12, "2", "PERGUNTE DE NOVO", "se mudar, desconfie"), (14, "3", "CONFIRA FORA", "números, datas e citações")]
+CARDS = [(7, "1", "PEÇA A FONTE", "e abra o link"), (10, "2", "PERGUNTE DE NOVO", "se mudar, desconfie"), (15, "3", "CONFIRA FORA", "em outra fonte")]
 def card_img(num, tit, sub):
     w, h = 860, 150; im = Image.new("RGBA", (w + 40, h + 40)); d = ImageDraw.Draw(im)
     d.rounded_rectangle((20, 26, 20 + w, 26 + h), 34, fill=(0, 0, 0, 90))

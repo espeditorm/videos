@@ -11,26 +11,28 @@ log = lambda *a: print(f"[{time.time()-t0:5.0f}s]", *a, flush=True)
 
 # texto falado (grafia ajustada pra pronúncia) — o texto da legenda fica no roteiro.md
 FALAS = [
-    ("pc",   "Dito, você ganhou um Óscar em dois mil e dezenove."),
-    ("dito", "Eu nunca ganhei um Óscar."),
-    ("pc",   "Mas soou verdade, né?"),
-    ("dito", "E isso tem nome: é alucinação."),
-    ("dito", "A IA não consulta fatos, ela prevê palavras."),
-    ("pc",   "E eu prevejo muito bem."),
-    ("dito", "Quando a IA não sabe de algo, mas inventa com confiança."),
-    ("pc",   "Igual você em reunião."),
-    ("dito", "Três jeitos de pegar ela no flagra."),
-    ("dito", "Número um, peça a fonte, e abra o link."),
-    ("pc",   "Eu invento link também."),
-    ("dito", "Dois, pergunte de novo, de outro jeito."),
-    ("dito", "Se a resposta mudar, desconfie."),
-    ("dito", "Três, número, data ou citação, confira fora dela."),
-    ("pc",   "Dito, eu não minto por maldade."),
-    ("pc",   "Eu só quero te agradar."),
-    ("dito", "Que bonito."),
-    ("pc",   "Por isso você ganhou dois Óscars."),
+    ("pc",   "Nós ganhamos um Óscar em dois mil e dezenove!"),
+    ("dito", "E de onde você tirou isso?"),
+    ("dito", "Onde você estava em dois mil e dezenove?"),
+    ("pc",   "Ganhando um Óscar, com você."),
+    ("dito", "É mesmo? Quero provas."),
+    ("pc",   "Eu tenho um link."),
+    ("dito", "Então abre o link."),
+    ("pc",   "Erro quatrocentos e quatro."),
+    ("dito", "Vou repetir a pergunta."),
+    ("dito", "Onde você estava em dois mil e dezenove?"),
+    ("pc",   "Em casa. Sozinho. Sem Óscar."),
+    ("dito", "A resposta mudou."),
+    ("dito", "E isso tem nome: alucinação."),
+    ("dito", "A IA prevê palavras, não confere fatos."),
+    ("dito", "E toda prova se confere fora daqui."),
+    ("pc",   "Dito, eu só queria ganhar um Óscar com você."),
+    ("dito", "Que fofo."),
+    ("pc",   "Gostou?"),
+    ("dito", "Não."),
+    ("pc",   "Quero falar com o meu desenvolvedor."),
 ]
-NUM = {"2019": "dois mil e dezenove", "3": "tres", "2": "dois", "1": "um"}
+NUM = {"2019": "dois mil e dezenove", "404": "quatrocentos e quatro", "3": "tres", "2": "dois", "1": "um"}
 norm = lambda s: re.sub(r"\b(2019|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
 norm0 = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
 
