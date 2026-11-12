@@ -18,26 +18,32 @@ N = int(DUR * SR); out = np.zeros((N, 2), np.float32)
 TITLE = c['TITLE']   # o motor exporta C.TITLE (início do título)
 voz = load('audio/voz.wav'); voz_l = meter.integrated_loudness(voz); out[:len(voz)] += voz
 MUS_OFF = 65.0 - TITLE            # acorde final da faixa cai no título
-mus = load('../assets/music/Comfortable_Mystery_4.mp3', start=MUS_OFF, dur=DUR)
+MP = '../assets/music/Comfortable_Mystery_4.mp3'
+if MUS_OFF >= 0: mus = load(MP, start=MUS_OFF, dur=DUR)
+else:   # vídeo mais longo que a faixa: um trecho do início como introdução, emendado com crossfade de 2 s
+    lead = -MUS_OFF; X = int(2 * SR); L = int(lead * SR); NN = int(DUR * SR)
+    pre = load(MP, start=20, dur=lead + 2); main = load(MP, start=0, dur=DUR - lead)
+    w = np.linspace(0, 1, X, dtype=np.float32)[:, None]
+    pre[-X:] *= (1 - w)[-len(pre[-X:]):]; main[:X] *= w
+    mus = np.zeros((NN, 2), np.float32); mus[:len(pre)] += pre[:NN]; n = min(len(main), NN - L); mus[L:L + n] += main[:n]
 mus *= db(voz_l - 7 - meter.integrated_loudness(mus))
 t = np.arange(len(mus)) / SR
 env = np.clip(t / 1.2, 0, 1) * db(5 * np.clip((t - (TITLE - 1.0)) / 1.0, 0, 1)) * np.clip((DUR - t) / 1.6, 0, 1)
 out[:len(mus)] += mus * env[:, None]
 vp = np.abs(voz).max()
-T1, T2, T3, T4, T5, T6 = c['homem'] - .2, c['se'] - .12, c['voce'] - .12, c['mas'] - .1, c['por'] - .05, c['jim2'] - .4
-RW0 = c['trinta2'] + .08
-EV = [('pino', c['havai'] + .05, -8), ('buzz', c['vibram'] + .3, -7), ('alerta', c['vibram'] + .05, -10),
-      ('mergulho', T1 + .3, -7), ('tick', c['ameaca'], -9), ('tick', c['procure'], -9), ('tick', c['isto'], -8),
-      ('whoosh', T2 + .3, -7), ('whoosh', T2 + 1.2, -10), ('tick', c['missil'], -10), ('mergulho', T3 + .3, -7),
-      ('pino', c['voce'] + .12, -7), ('plop_02', c['esconder'] + .05, -9), ('plop_02', c['esconder'] + .22, -9),
-      ('plop_02', c['esconder'] + .39, -9), ('plop_02', c['quem'] + .05, -8), ('whoosh', T4 + .3, -7),
-      ('revelacao', c['vazio'] + .1, -8), ('clarao', c['cinco'] + .15, -7), ('slam_01', c['trinta1'] + .05, -5),
-      ('mergulho', T5 + .3, -7), ('switch_01', c['click'], -6), ('pino', c['teste'] + .05, -9),
-      ('plop_02', c['confirmacao'], -8), ('plop_02', c['confirmacao'] + .2, -8), ('paper_02', c['existia'] + .3, -9),
-      ('impacto', c['desmentir'] + .08, -6), ('mergulho', T6 + .3, -7), ('tick', c['dez'], -8),
-      ('bell_02', c['FA'] + .05, -6), ('buzz', c['FA'] + .1, -12), ('rewind', RW0 + .4, -6),
-      ('switch_01', c['menu'], -6), ('revelacao', TITLE, -6)]
-EV += [('tick', x, -15) for x in np.arange(c['tres'] - .05, c['cinco'], .28)]
+T = [c['multiplique'] - .3, c['historiador'] - .35, c['entender'] - .3, c['sindicatos'] - .55, c['nos'] - .3, c['redes'] - .15, c['facil1'] - .3, c['por2'] - .3, c['jager2'] - .3, c['entao'] - .3]
+RW0 = c['RW0']
+EV = [('pino', c['voce'] + .1, -8), ('plop_02', c['post1'], -9), ('whoosh', c['compartilha'] + .1, -7)]
+EV += [('mergulho' if i % 2 == 0 else 'whoosh', t + .3, -8) for i, t in enumerate(T)]
+EV += [('plop_02', c['milhoes'] + .1 * k, -14) for k in range(6)]
+EV += [('revelacao', c['hiper'] + .05, -7), ('impacto', c['sem1'] + .1, -8), ('tick', c['importa'], -9), ('tick', c['organiza'], -9),
+       ('pino', c['seculo'] + .05, -8), ('plop_02', c['sindicatos'], -8), ('plop_02', c['partidos'], -8), ('plop_02', c['igrejas'], -8), ('plop_02', c['clubes'], -8),
+       ('clarao', c['multidoes'] + .1, -9), ('slam_01', c['muro'] + .2, -8), ('whoosh', c['despencaram'] + .1, -8), ('paper_02', c['gestao'], -10),
+       ('impacto', c['crise'] + .2, -8), ('buzz', c['raiva1'] + .1, -12), ('slam_01', c['trump'], -9), ('slam_01', c['brexit'], -9),
+       ('plop_02', c['hashtags'], -8), ('clarao', c['explodem'] + .1, -9), ('whoosh', c['semanas'] + .2, -9), ('bell_02', c['outro'] + .05, -8),
+       ('tick', c['reuniao'], -9), ('tick', c['mensalidade'], -9), ('tick', c['anos2'], -9), ('switch_01', c['like'] + .05, -6), ('bell_02', c['segundo'], -9),
+       ('tick', c['lei'], -9), ('tick', c['salario'], -9), ('tick', c['voto'], -9), ('paper_02', c['basta'], -8),
+       ('plop_02', c['post2'], -9), ('pino', c['pergunte'] + .05, -9), ('rewind', RW0 + .4, -6), ('revelacao', c['TITLE'], -6)]
 for name, at, g in EV:
     f = next(p for p in [f'assets/sfx/{name}.{e}' for e in ('wav', 'ogg')] if os.path.exists(p))
     x = load(f)

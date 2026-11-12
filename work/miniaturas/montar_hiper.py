@@ -1,0 +1,25 @@
+# Capas: HIPERPOLÍTICA (contradição: nunca tanta política / nada muda)
+from PIL import Image, ImageDraw, ImageFilter
+from montar import pill, vignette, place, TEAL, GOLD, WHITE
+exec(open('montar_v2.py').read().split('# ====')[0])
+fr = Image.open('quadros/hiperpolitica_10.3.png').convert('RGBA')
+MX, MY = 1765, 860          # base da barra MUDANÇA (parada no zero)
+yt = Image.new('RGBA', (1920, 1080)); S = 1.15; place(yt, fr, S, 1500, 560, 1380, 560)
+grad = Image.new('L', (1920, 1080)); gd = ImageDraw.Draw(grad)
+for x in range(1920): gd.line([(x, 0), (x, 1080)], fill=int(235 * max(0, min(1, (900 - x) / 420))))
+yt.paste(Image.new('RGBA', (1920, 1080), (8, 18, 36, 255)), (0, 0), grad)
+mx, my = 1380 + (MX - 1500) * S, 560 + (MY - 560) * S
+glow(yt, mx, my - 40, 150, TEAL, 70); ring(yt, mx, my - 30, 90, 70, TEAL)
+headline(yt, 90, 300, [('NUNCA SE FALOU', 104, WHITE, 4), ('TANTO DE', 104, WHITE, 4), ('POLÍTICA', 150, (255, 138, 122), 6)])
+stamp(yt, 1170, 860, 'E NADA MUDA?', 76, RED, -5)
+pill(yt, 430, 900, [('HIPERPOLÍTICA', 46, GOLD, 6)], pad=26, alpha=225)
+vignette(yt, .45); yt.convert('RGB').resize((1280, 720), Image.LANCZOS).save('hiperpolitica_youtube.jpg', quality=93)
+v = Image.new('RGBA', (1080, 1920)); S2 = 1.5; place(v, fr, S2, 1500, 560, 440, 1050)
+v.alpha_composite(Image.new('RGBA', v.size, (8, 18, 36, 60)))
+mx2, my2 = 440 + (MX - 1500) * S2, 1050 + (MY - 560) * S2
+glow(v, mx2, my2 - 50, 170, TEAL, 70); ring(v, mx2, my2 - 40, 100, 80, TEAL)
+pill(v, 540, 400, [('NUNCA SE FALOU', 80, WHITE, 4), ('TANTO DE POLÍTICA', 80, (255, 138, 122), 4)], pad=36, alpha=225)
+stamp(v, 470, 1580, 'E NADA MUDA?', 90, RED, -5)
+pill(v, 540, 620, [('HIPERPOLÍTICA', 44, GOLD, 6)], pad=24, alpha=225)
+vignette(v, .45); v.convert('RGB').save('hiperpolitica_capa_vertical.jpg', quality=93)
+print('ok')

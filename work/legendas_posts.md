@@ -185,3 +185,55 @@ Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licen
 #cores #linguagem #curiosidades
 
 **Tags:** cor azul, por que o céu é azul, homero, odisseia mar cor de vinho, gladstone homero cores, lazarus geiger, guy deutscher, história das cores, linguística, curiosidades históricas
+
+---
+
+## HIPERPOLÍTICA (muita politização, pouca consequência)
+
+### Instagram (Reels)
+
+Nunca se falou tanto de política. E quase nada muda. 📱
+
+O historiador Anton Jäger deu um nome pra isso: hiperpolítica. Politização extrema, sem consequências políticas.
+
+No século 20, sindicatos, partidos, igrejas e clubes reuniam multidões toda semana. Nos anos 90, todo mundo foi pra casa. Depois de 2008, a raiva voltou, mas as organizações, não. E desde 2016 ela acelera nas redes: hashtags explodem, protestos lotam as ruas e, em poucas semanas, o assunto já é outro.
+
+Fácil de entrar, fácil de sair. Um sindicato pede reunião, mensalidade e anos de paciência. Um like pede um segundo.
+
+Da próxima vez que um post te revoltar: depois do compartilhar, o que vem? 👇
+
+Fonte: Anton Jäger, "Hyperpolitics: Extreme Politicization without Political Consequences" (Verso, 2026).
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com), licença CC BY 4.0.
+
+#hiperpolitica #politica #redessociais #sociedade #historia #democracia #internet #curiosidades #antonjager
+
+### YouTube
+
+**Título:** Nunca se falou tanto de política. Por que nada muda?
+
+**Descrição:**
+Você vê um post que te revolta e compartilha na hora. Agora multiplique isso por milhões de pessoas, todos os dias. Nunca se falou tanto de política, e quase nada muda.
+
+O historiador Anton Jäger chama isso de hiperpolítica: politização extrema, sem consequências políticas.
+
+Neste vídeo:
+• os dois eixos da política: o quanto a gente se importa e o quanto a gente se organiza
+• a política de massas do século 20, com sindicatos, partidos, igrejas e clubes
+• a pós-política dos anos 90, quando a política virou gestão
+• a raiva que volta depois de 2008 e acelera nas redes a partir de 2016
+• por que é tão fácil entrar e tão fácil sair
+
+Jäger não diz que se importar é inútil. Diz que, sozinho, não basta.
+
+Fontes:
+• Anton Jäger, "Hyperpolitics: Extreme Politicization without Political Consequences" (Verso, 2026)
+• William Davies, "Easy to join, easy to leave", London Review of Books (2026)
+• Le Monde Diplomatique Brasil, "Hiperpolítica, de Anton Jäger, mostra corpo politizado e cabeça vazia do século 21"
+
+Créditos:
+Música: "Comfortable Mystery 4", Kevin MacLeod (incompetech.com)
+Licença: Creative Commons: By Attribution 4.0, http://creativecommons.org/licenses/by/4.0/
+
+#hiperpolitica #politica #redessociais
+
+**Tags:** hiperpolítica, hyperpolitics, anton jäger, política nas redes sociais, pós-política, política de massas, sindicatos, ativismo digital, polarização, sociedade
