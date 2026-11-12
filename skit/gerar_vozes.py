@@ -14,10 +14,10 @@ FALAS = [
     ("pc",   "Dito, você ganhou um Óscar em dois mil e dezenove."),
     ("dito", "Eu nunca ganhei um Óscar."),
     ("pc",   "Mas soou verdade, né?"),
-    ("dito", "Isso tem nome, alucinação."),
+    ("dito", "E isso tem nome: é alucinação."),
     ("dito", "A IA não consulta fatos, ela prevê palavras."),
     ("pc",   "E eu prevejo muito bem."),
-    ("dito", "Quando não sabe, inventa com confiança."),
+    ("dito", "Quando a IA não sabe de algo, mas inventa com confiança."),
     ("pc",   "Igual você em reunião."),
     ("dito", "Três jeitos de pegar ela no flagra."),
     ("dito", "Número um, peça a fonte, e abra o link."),
@@ -27,7 +27,7 @@ FALAS = [
     ("dito", "Três, número, data ou citação, confira fora dela."),
     ("pc",   "Dito, eu não minto por maldade."),
     ("pc",   "Eu só quero te agradar."),
-    ("dito", "Que... bonito."),
+    ("dito", "Que bonito."),
     ("pc",   "Por isso você ganhou dois Óscars."),
 ]
 NUM = {"2019": "dois mil e dezenove", "3": "tres", "2": "dois", "1": "um"}
@@ -40,15 +40,15 @@ def ouvir(a, sr):
     a16 = np.concatenate([np.zeros(8000, np.float32), a16, np.zeros(8000, np.float32)])  # folga pro Whisper ouvir a 1ª palavra
     return " ".join(s.text.strip() for s in w.transcribe(a16, language="pt")[0])
 
-# referência do Dito: versão "de estúdio" criada por referencia_estudio.py
-# (a gravação original de WhatsApp tinha som de caixa/sala; ver aquele script)
-txt = [open("voz/dito_ref_estudio.txt").read().strip()]
-log("ref dito: estúdio |", txt[0])
+# voz do Dito: voz "D" do design de voz (homem adulto, tom médio), escolhida pelo Dito.
+# Clonada a partir da própria amostra, igual ao PC, pra ficar idêntica em todas as falas e no mesmo "estúdio".
+txt = ["Eu nunca ganhei um Óscar. Isso tem nome, alucinação. Quando não sabe, inventa com confiança."]
+log("voz dito: D")
 
 m = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
 sr = m.sampling_rate
 vozes = {
-    "dito": m.create_voice_clone_prompt(ref_audio="voz/dito_ref_estudio.wav", ref_text=" ".join(txt)),
+    "dito": m.create_voice_clone_prompt(ref_audio="voz/dito_voz_D.wav", ref_text=" ".join(txt)),
     "pc": m.create_voice_clone_prompt(ref_audio="voz/testes/pc_B.wav",
           ref_text="Dito, você ganhou um Oscar em 2019. Mas soou verdade, né? Igual você em reunião."),
 }
@@ -76,13 +76,7 @@ for n, (quem, texto) in enumerate(FALAS, 1):
     nota, a, ouvido = melhor
     nome = f"audio/{n:02d}_{quem}"
     sf.write(nome + "_raw.wav", a, sr)
-    if quem == "dito":
-        # a voz de estúdio sai rápida: estica até o ritmo natural (~0,068 s por letra) e desce ~1,4 semitom,
-        # tudo com formantes preservados (não abafa o timbre)
-        alvo = max(0.068 * len(texto) + 0.25, len(a) / sr)
-        tempo = max(len(a) / sr / alvo, 0.7)
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", nome + "_raw.wav", "-af",
-                        f"rubberband=tempo={tempo:.3f}:pitch=0.92:formant=preserved:transients=smooth", nome + ".wav"], check=True)
+    if False: pass
     else:
         sf.write(nome + ".wav", a, sr)
     meta = [x for x in meta if x["n"] != n]

@@ -10,10 +10,10 @@ Sem CTA. Termina na piada do "dois Oscars".
 | 01 | S7→S1 | PC     | Dito, você ganhou um Oscar em 2019. | Orgulhoso, solene. Câmera desce da estufa até a mesa |
 | 02 | S4    | Você   | Eu nunca ganhei um Oscar. | Seco, sem paciência |
 | 03 | S3    | PC     | Mas soou verdade, né? | Convencido |
-| 04 | S2    | Você   | Isso tem nome, alucinação. | Didático, olhando pro PC |
+| 04 | S2    | Você   | E isso tem nome: é alucinação. | Didático, olhando pro PC |
 | 05 | S2    | Você   | A IA não consulta fatos, ela prevê palavras. | Explicando |
 | 06 | S3    | PC     | E eu prevejo muito bem. | Vaidoso |
-| 07 | S2    | Você   | Quando não sabe, inventa com confiança. | |
+| 07 | S2    | Você   | Quando a IA não sabe de algo, mas inventa com confiança. | |
 | 08 | S3    | PC     | Igual você em reunião. | Alfinetada rápida |
 | 09 | S4    | Você   | Três jeitos de pegar ela no flagra. | Ignorando a provocação |
 | 10 | S6    | Você   | Número um, peça a fonte, e abra o link. | Card 1: PEÇA A FONTE |
