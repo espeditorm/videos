@@ -1,13 +1,14 @@
 import json, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont
 C = json.load(open('shots/cues.json'))
-B = [(1.5,'abertura 08:07'),(C['havai']+.6,'Havaí: ilhas'),(C['vibram']+.5,'vibram: pulso'),(C['homem']+.3,'mergulho: homem'),
- (C['carrey']+.4,'Jim Carrey'),(C['ameaca']+.6,'alerta no celular'),(C['isto']+.6,'não é simulado'),(C['se']+.6,'recuo: globo'),
- (C['vinte']+.5,'≈20 MIN no arco'),(C['voce']+.5,'você: pino'),(C['esconder']+.8,'esconderijos'),(C['quem']+.5,'e com quem: gato'),
- (C['vazio']+.5,'céu vazio'),(C['tres']+.8,'contador começa'),(C['lancamento']+.4,'08:10 nenhum lançamento'),(C['cinco']+.4,'08:45 frente de correção'),
- (C['trinta1']+.6,'38 MIN'),(C['tela']+.4,'a tela'),(C['real2']+.15,'clique no real'),(C['iguais']+.4,'mesma lista'),
- (C['dois2']+.4,'mesma confirmação'),(C['desmentir']+.5,'não existia'),(C['acordou']+.4,'Carrey acorda'),(C['dez']+.5,'10 minutos'),
- (C['FA']+.25,'08:45 alarme falso'),(C['trinta2']+.45,'rewind 0,8 s'),(C['mundo'],'callback em câmera lenta'),(C['menu']+.1,'clique em "menu"'),(62.1,"título")]
+B = [(0.9,'você no sofá'),(C['compartilha']+.4,'compartilha: post voa'),(C['milhoes']+.5,'milhões: globo'),(C['muda']+.3,'quase nada muda'),
+ (C['anton']+.6,'Anton Jäger'),(C['hiper']+.5,'HIPERPOLÍTICA'),(C['consequencias']+.5,'politização x consequências'),(C['organiza']+.6,'dois eixos'),
+ (C['seculo']+.8,'século 20: ponto no alto'),(C['clubes']+.4,'sindicatos, partidos...'),(C['multidoes']+.8,'multidões'),(C['muro']+.6,'queda do muro'),
+ (C['despencaram']+1.0,'anos 90: ponto despenca'),(C['casa']+.4,'gestão / foram pra casa'),(C['crise']+.8,'crise de 2008'),(C['nao1']+.2,'a raiva voltou; organizações, não'),
+ (C['brexit']+.4,'2016: Trump, Brexit'),(C['explodem']+.8,'hashtags explodem'),(C['lotam']+.6,'protestos lotam'),(C['outro']+.4,'#outroassunto'),
+ (C['facil2']+.4,'fácil de entrar/sair'),(C['anos2']+.4,'sindicato: reunião, mensalidade, anos'),(C['segundo']+.4,'like: 1 s'),(C['voto']+.5,'lei, salário, voto vazios'),
+ (C['inutil']+.4,'não é inútil'),(C['basta']+.3,'não basta: fecha o livro'),(C['revoltar']+.4,'você de novo'),(C['compartilhar']+.6,'o que vem?'),
+ (C['RW0']+.4,'rewind 0,8 s'),(C['DUR']-.3,'título')]
 fs = []
 subprocess.run(['node','shot.js','shots']+[f'{t:.2f}' for t,_ in B], check=True, capture_output=True)
 cols, tw, th = 4, 640, 360
