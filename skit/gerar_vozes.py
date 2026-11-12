@@ -61,19 +61,21 @@ def trim(a, th=0.01):
     return a[max(i[0] - int(0.03 * sr), 0): i[-1] + int(0.08 * sr)] if len(i) else a
 
 import sys, os
+SEMENTE = int(os.environ.get("SEMENTE", 0))   # mude pra tirar outras tentativas
 SO = [int(x) for x in sys.argv[1:]]          # ex.: python gerar_vozes.py 2 5 7  (refaz só essas)
 meta = json.load(open("audio/falas.json")) if SO and os.path.exists("audio/falas.json") else []
 for n, (quem, texto) in enumerate(FALAS, 1):
     if SO and n not in SO: continue
     melhor = None
-    for tent in range(3):
-        torch.manual_seed(1000 * n + tent)
+    for tent in range(4):
+        torch.manual_seed(1000 * n + tent + SEMENTE)
         a = m.generate(text=texto, language="pt", voice_clone_prompt=vozes[quem])
         a = a[0] if isinstance(a, (list, tuple)) else a
         a = trim(a.squeeze().cpu().numpy() if hasattr(a, "cpu") else np.asarray(a).squeeze())
         ouvido = ouvir(a, sr)
         nota = difflib.SequenceMatcher(None, norm0(norm(texto)), norm0(norm(ouvido))).ratio()
-        e = np.abs(a) > 0.02; fala = (np.where(e)[0][-1] - np.where(e)[0][0]) / sr if e.any() else 0
+        hop = sr // 100; env = np.array([np.sqrt(np.mean(a[j:j + hop] ** 2)) for j in range(0, len(a) - hop, hop)])
+        on = np.where(env > env.max() * 0.1)[0]; fala = (on[-1] - on[0]) / 100 if len(on) else 0   # duração real da fala (ignora estalos)
         if fala < 0.045 * len(texto): nota -= 0.3   # fala atropelada (rápida demais) não serve
         if not melhor or nota > melhor[0]: melhor = (nota, a, ouvido)
         if nota >= 0.9: break
