@@ -11,9 +11,9 @@
   "n": 2,
   "quem": "dito",
   "texto": "Eu nunca ganhei um Óscar.",
-  "ouvido": "Eu nunca ganhei um óscar.",
+  "ouvido": "Eu nunca ganhei um Oscar.",
   "nota": 1.0,
-  "dur": 1.05
+  "dur": 1.19
  },
  {
   "n": 3,
@@ -29,15 +29,15 @@
   "texto": "Isso tem nome, alucinação.",
   "ouvido": "Isso tem nome, alucinação.",
   "nota": 1.0,
-  "dur": 1.54
+  "dur": 1.45
  },
  {
   "n": 5,
   "quem": "dito",
   "texto": "A IA não consulta fatos, ela prevê palavras.",
-  "ouvido": "Aí a não consulta fatos, ela prevê palavras.",
-  "nota": 0.88,
-  "dur": 2.5
+  "ouvido": "A Iá não consulta fatos, ela prevê palavras.",
+  "nota": 1.0,
+  "dur": 2.19
  },
  {
   "n": 6,
@@ -51,9 +51,9 @@
   "n": 7,
   "quem": "dito",
   "texto": "Quando não sabe, inventa com confiança.",
-  "ouvido": "quando não sabe, inventa com confiança.",
+  "ouvido": "quando não sabe inventa com confiança",
   "nota": 1.0,
-  "dur": 2.22
+  "dur": 1.85
  },
  {
   "n": 8,
@@ -67,9 +67,9 @@
   "n": 9,
   "quem": "dito",
   "texto": "Três jeitos de pegar ela no flagra.",
-  "ouvido": "3 jeitos de pegar ela no flag",
-  "nota": 0.86,
-  "dur": 1.56
+  "ouvido": "3 jeitos de pegar ela no flagra",
+  "nota": 1.0,
+  "dur": 1.62
  },
  {
   "n": 10,
@@ -77,7 +77,7 @@
   "texto": "Número um, peça a fonte, e abra o link.",
   "ouvido": "Número 1, peça a fonte e abra o link.",
   "nota": 1.0,
-  "dur": 1.91
+  "dur": 1.67
  },
  {
   "n": 11,
