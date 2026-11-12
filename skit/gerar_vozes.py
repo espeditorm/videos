@@ -27,7 +27,7 @@ FALAS = [
     ("dito", "Três, número, data ou citação, confira fora dela."),
     ("pc",   "Dito, eu não minto por maldade."),
     ("pc",   "Eu só quero te agradar."),
-    ("dito", "Que bonito."),
+    ("dito", "Que... bonito."),
     ("pc",   "Por isso você ganhou dois Óscars."),
 ]
 NUM = {"2019": "dois mil e dezenove", "3": "tres", "2": "dois", "1": "um"}
@@ -66,8 +66,7 @@ for n, (quem, texto) in enumerate(FALAS, 1):
     melhor = None
     for tent in range(3):
         torch.manual_seed(1000 * n + tent)
-        dur = max(1.1, 0.068 * len(texto) + 0.25) if quem == "dito" else None   # ritmo natural (~0,07 s por letra)
-        a = m.generate(text=texto, language="pt", voice_clone_prompt=vozes[quem], duration=dur)
+        a = m.generate(text=texto, language="pt", voice_clone_prompt=vozes[quem])
         a = a[0] if isinstance(a, (list, tuple)) else a
         a = trim(a.squeeze().cpu().numpy() if hasattr(a, "cpu") else np.asarray(a).squeeze())
         ouvido = ouvir(a, sr)
@@ -77,9 +76,13 @@ for n, (quem, texto) in enumerate(FALAS, 1):
     nota, a, ouvido = melhor
     nome = f"audio/{n:02d}_{quem}"
     sf.write(nome + "_raw.wav", a, sr)
-    if quem == "dito":  # ~1,4 semitom mais grave, sem escurecer o timbre (formantes preservados)
+    if quem == "dito":
+        # a voz de estúdio sai rápida: estica até o ritmo natural (~0,068 s por letra) e desce ~1,4 semitom,
+        # tudo com formantes preservados (não abafa o timbre)
+        alvo = max(0.068 * len(texto) + 0.25, len(a) / sr)
+        tempo = max(len(a) / sr / alvo, 0.7)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", nome + "_raw.wav", "-af",
-                        "rubberband=pitch=0.92:formant=preserved:transients=smooth", nome + ".wav"], check=True)
+                        f"rubberband=tempo={tempo:.3f}:pitch=0.92:formant=preserved:transients=smooth", nome + ".wav"], check=True)
     else:
         sf.write(nome + ".wav", a, sr)
     meta = [x for x in meta if x["n"] != n]
