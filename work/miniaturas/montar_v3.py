@@ -1,4 +1,4 @@
-# Capas com gancho: O AZUL FOI A ÚLTIMA COR e UMA CIDADE DISSE SIM
+# Capas com gancho: O AZUL FOI A ÚLTIMA COR
 from PIL import Image, ImageDraw, ImageFilter
 from montar import pill, vignette, place, TEAL, GOLD, WHITE
 exec(open('montar_v2.py').read().split('# ====')[0])
@@ -30,23 +30,4 @@ pill(v, 540, 560, [('SEGUNDO HOMERO', 38, GOLD, 5)], pad=22, alpha=225)
 stamp(v, 560, 1520, 'E O AZUL?', 110, BLUE, -6)
 vignette(v, .45); v.convert('RGB').save('o_azul_foi_a_ultima_cor_capa_vertical.jpg', quality=93)
 
-# ========================= UMA CIDADE DISSE SIM =========================
-fr = Image.open('quadros/datacenter_9.5.png').convert('RGBA'); SX, SY = 1048, 504   # o SIM no meio dos NÃO
-yt = Image.new('RGBA', (1920, 1080)); S = 1.45; TX, TY = 640, 600
-place(yt, fr, S, SX, SY, TX, TY)
-grad = Image.new('L', (1920, 1080)); gd = ImageDraw.Draw(grad)
-for x in range(1920): gd.line([(x, 0), (x, 1080)], fill=int(235 * max(0, min(1, (x - 1000) / 380))))
-yt.paste(Image.new('RGBA', (1920, 1080), (8, 18, 36, 255)), (0, 0), grad)
-glow(yt, TX, TY, 160, GREEN, 90); ring(yt, TX, TY, 120, 70, GREEN)
-headline(yt, 1150, 330, [('40 VEZES', 140, WHITE, 5), ('NÃO', 170, (255, 120, 120), 6)])
-stamp(yt, 1500, 780, 'UMA DISSE SIM', 72, GREEN, -5)
-pill(yt, 1500, 960, [('DATA CENTER DE IA DE US$ 3 BI', 38, GOLD, 4)], pad=24, alpha=225)
-vignette(yt, .45); yt.convert('RGB').resize((1280, 720), Image.LANCZOS).save('uma_cidade_disse_sim_youtube.jpg', quality=93)
-v = Image.new('RGBA', (1080, 1920)); place(v, fr, 2.0, SX, SY, 540, 1000)
-v.alpha_composite(Image.new('RGBA', v.size, (8, 18, 36, 40)))
-glow(v, 540, 1000, 200, GREEN, 90); ring(v, 540, 1000, 160, 92, GREEN)
-pill(v, 540, 420, [('40 VEZES NÃO', 104, WHITE, 5)], pad=40, alpha=225)
-stamp(v, 560, 1400, 'UMA DISSE SIM', 84, GREEN, -5)
-pill(v, 540, 1580, [('DATA CENTER DE IA DE US$ 3 BI', 40, GOLD, 3), ('HARWOOD, EUA', 34, TEAL, 4)], pad=28, alpha=225)
-vignette(v, .45); v.convert('RGB').save('uma_cidade_disse_sim_capa_vertical.jpg', quality=93)
 print('ok')
