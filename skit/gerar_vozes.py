@@ -33,7 +33,7 @@ FALAS = [
     ("pc",   "Quero falar com o meu desenvolvedor."),
 ]
 NUM = {"2019": "dois mil e dezenove", "404": "quatrocentos e quatro", "3": "tres", "2": "dois", "1": "um"}
-norm = lambda s: re.sub(r"\b(2019|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
+norm = lambda s: re.sub(r"\b(2019|404|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
 norm0 = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
 
 w = WhisperModel("small", device="cpu", compute_type="int8")
@@ -73,6 +73,8 @@ for n, (quem, texto) in enumerate(FALAS, 1):
         a = trim(a.squeeze().cpu().numpy() if hasattr(a, "cpu") else np.asarray(a).squeeze())
         ouvido = ouvir(a, sr)
         nota = difflib.SequenceMatcher(None, norm0(norm(texto)), norm0(norm(ouvido))).ratio()
+        e = np.abs(a) > 0.02; fala = (np.where(e)[0][-1] - np.where(e)[0][0]) / sr if e.any() else 0
+        if fala < 0.045 * len(texto): nota -= 0.3   # fala atropelada (rápida demais) não serve
         if not melhor or nota > melhor[0]: melhor = (nota, a, ouvido)
         if nota >= 0.9: break
     nota, a, ouvido = melhor

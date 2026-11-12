@@ -2,145 +2,161 @@
  {
   "n": 1,
   "quem": "pc",
-  "texto": "Dito, você ganhou um Óscar em dois mil e dezenove.",
-  "ouvido": "Dito, você ganhou um Óscar em 2019.",
-  "nota": 0.71,
-  "dur": 3.08
+  "texto": "Nós ganhamos um Óscar em dois mil e dezenove!",
+  "ouvido": "Nós ganhamos um Oscar em 2019!",
+  "nota": 1.0,
+  "dur": 2.81
  },
  {
   "n": 2,
   "quem": "dito",
-  "texto": "Eu nunca ganhei um Óscar.",
-  "ouvido": "Eu nunca ganhei um Oscar.",
+  "texto": "E de onde você tirou isso?",
+  "ouvido": "E de onde você tirou isso?",
   "nota": 1.0,
-  "dur": 1.41
+  "dur": 1.55
  },
  {
   "n": 3,
-  "quem": "pc",
-  "texto": "Mas soou verdade, né?",
-  "ouvido": "Mas soou verdade, né?",
+  "quem": "dito",
+  "texto": "Onde você estava em dois mil e dezenove?",
+  "ouvido": "Onde você estava em 2019?",
   "nota": 1.0,
-  "dur": 1.79
+  "dur": 2.2
  },
  {
   "n": 4,
-  "quem": "dito",
-  "texto": "E isso tem nome: é alucinação.",
-  "ouvido": "E isso tem nome, é alucinação.",
+  "quem": "pc",
+  "texto": "Ganhando um Óscar, com você.",
+  "ouvido": "ganhando um Oscar com você.",
   "nota": 1.0,
-  "dur": 1.68
+  "dur": 1.94
  },
  {
   "n": 5,
   "quem": "dito",
-  "texto": "A IA não consulta fatos, ela prevê palavras.",
-  "ouvido": "A IA não consulta fatos, ela prevê palavras.",
+  "texto": "É mesmo? Quero provas.",
+  "ouvido": "É mesmo? Quero provas!",
   "nota": 1.0,
-  "dur": 2.47
+  "dur": 1.64
  },
  {
   "n": 6,
   "quem": "pc",
-  "texto": "E eu prevejo muito bem.",
-  "ouvido": "E eu prevejo muito bem.",
+  "texto": "Eu tenho um link.",
+  "ouvido": "Eu tenho um link.",
   "nota": 1.0,
-  "dur": 1.82
+  "dur": 1.62
  },
  {
   "n": 7,
   "quem": "dito",
-  "texto": "Quando a IA não sabe de algo, mas inventa com confiança.",
-  "ouvido": "Quando a IA não sabe de algo, mas inventa com confiança.",
+  "texto": "Então abre o link.",
+  "ouvido": "então abre o link",
   "nota": 1.0,
-  "dur": 3.11
+  "dur": 1.12
  },
  {
   "n": 8,
   "quem": "pc",
-  "texto": "Igual você em reunião.",
-  "ouvido": "Qual você em reunião?",
-  "nota": 0.75,
-  "dur": 1.82
+  "texto": "Erro quatrocentos e quatro.",
+  "ouvido": "Erro 404.",
+  "nota": 0.33,
+  "dur": 1.92
  },
  {
   "n": 9,
   "quem": "dito",
-  "texto": "Três jeitos de pegar ela no flagra.",
-  "ouvido": "Três jeitos de pegar ela no flagra.",
+  "texto": "Vou repetir a pergunta.",
+  "ouvido": "Vou repetir a pergunta.",
   "nota": 1.0,
-  "dur": 1.92
+  "dur": 1.26
  },
  {
   "n": 10,
   "quem": "dito",
-  "texto": "Número um, peça a fonte, e abra o link.",
-  "ouvido": "Número 1, peça a fonte e abra o link.",
+  "texto": "Onde você estava em dois mil e dezenove?",
+  "ouvido": "Onde você estava em 2019?",
   "nota": 1.0,
-  "dur": 2.11
+  "dur": 2.15
  },
  {
   "n": 11,
   "quem": "pc",
-  "texto": "Eu invento link também.",
-  "ouvido": "Eu invento o link também.",
-  "nota": 0.89,
-  "dur": 1.86
+  "texto": "Em casa. Sozinho. Sem Óscar.",
+  "ouvido": "Em casa, sozinho, sem Oscar!",
+  "nota": 1.0,
+  "dur": 1.9
  },
  {
   "n": 12,
   "quem": "dito",
-  "texto": "Dois, pergunte de novo, de outro jeito.",
-  "ouvido": "Dois, pergunte de novo, de outro jeito.",
+  "texto": "A resposta mudou.",
+  "ouvido": "A resposta mudou.",
   "nota": 1.0,
-  "dur": 2.17
+  "dur": 1.17
  },
  {
   "n": 13,
   "quem": "dito",
-  "texto": "Se a resposta mudar, desconfie.",
-  "ouvido": "Se a resposta mudar, desconfie.",
-  "nota": 1.0,
-  "dur": 1.71
+  "texto": "E isso tem nome: alucinação.",
+  "ouvido": "E isso tem nome à alucinação.",
+  "nota": 0.91,
+  "dur": 1.68
  },
  {
   "n": 14,
   "quem": "dito",
-  "texto": "Três, número, data ou citação, confira fora dela.",
-  "ouvido": "3 número, data ou citação, confira fora dela.",
-  "nota": 1.0,
-  "dur": 2.71
+  "texto": "A IA prevê palavras, não confere fatos.",
+  "ouvido": "Aí, a prevê palavras, não confere fatos.",
+  "nota": 0.86,
+  "dur": 2.2
  },
  {
   "n": 15,
-  "quem": "pc",
-  "texto": "Dito, eu não minto por maldade.",
-  "ouvido": "Dito, eu não minto por maldade.",
+  "quem": "dito",
+  "texto": "E toda prova se confere fora daqui.",
+  "ouvido": "E toda prova se confere fora daqui.",
   "nota": 1.0,
-  "dur": 2.0
+  "dur": 1.98
  },
  {
   "n": 16,
   "quem": "pc",
-  "texto": "Eu só quero te agradar.",
-  "ouvido": "Eu só quero te agradar.",
+  "texto": "Dito, eu só queria ganhar um Óscar com você.",
+  "ouvido": "Dito, eu só queria ganhar um Oscar com você.",
   "nota": 1.0,
-  "dur": 1.81
+  "dur": 2.7
  },
  {
   "n": 17,
   "quem": "dito",
-  "texto": "Que bonito.",
-  "ouvido": "Que bonito!",
+  "texto": "Que fofo.",
+  "ouvido": "Que fofo!",
   "nota": 1.0,
-  "dur": 0.92
+  "dur": 0.71
  },
  {
   "n": 18,
   "quem": "pc",
-  "texto": "Por isso você ganhou dois Óscars.",
-  "ouvido": "Por isso você ganhou dois Oscars.",
+  "texto": "Gostou?",
+  "ouvido": "Gostou?",
   "nota": 1.0,
-  "dur": 2.1
+  "dur": 1.25
+ },
+ {
+  "n": 19,
+  "quem": "dito",
+  "texto": "Não.",
+  "ouvido": "Não.",
+  "nota": 1.0,
+  "dur": 0.56
+ },
+ {
+  "n": 20,
+  "quem": "pc",
+  "texto": "Quero falar com o meu desenvolvedor.",
+  "ouvido": "Quero falar com o meu desenvolvedor.",
+  "nota": 1.0,
+  "dur": 2.08
  }
 ]
