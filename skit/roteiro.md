@@ -1,9 +1,9 @@
 # Skit 01 — "Eu inventei isso, mas falei com confiança"
 
 Formato: Dito (você) conversa com o Dito PC (o computadorzinho), que rouba a cena.
-Duração alvo: ~45 s, 1080x1920, 30 fps. Uma fala a cada ~2,3 s, cada fala é um corte.
+Duração alvo: ~42 s, 1080x1920, 30 fps. Uma fala a cada ~2,3 s, cada fala é um corte.
 Entrega: o que é alucinação + 3 jeitos rápidos de checar uma resposta de IA.
-CTA: comenta OSCAR.
+Sem CTA. Termina na piada do "dois Oscars".
 
 | #  | Plano | Quem   | Fala | Direção |
 |----|-------|--------|------|---------|
@@ -25,8 +25,7 @@ CTA: comenta OSCAR.
 | 16 | S5    | PC     | Eu só quero te agradar. | Baixinho |
 | 17 | S4    | Você   | Que bonito. | Amolecendo |
 | 18 | S3    | PC     | Por isso você ganhou dois Oscars. | Volta convencido (quebra o momento) |
-| 19 | S1    | Você   | Comenta OSCAR que eu te mando o checklist. | Pra câmera, simpático |
-| 20 | S1→S7 | PC     | E o meu discurso de agradecimento. | Câmera se afasta até a estufa inteira |
+| —  | S7    | —      | (sem fala, ~1,5 s) | Corte seco pra estufa de longe, só música, fim |
 
 ## Cards (S6, céu estrelado)
 1. PEÇA A FONTE — e abra o link
@@ -35,5 +34,5 @@ CTA: comenta OSCAR.
 
 ## Legenda do post
 Ele jura que eu ganhei um Oscar em 2019 🏆
-Comenta OSCAR que eu te mando o checklist pra pegar a IA no flagra.
+3 jeitos de pegar a IA no flagra estão no vídeo.
 E você, qual foi a maior mentira que uma IA já te contou?
