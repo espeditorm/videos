@@ -1,0 +1,146 @@
+[
+ {
+  "n": 1,
+  "quem": "pc",
+  "texto": "Dito, você ganhou um Óscar em dois mil e dezenove.",
+  "ouvido": "Dito, você ganhou um Óscar em 2019.",
+  "nota": 0.71,
+  "dur": 3.08
+ },
+ {
+  "n": 2,
+  "quem": "dito",
+  "texto": "Eu nunca ganhei um Óscar.",
+  "ouvido": "Nunca ganhei um Oscar.",
+  "nota": 0.89,
+  "dur": 1.96
+ },
+ {
+  "n": 3,
+  "quem": "pc",
+  "texto": "Mas soou verdade, né?",
+  "ouvido": "Mas soou verdade, né?",
+  "nota": 1.0,
+  "dur": 1.79
+ },
+ {
+  "n": 4,
+  "quem": "dito",
+  "texto": "Isso tem nome, alucinação.",
+  "ouvido": "Nome, alucinação.",
+  "nota": 0.67,
+  "dur": 2.02
+ },
+ {
+  "n": 5,
+  "quem": "dito",
+  "texto": "A IA não consulta fatos, ela prevê palavras.",
+  "ouvido": "Não consulta fatos, ela prevê palavras.",
+  "nota": 0.86,
+  "dur": 3.26
+ },
+ {
+  "n": 6,
+  "quem": "pc",
+  "texto": "E eu prevejo muito bem.",
+  "ouvido": "E eu prevejo muito bem.",
+  "nota": 1.0,
+  "dur": 1.82
+ },
+ {
+  "n": 7,
+  "quem": "dito",
+  "texto": "Quando não sabe, inventa com confiança.",
+  "ouvido": "Não sabe inventa com confiança",
+  "nota": 0.91,
+  "dur": 2.99
+ },
+ {
+  "n": 8,
+  "quem": "pc",
+  "texto": "Igual você em reunião.",
+  "ouvido": "Qual você em reunião?",
+  "nota": 0.75,
+  "dur": 1.82
+ },
+ {
+  "n": 9,
+  "quem": "dito",
+  "texto": "Três jeitos de pegar ela no flagra.",
+  "ouvido": "de pegar ela no flagra.",
+  "nota": 0.83,
+  "dur": 2.6
+ },
+ {
+  "n": 10,
+  "quem": "dito",
+  "texto": "Um, peça a fonte, e abra o link.",
+  "ouvido": "fãs e abro o link",
+  "nota": 0.46,
+  "dur": 2.21
+ },
+ {
+  "n": 11,
+  "quem": "pc",
+  "texto": "Eu invento link também.",
+  "ouvido": "Eu invento o link também.",
+  "nota": 0.89,
+  "dur": 1.86
+ },
+ {
+  "n": 12,
+  "quem": "dito",
+  "texto": "Dois, pergunte de novo, de outro jeito.",
+  "ouvido": "dois pergunte de novo de outro jeito",
+  "nota": 1.0,
+  "dur": 2.89
+ },
+ {
+  "n": 13,
+  "quem": "dito",
+  "texto": "Se a resposta mudar, desconfie.",
+  "ouvido": "A resposta mudar desconfia.",
+  "nota": 0.67,
+  "dur": 2.35
+ },
+ {
+  "n": 14,
+  "quem": "dito",
+  "texto": "Três, número, data ou citação, confira fora dela.",
+  "ouvido": "Número da tua citação, confira fora dela.",
+  "nota": 0.67,
+  "dur": 3.64
+ },
+ {
+  "n": 15,
+  "quem": "pc",
+  "texto": "Dito, eu não minto por maldade.",
+  "ouvido": "Dito, eu não minto por maldade.",
+  "nota": 1.0,
+  "dur": 2.0
+ },
+ {
+  "n": 16,
+  "quem": "pc",
+  "texto": "Eu só quero te agradar.",
+  "ouvido": "Eu só quero te agradar.",
+  "nota": 1.0,
+  "dur": 1.81
+ },
+ {
+  "n": 17,
+  "quem": "dito",
+  "texto": "Que bonito.",
+  "ouvido": "Que bonito!",
+  "nota": 1.0,
+  "dur": 1.53
+ },
+ {
+  "n": 18,
+  "quem": "pc",
+  "texto": "Por isso você ganhou dois Óscars.",
+  "ouvido": "Por isso você ganhou dois Oscars.",
+  "nota": 1.0,
+  "dur": 2.1
+ }
+]
