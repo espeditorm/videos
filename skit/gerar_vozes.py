@@ -40,17 +40,15 @@ def ouvir(a, sr):
     a16 = np.concatenate([np.zeros(8000, np.float32), a16, np.zeros(8000, np.float32)])  # folga pro Whisper ouvir a 1ª palavra
     return " ".join(s.text.strip() for s in w.transcribe(a16, language="pt")[0])
 
-# referência do Dito: os primeiros 6,25 s, cortados num silêncio de verdade.
-# (Se o áudio de referência tiver um pedaço de palavra que não está no texto, o modelo engole o começo das falas.)
-ref, rsr = librosa.load("voz/dito_ref.wav", sr=24000)
-sf.write("voz/dito_ref10.wav", ref[: int(6.25 * rsr)], rsr)
-txt = ["Imagina um mundo onde as abelhas não existem mais, sem aquele zumbido tranquilo no jardim."]
-log("ref dito: 6.25s", txt[0])
+# referência do Dito: versão "de estúdio" criada por referencia_estudio.py
+# (a gravação original de WhatsApp tinha som de caixa/sala; ver aquele script)
+txt = [open("voz/dito_ref_estudio.txt").read().strip()]
+log("ref dito: estúdio |", txt[0])
 
 m = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
 sr = m.sampling_rate
 vozes = {
-    "dito": m.create_voice_clone_prompt(ref_audio="voz/dito_ref10.wav", ref_text=" ".join(txt)),
+    "dito": m.create_voice_clone_prompt(ref_audio="voz/dito_ref_estudio.wav", ref_text=" ".join(txt)),
     "pc": m.create_voice_clone_prompt(ref_audio="voz/testes/pc_B.wav",
           ref_text="Dito, você ganhou um Oscar em 2019. Mas soou verdade, né? Igual você em reunião."),
 }
@@ -78,9 +76,9 @@ for n, (quem, texto) in enumerate(FALAS, 1):
     nota, a, ouvido = melhor
     nome = f"audio/{n:02d}_{quem}"
     sf.write(nome + "_raw.wav", a, sr)
-    if quem == "dito":  # ~1,4 semitom mais grave (tom + timbre), mesma duração
+    if quem == "dito":  # ~1,4 semitom mais grave, sem escurecer o timbre (formantes preservados)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", nome + "_raw.wav", "-af",
-                        f"asetrate={sr}*0.92,aresample={sr},atempo=1/0.92", nome + ".wav"], check=True)
+                        "rubberband=pitch=0.92:formant=preserved:transients=smooth", nome + ".wav"], check=True)
     else:
         sf.write(nome + ".wav", a, sr)
     meta = [x for x in meta if x["n"] != n]

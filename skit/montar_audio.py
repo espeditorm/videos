@@ -51,6 +51,15 @@ falas = json.load(open("audio/falas.json"))
 w = WhisperModel("small", device="cpu", compute_type="int8")
 norm = lambda s: re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode())
 
+# mesma "sala de estúdio" pras duas vozes: corta grave sobrando e caixa, presença igual,
+# expansor suave pra secar o rabo de eco, compressão leve e volume igualado por fala
+ESTUDIO = ("highpass=f=85,equalizer=f=450:t=q:w=1.2:g=-2,equalizer=f=3000:t=q:w=1.4:g=1.5,"
+           "agate=threshold=0.015:range=0.3:attack=2:release=50:ratio=2,"
+           "acompressor=threshold=-20dB:ratio=2.5:attack=6:release=90:makeup=2dB,deesser=i=0.2,"
+           "loudnorm=I=-18:TP=-2:LRA=7,aresample=48000")
+def estudio(src, dst):
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af", ESTUDIO, dst], check=True)
+
 def efeito_pc(src, dst):  # leve timbre digital: comb curto + bitcrush discreto + brilho
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af",
         "aresample=48000,highpass=f=110,aecho=0.85:0.5:7:0.22,acrusher=bits=10:mix=0.12:mode=log:aa=1,"
@@ -62,6 +71,7 @@ for f, (shot, legenda) in zip(falas, ROTEIRO):
     src = f"audio/{n:02d}_{quem}.wav"
     if quem == "pc":
         efeito_pc(src, f"audio/{n:02d}_pc_fx.wav"); src = f"audio/{n:02d}_pc_fx.wav"
+    estudio(src, f"audio/{n:02d}_{quem}_est.wav"); src = f"audio/{n:02d}_{quem}_est.wav"
     a, _ = librosa.load(src, sr=SR); a = limpar(a, SR)
     gap = PAUSA.get(n, TROCA if quem != prev else MESMO)
     if n > 1: cur += gap
