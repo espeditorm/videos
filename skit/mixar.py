@@ -1,12 +1,13 @@
 # Mixagem final: vozes + música baixinha (com ducking) + "plim" nos cards, -14 LUFS. Junta com o vídeo.
-import json, subprocess
+import json, subprocess, sys
 TL = json.load(open("timeline.json")); D = TL["dur"]
-MUS = "../work/assets/music/Comfortable_Mystery_4.mp3"
+MUS = "assets/musica.wav"   # trilha original (musica.py), gerada com a duração do vídeo
+subprocess.run([sys.executable, "musica.py", str(D + 0.5)], check=True)
 SFX = "../work/assets/sfx/pino.ogg"
 cards = [l["t0"] - 0.05 for l in TL["linhas"] if l["n"] in (10, 12, 14)]
-inp = ["-i", "audio/trilha_dito.wav", "-i", "audio/trilha_pc.wav", "-ss", "4", "-i", MUS] + sum([["-i", SFX] for _ in cards], [])
+inp = ["-i", "audio/trilha_dito.wav", "-i", "audio/trilha_pc.wav", "-i", MUS] + sum([["-i", SFX] for _ in cards], [])
 fc = ["[0][1]amix=inputs=2:normalize=0,volume=1.0,asplit=2[voz][sc]",
-      f"[2]atrim=0:{D},asetpts=PTS-STARTPTS,volume=0.22,afade=t=in:d=1.2,afade=t=out:st={D-2.2}:d=2.2[mu]",
+      f"[2]atrim=0:{D},asetpts=PTS-STARTPTS,volume=0.30,afade=t=in:d=1.0,afade=t=out:st={D-2.2}:d=2.2[mu]",
       "[mu][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=350[mud]"]
 sx = []
 for i, t in enumerate(cards):
