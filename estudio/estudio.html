@@ -1,0 +1,278 @@
+<title>Estúdio de Explicativos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: estante de vídeos (grade de capas 16:9) + painel de detalhe; aba de pedidos com formulário e fila */
+:root{
+  --bg:#f3f6fa; --surface:#ffffff; --ink:#0d1b2a; --muted:#56657a; --line:#dbe3ee;
+  --accent:#1a66b8; --accent-ink:#ffffff; --gold:#b47a00; --chip:#e7eef7;
+  --ok:#1f8a4c; --warn:#b26b00; --new:#1a66b8;
+  --display:"Fredoka",ui-rounded,"Segoe UI",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#081d2c; --surface:#0f2a40; --ink:#eaf3fb; --muted:#9db2c6; --line:#1f3d57;
+  --accent:#8fd8e6; --accent-ink:#06283a; --gold:#ffd98a; --chip:#16354f;
+  --ok:#5fc47a; --warn:#ffb35c; --new:#8fd8e6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#081d2c; --surface:#0f2a40; --ink:#eaf3fb; --muted:#9db2c6; --line:#1f3d57;
+  --accent:#8fd8e6; --accent-ink:#06283a; --gold:#ffd98a; --chip:#16354f;
+  --ok:#5fc47a; --warn:#ffb35c; --new:#8fd8e6; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:24px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,40px);letter-spacing:.5px;margin:0;line-height:1.1;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0}
+.tabs{display:flex;gap:6px;background:var(--chip);padding:4px;border-radius:999px}
+.tabs button{font:600 14px var(--body);border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;text-align:left;padding:0;font:inherit;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.thumb{aspect-ratio:16/9;width:100%;max-width:100%;object-fit:cover;display:block;background:var(--chip)}
+.card .meta{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card h3{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:1px;margin:0;text-transform:uppercase}
+.card p{margin:0;color:var(--muted);font-size:13.5px}
+.facts{display:flex;gap:10px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;text-transform:uppercase;letter-spacing:.6px}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px}
+@media (max-width:820px){.detail{grid-template-columns:minmax(0,1fr);padding:16px}}
+.detail h2{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:1px;margin:0;text-transform:uppercase}
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.dl{display:flex;flex-direction:column;gap:6px}
+.dl a{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 12px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;font-weight:500;font-size:14px}
+.dl a:hover{border-color:var(--accent)}
+.dl a span{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.label{font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.texts{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ptabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.ptabs button{font:600 14px var(--body);border:0;background:none;color:var(--muted);padding:8px 12px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.ptabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.block{display:flex;flex-direction:column;gap:6px}
+.blockhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.copy{font:600 12.5px var(--body);border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.copy.done{color:var(--ok);border-color:var(--ok)}
+pre.txt{white-space:pre-wrap;word-wrap:break-word;font:14px/1.6 var(--body);margin:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;max-height:380px;overflow:auto}
+.ytitle{font-family:var(--display);font-weight:600;font-size:19px;margin:0}
+.empty{color:var(--muted);padding:24px;border:1px dashed var(--line);border-radius:14px;text-align:center}
+form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){form{grid-template-columns:minmax(0,1fr);padding:16px}}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-weight:600;font-size:13.5px}
+.f small{color:var(--muted);font-size:12.5px}
+input,select,textarea{font:15px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box}
+textarea{min-height:110px;resize:vertical}
+.actions{grid-column:1/-1;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.primary{font:600 15px var(--body);background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:11px 20px;cursor:pointer}
+.primary:disabled{opacity:.5;cursor:default}
+.status-msg{color:var(--muted);font-size:14px}
+.queue{display:flex;flex-direction:column;gap:10px}
+.req{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start}
+.req h4{margin:0;font-size:15.5px;font-weight:600}
+.req p{margin:0;color:var(--muted);font-size:13.5px}
+.pill{font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.pill.novo{color:var(--new)} .pill.producao{color:var(--warn)} .pill.pronto{color:var(--ok)}
+.how{background:var(--chip);border-radius:12px;padding:14px 16px;font-size:14px}
+.how code{font-family:var(--mono);font-size:13px}
+.sec{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.6px;margin:8px 0 0}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Estúdio de Explicativos</h1>
+      <p class="sub">Vídeos animados em pt-BR: versões para download e textos prontos para postar.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button id="tab-videos" role="tab" aria-selected="true">Vídeos</button>
+      <button id="tab-pedidos" role="tab" aria-selected="false">Pedir vídeo</button>
+    </div>
+  </header>
+
+  <section id="view-videos" style="display:flex;flex-direction:column;gap:24px">
+    <div id="grid" class="grid"><div class="empty">Carregando os vídeos…</div></div>
+    <div id="detail" hidden></div>
+  </section>
+
+  <section id="view-pedidos" hidden style="display:flex;flex-direction:column;gap:20px">
+    <form id="form">
+      <div class="f full">
+        <label for="tema">Tema ou pergunta do vídeo</label>
+        <textarea id="tema" required placeholder="Ex.: Por que os aviões não voam em linha reta no mapa?"></textarea>
+      </div>
+      <div class="f full">
+        <label for="fonte">Link ou texto de referência</label>
+        <input id="fonte" type="text" placeholder="https://… (matéria, artigo, post)">
+      </div>
+      <div class="f">
+        <label for="duracao">Duração</label>
+        <select id="duracao"><option>45 s</option><option selected>60 s</option><option>90 s</option></select>
+      </div>
+      <div class="f">
+        <label for="voz">Voz</label>
+        <select id="voz"><option selected>Abrahan Mack</option><option>Quero ouvir amostras</option></select>
+      </div>
+      <div class="f full">
+        <label for="personagem">Pessoa real ou personagem</label>
+        <input id="personagem" type="text" placeholder="Ex.: Jim Carrey, Mary Shelley (deixe vazio se não houver)">
+      </div>
+      <div class="f full">
+        <label for="obs">Observações</label>
+        <input id="obs" type="text" placeholder="Tom, final, o que evitar…">
+        <small>O roteiro e o áudio passam por você antes de virar vídeo.</small>
+      </div>
+      <div class="actions">
+        <button class="primary" id="enviar" type="submit">Enviar pedido</button>
+        <span class="status-msg" id="msg" role="status"></span>
+      </div>
+    </form>
+    <div class="how">Para produzir, abra uma sessão do Claude Code neste repositório e escreva <code>faz os pedidos do estúdio</code>. A sessão lê esta fila, roda a skill <code>/video-explicativo</code> e marca o pedido como pronto, com o vídeo aqui na estante.</div>
+    <h2 class="sec">Fila de pedidos</h2>
+    <div id="queue" class="queue"><div class="empty">Nenhum pedido ainda. Preencha o formulário acima para enviar o primeiro.</div></div>
+  </section>
+</div>
+
+<script>
+const RAW = "https://github.com/espeditorm/videos/raw/claude/nifty-gates-rpoe7z/";
+const $ = s => document.querySelector(s);
+const el = (t, a = {}, ...kids) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (k === "class") e.className = v; else if (k === "text") e.textContent = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids) if (k) e.append(k); return e; };
+let videos = [], sel = null, ptab = "ig", db = null;
+
+function tab(name) {
+  $("#tab-videos").setAttribute("aria-selected", name === "videos");
+  $("#tab-pedidos").setAttribute("aria-selected", name === "pedidos");
+  $("#view-videos").hidden = name !== "videos";
+  $("#view-pedidos").hidden = name !== "pedidos";
+  try { localStorage.setItem("aba", name); } catch (e) {}
+}
+$("#tab-videos").onclick = () => tab("videos");
+$("#tab-pedidos").onclick = () => tab("pedidos");
+try { if (localStorage.getItem("aba") === "pedidos") tab("pedidos"); } catch (e) {}
+
+function copyBtn(getText) {
+  const b = el("button", { class: "copy", type: "button", text: "Copiar" });
+  b.onclick = () => {
+    const t = getText();
+    const ok = () => { b.textContent = "Copiado"; b.classList.add("done"); setTimeout(() => { b.textContent = "Copiar"; b.classList.remove("done"); }, 1600); };
+    try {
+      navigator.clipboard.writeText(t).then(ok, () => selectFallback(b));
+    } catch (e) { selectFallback(b); }
+  };
+  return b;
+}
+function selectFallback(b) {
+  const pre = b.closest(".block")?.querySelector("pre,.ytitle");
+  if (!pre) return;
+  const r = document.createRange(); r.selectNodeContents(pre);
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  b.textContent = "Selecionado: Ctrl+C";
+}
+function block(label, text, cls = "txt") {
+  const body = cls === "ytitle" ? el("p", { class: "ytitle", text }) : el("pre", { class: "txt", text });
+  return el("div", { class: "block" }, el("div", { class: "blockhead" }, el("span", { class: "label", text: label }), copyBtn(() => text)), body);
+}
+
+function renderGrid() {
+  const g = $("#grid"); g.replaceChildren();
+  if (!videos.length) { g.append(el("div", { class: "empty", text: "Nenhum vídeo na estante ainda." })); return; }
+  for (const v of videos) {
+    const c = el("button", { class: "card", type: "button", "aria-pressed": sel === v.id },
+      el("img", { class: "thumb", src: "img/" + v.slug + ".jpg", alt: "" }),
+      el("div", { class: "meta" },
+        el("div", { class: "facts" }, el("span", { text: v.duracao || "" }), el("span", { text: v.data || "" })),
+        el("h3", { text: v.titulo }),
+        el("p", { text: v.tema || "" })));
+    c.onclick = () => { sel = sel === v.id ? null : v.id; renderGrid(); renderDetail(); if (sel) $("#detail").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); };
+    g.append(c);
+  }
+}
+
+function renderDetail() {
+  const d = $("#detail"); const v = videos.find(x => x.id === sel);
+  if (!v) { d.hidden = true; d.replaceChildren(); return; }
+  d.hidden = false;
+  const files = [["16:9", "", "YouTube"], ["16:9 legendado", "_legendado", "YouTube / feed"], ["9:16 legendado", "_vertical", "Reels / TikTok"]];
+  const dl = el("div", { class: "dl" });
+  for (const [n, suf, onde] of files) dl.append(el("a", { href: RAW + v.pasta + "/out/" + v.slug + suf + ".mp4", target: "_blank", rel: "noopener" }, el("strong", { text: n }), el("span", { text: onde + " · .mp4" })));
+  dl.append(el("a", { href: RAW + v.pasta + "/legenda.srt", target: "_blank", rel: "noopener" }, el("strong", { text: "Legendas" }), el("span", { text: ".srt" })));
+  if (v.capas) {
+    dl.append(el("a", { href: RAW + "miniaturas/" + v.slug + "_youtube.jpg", target: "_blank", rel: "noopener" }, el("strong", { text: "Capa YouTube" }), el("span", { text: "1280x720 · .jpg" })));
+    dl.append(el("a", { href: RAW + "miniaturas/" + v.slug + "_capa_vertical.jpg", target: "_blank", rel: "noopener" }, el("strong", { text: "Capa Reels" }), el("span", { text: "1080x1920 · .jpg" })));
+  }
+  const side = el("div", { class: "side" },
+    el("img", { class: "thumb", src: "img/" + v.slug + ".jpg", alt: "", style: "border-radius:12px" }),
+    el("h2", { text: v.titulo }),
+    el("span", { class: "label", text: "Baixar" }), dl,
+    el("p", { class: "status-msg", text: "Os arquivos abrem no GitHub, com o seu login." }));
+  const pt = el("div", { class: "ptabs", role: "tablist" });
+  const body = el("div", { class: "texts" });
+  const show = () => {
+    body.replaceChildren();
+    if (ptab === "ig") {
+      body.append(v.ig ? block("Legenda do Instagram / TikTok", v.ig) : el("div", { class: "empty", text: "Texto do Instagram ainda não escrito." }));
+    } else {
+      if (v.yt_titulo) body.append(block("Título", v.yt_titulo, "ytitle"));
+      if (v.yt_desc) body.append(block("Descrição", v.yt_desc));
+      if (v.yt_tags) body.append(block("Tags", v.yt_tags));
+      if (!v.yt_titulo && !v.yt_desc) body.append(el("div", { class: "empty", text: "Textos do YouTube ainda não escritos." }));
+    }
+    for (const b of pt.children) b.setAttribute("aria-selected", b.dataset.k === ptab);
+  };
+  for (const [k, n] of [["ig", "Instagram"], ["yt", "YouTube"]]) {
+    const b = el("button", { type: "button", role: "tab", text: n }); b.dataset.k = k;
+    b.onclick = () => { ptab = k; show(); }; pt.append(b);
+  }
+  show();
+  d.className = "detail";
+  d.replaceChildren(side, el("div", { class: "texts" }, pt, body));
+}
+
+const STATUS = { novo: "Novo", producao: "Em produção", pronto: "Pronto" };
+function renderQueue(list) {
+  const q = $("#queue"); q.replaceChildren();
+  if (!list.length) { q.append(el("div", { class: "empty", text: "Nenhum pedido ainda. Preencha o formulário acima para enviar o primeiro." })); return; }
+  for (const r of list) {
+    const st = r.status || "novo";
+    const info = [r.duracao, r.voz, r.personagem].filter(Boolean).join(" · ");
+    q.append(el("div", { class: "req" },
+      el("h4", { text: r.tema }),
+      el("span", { class: "pill " + st, text: STATUS[st] || st }),
+      el("p", { text: info + (r.criado ? " · " + new Date(r.criado).toLocaleDateString("pt-BR") : "") }),
+      r.nota ? el("p", { text: r.nota, style: "grid-column:1/-1" }) : null));
+  }
+}
+
+$("#form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const msg = $("#msg"), btn = $("#enviar");
+  if (!db) { msg.textContent = "Não consegui conectar ao banco do estúdio. Entre na sua conta e recarregue."; return; }
+  const tema = $("#tema").value.trim();
+  if (!tema) { msg.textContent = "Escreva o tema do vídeo."; return; }
+  btn.disabled = true; msg.textContent = "Enviando…";
+  try {
+    await db.collection("pedidos").add({
+      tema, fonte: $("#fonte").value.trim(), duracao: $("#duracao").value, voz: $("#voz").value,
+      personagem: $("#personagem").value.trim(), obs: $("#obs").value.trim(), status: "novo", criado: new Date().toISOString()
+    });
+    msg.textContent = "Pedido enviado. Ele aparece na fila abaixo.";
+    $("#form").reset();
+  } catch (e) {
+    msg.textContent = e && e.code === "permission_denied" ? "Sua conta só pode ver esta página, não enviar pedidos." : "O pedido não foi salvo (" + (e && e.code || "erro") + "). Tente de novo.";
+  } finally { btn.disabled = false; }
+});
+
+(async () => {
+  const timer = setTimeout(() => { if (!videos.length) $("#grid").replaceChildren(el("div", { class: "empty", text: "Os vídeos não carregaram. Entre na sua conta do claude.ai e recarregue a página." })); }, 10000);
+  db = await window.claude?.use?.("db");
+  if (!db) { clearTimeout(timer); $("#grid").replaceChildren(el("div", { class: "empty", text: "Entre na sua conta do claude.ai para ver os vídeos e enviar pedidos." })); return; }
+  db.collection("videos").orderBy("ordem", "desc").onSnapshot(s => {
+    clearTimeout(timer);
+    videos = s.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderGrid(); renderDetail();
+  }, e => { clearTimeout(timer); $("#grid").replaceChildren(el("div", { class: "empty", text: "Erro ao ler os vídeos (" + e.code + ")." })); });
+  db.collection("pedidos").orderBy("criado", "desc").onSnapshot(s => renderQueue(s.docs.map(d => ({ id: d.id, ...d.data() }))), () => {});
+})();
+</script>
