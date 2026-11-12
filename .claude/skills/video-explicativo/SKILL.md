@@ -1,6 +1,6 @@
 ---
 name: video-explicativo
-description: Cria um vídeo explicativo animado no estilo flat/espacial (tipo Kurzgesagt, sem copiar personagens), todo desenhado em código (canvas 2D + WebGL), com narração local em pt-BR, trilha, efeitos, e entrega em 16:9, 16:9 legendado, 9:16 legendado (Instagram/TikTok) e .srt. Use quando o usuário pedir um vídeo explicativo, um "e se...", um fato histórico contado em animação, ou um novo vídeo "nesse estilo".
+description: Cria um vídeo explicativo animado no estilo flat/espacial (tipo Kurzgesagt, sem copiar personagens), todo desenhado em código (canvas 2D + WebGL), com narração local em pt-BR, trilha, efeitos, e entrega em 16:9, 16:9 legendado, .srt e capas com gancho (YouTube 1280x720 e vertical 1080x1920). Use quando o usuário pedir um vídeo explicativo, um "e se...", um fato histórico contado em animação, ou um novo vídeo "nesse estilo".
 ---
 
 # Vídeo explicativo animado (estilo do "38 MINUTOS")
@@ -26,7 +26,7 @@ Scripts genéricos desta skill: `.claude/skills/video-explicativo/scripts/`. Mot
 1. Tema ("e se...?", fato histórico...) e se há um personagem real.
 2. Duração (padrão de 60 s; a voz XTTS fala ~150 palavras/min, então 60 s ≈ 145 palavras).
 3. Voz: mande amostras com `xtts_amostras.py` (vozes masculinas e femininas), padrão Abrahan Mack.
-4. Onde vai postar: as quatro entregas são o padrão (16:9, 16:9 legendado, 9:16 legendado, .srt).
+4. Entregas padrão: 16:9, 16:9 legendado, .srt e as duas capas. Vídeo 9:16 só se o usuário pedir.
 
 ## Estrutura narrativa (qualquer tema)
 
@@ -67,7 +67,8 @@ cp .claude/skills/video-explicativo/motor_exemplo/lib_*.js work/<slug>/src/
    ```
    Depois `NOME=<slug> ./finalize.sh`. Espere com Monitor (expira em 30 min, rearme) e nunca com `sleep`.
 8. **Confira o pico real depois da codificação** (`ffmpeg -af ebur128=peak=true`). Efeitos com ataque muito seco estouram no AAC; o `mix.py` já aplica passa-baixa de 9 kHz e uma rampa de entrada.
-9. **Legendas e formatos:** `NOME=<slug> ./legendado.sh` (16:9 com legenda queimada + `legenda.srt`) e `NOME=<slug> TOPO="TEXTO DO TOPO" ./vertical.sh` (9:16 1080x1920). As legendas são palavra por palavra, com a palavra falada em dourado. No 16:9 a legenda fica em y≈1070, abaixo das pílulas do vídeo, e só sobe quando a faixa de baixo está lotada.
+9. **Legendas e formatos:** `NOME=<slug> ./legendado.sh` (16:9 com legenda queimada + `legenda.srt`). O `vertical.sh` (9:16) só se pedirem.
+   **Capas (sempre, nos dois tamanhos):** quadros limpos com `node work/thumb_shot.js <proj> work/miniaturas/quadros t...` e composição no padrão de `work/miniaturas/montar_v3.py` (fato que contradiz + pergunta aberta, carimbo, anel no detalhe). Saída: `work/miniaturas/<slug>_youtube.jpg` (1280x720) e `<slug>_capa_vertical.jpg` (1080x1920). As legendas são palavra por palavra, com a palavra falada em dourado. No 16:9 a legenda fica em y≈1070, abaixo das pílulas do vídeo, e só sobe quando a faixa de baixo está lotada.
 10. **Entrega:** mande o vídeo com SendUserFile, faça commit e push. Os arquivos `*_master.mp4` ficam fora do git e só existem no container; ofereça mandar se o usuário quiser guardar.
 
 ## Licenças

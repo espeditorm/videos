@@ -203,11 +203,11 @@ function renderDetail() {
   const d = $("#detail"); const v = videos.find(x => x.id === sel);
   if (!v) { d.hidden = true; d.replaceChildren(); return; }
   d.hidden = false;
-  const files = [["16:9", "", "YouTube"], ["16:9 legendado", "_legendado", "YouTube / feed"], ["9:16 legendado", "_vertical", "Reels / TikTok"]];
+  const files = [["16:9", "", "YouTube"], ["16:9 legendado", "_legendado", "Instagram / feed"]];
   const dl = el("div", { class: "dl" });
   for (const [n, suf, onde] of files) dl.append(el("a", { href: RAW + v.pasta + "/out/" + v.slug + suf + ".mp4", target: "_blank", rel: "noopener" }, el("strong", { text: n }), el("span", { text: onde + " · .mp4" })));
   dl.append(el("a", { href: RAW + v.pasta + "/legenda.srt", target: "_blank", rel: "noopener" }, el("strong", { text: "Legendas" }), el("span", { text: ".srt" })));
-  if (v.capas) {
+  {
     dl.append(el("a", { href: RAW + "miniaturas/" + v.slug + "_youtube.jpg", target: "_blank", rel: "noopener" }, el("strong", { text: "Capa YouTube" }), el("span", { text: "1280x720 · .jpg" })));
     dl.append(el("a", { href: RAW + "miniaturas/" + v.slug + "_capa_vertical.jpg", target: "_blank", rel: "noopener" }, el("strong", { text: "Capa Reels" }), el("span", { text: "1080x1920 · .jpg" })));
   }
