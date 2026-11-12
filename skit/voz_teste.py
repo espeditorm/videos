@@ -6,7 +6,9 @@ torch.set_num_threads(4)
 REF = "voz/dito_ref.wav"; OUT = "voz/testes/"
 t = time.time()
 w = WhisperModel("small", device="cpu", compute_type="int8")
-segs, _ = w.transcribe(REF, language="pt")
+import numpy as np, librosa
+seg16 = librosa.load(REF, sr=16000)[0].astype(np.float32)
+segs, _ = w.transcribe(seg16, language="pt")
 ref_text = " ".join(s.text.strip() for s in segs)
 open(OUT + "ref_text.txt", "w").write(ref_text); print("REF:", ref_text, f"{time.time()-t:.0f}s", flush=True)
 m = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
