@@ -26,7 +26,27 @@ ROTEIRO = [
     ("S4b", "Que bonito."),
     ("S3c", "Por isso você ganhou dois Oscars."),
 ]
-PAUSA = {15: 0.6, 16: 0.35, 17: 0.45, 18: 0.3, 10: 0.3}   # pausa antes da fala n
+# pausas curtas entre falas (método do Notion: tira o silêncio de cada fala e junta com respiros curtos)
+MESMO, TROCA = 0.18, 0.28          # mesma pessoa continua / outra pessoa responde
+PAUSA = {10: 0.32, 12: 0.3, 14: 0.3, 15: 0.6, 17: 0.4, 18: 0.35}   # respiros especiais antes da fala n
+
+def limpar(a, sr, lead=0.05, tail=0.08, max_pausa=0.28):
+    """Corta silêncio do começo/fim (pelo volume) e encurta pausas internas longas."""
+    hop = int(sr * 0.01); e = np.array([np.sqrt(np.mean(a[i:i + hop] ** 2)) for i in range(0, len(a) - hop, hop)])
+    on = np.where(e > e.max() * 0.06)[0]
+    if not len(on): return a
+    a = a[max(on[0] * hop - int(lead * sr), 0): min((on[-1] + 1) * hop + int(tail * sr), len(a))]
+    e = e[max(on[0] - int(lead * 100), 0): on[-1] + 1 + int(tail * 100)]
+    quiet = e < e.max() * 0.06; out, i = [], 0
+    while i < len(quiet):
+        j = i
+        while j < len(quiet) and quiet[j] == quiet[i]: j += 1
+        seg = a[i * hop: j * hop]
+        if quiet[i] and (j - i) / 100 > max_pausa and 0 < i and j < len(quiet):
+            k = int(max_pausa * sr / 2); seg = np.concatenate([seg[:k], seg[-k:]])
+        out.append(seg); i = j
+    out.append(a[len(quiet) * hop:])
+    return np.concatenate(out)
 falas = json.load(open("audio/falas.json"))
 w = WhisperModel("small", device="cpu", compute_type="int8")
 norm = lambda s: re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode())
@@ -42,8 +62,8 @@ for f, (shot, legenda) in zip(falas, ROTEIRO):
     src = f"audio/{n:02d}_{quem}.wav"
     if quem == "pc":
         efeito_pc(src, f"audio/{n:02d}_pc_fx.wav"); src = f"audio/{n:02d}_pc_fx.wav"
-    a, _ = librosa.load(src, sr=SR)
-    gap = PAUSA.get(n, 0.24 if quem != prev else 0.16)
+    a, _ = librosa.load(src, sr=SR); a = limpar(a, SR)
+    gap = PAUSA.get(n, TROCA if quem != prev else MESMO)
     if n > 1: cur += gap
     t0, t1 = cur, cur + len(a) / SR
     # tempos das palavras
