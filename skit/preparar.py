@@ -17,7 +17,10 @@ def maior_componente(m, n=1, min_area=4000):
     keep = [i + 1 for i in np.argsort(areas)[::-1][:n] if areas[i] >= min_area]
     return m * np.isin(lab, keep)
 
+import sys
+SO = sys.argv[1:] or list(CFG["shots"])
 for S, c in CFG["shots"].items():
+    if S not in SO: continue
     img = np.array(Image.open(f"stills/{S}.jpg").convert("RGB"))
     h, w = img.shape[:2]
     plate = img.copy()
@@ -28,7 +31,9 @@ for S, c in CFG["shots"].items():
         m[:, :x0] = 0; m[:, x1:] = 0
         m = maior_componente(m) if ch.get("largest", True) else m
         m = cv2.GaussianBlur(m, (0, 0), 0.8)
+        if (m > 0.5).sum() < 2000: m[:] = 0   # não achou o personagem: fica no fundo, sem recorte
         np.save(f"prep/{S}_{nome}_mask.npy", m.astype(np.float16))
+        if m.max() == 0: continue
         hole = cv2.dilate((m > 0.05).astype(np.uint8), np.ones((15, 15), np.uint8))
         plate = cv2.inpaint(plate, hole, 9, cv2.INPAINT_TELEA)
     # 2) tela do PC limpa: apaga os olhos originais

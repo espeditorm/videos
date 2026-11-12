@@ -36,6 +36,7 @@ def load(S):
     d["chars"] = {}
     for n in c.get("chars", {}):
         m = np.load(f"prep/{S}_{n}_mask.npy").astype(np.float32)
+        if (m > 0.5).sum() < 2000: continue   # personagem não recortado (pequeno/de costas)
         ys, xs = np.where(m > 0.05)
         pad = 24
         box = (max(xs.min() - pad, 0), max(ys.min() - 40, 0), min(xs.max() + pad, m.shape[1]), min(ys.max() + 2, m.shape[0]))
@@ -82,7 +83,7 @@ def expressao_pc(t):
 OLHOS = {
  "convencido": ["111111", "111111", "011111", "001110"],
  "aberto":     ["011110", "111111", "111111", "111111", "011110"],
- "terno":      ["001100", "011110", "112111", "111111", "011110", "001100"],
+ "terno":      ["011110", "111001", "111001", "111111", "111111", "011110"],
  "fechado":    ["000000", "000000", "111111"],
 }
 def boca_pc(k, expr):
@@ -259,6 +260,9 @@ def quadro(i):
         x0, y0, x1, y1 = box
         roi = img[y0:y1, x0:x1]
         img[y0:y1, x0:x1] = roi * (1 - Mk[..., None]) + L.astype(np.float32) * Mk[..., None]
+    # rosto do PC quando ele não tem recorte próprio (ex.: S1)
+    if "pc_face" in c and "pc" not in d["chars"]:
+        tmp = img.clip(0, 255).astype(np.uint8); desenha_pc(tmp, c["pc_face"], t, BOCA["pc"][i]); img = tmp.astype(np.float32)
     # câmera
     fx, fy, z0, z1 = CAM[key]
     z = z0 + (z1 - z0) * ease((t - s0) / max(s1 - s0, 0.01))
