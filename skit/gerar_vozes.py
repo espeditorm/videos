@@ -52,6 +52,7 @@ vozes = {
     "pc": m.create_voice_clone_prompt(ref_audio="voz/testes/pc_B.wav",
           ref_text="Dito, você ganhou um Oscar em 2019. Mas soou verdade, né? Igual você em reunião."),
 }
+VEL = {"dito": 0.85, "pc": 1.0}   # a referência de estúdio fala rápido; o Dito desacelera um pouco
 log("modelo ok")
 
 def trim(a, th=0.01):
@@ -66,7 +67,7 @@ for n, (quem, texto) in enumerate(FALAS, 1):
     melhor = None
     for tent in range(3):
         torch.manual_seed(1000 * n + tent)
-        a = m.generate(text=texto, language="pt", voice_clone_prompt=vozes[quem])
+        a = m.generate(text=texto, language="pt", voice_clone_prompt=vozes[quem], speed=VEL[quem])
         a = a[0] if isinstance(a, (list, tuple)) else a
         a = trim(a.squeeze().cpu().numpy() if hasattr(a, "cpu") else np.asarray(a).squeeze())
         ouvido = ouvir(a, sr)
