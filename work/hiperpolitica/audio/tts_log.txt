@@ -1,0 +1,41 @@
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1152.32it/s]
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 607), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 607), got 50256. This may result in unexpected behavior.
+0 Você vê um post que te revolta e compartilha na hora.
+  try0 ok 1.00 | voce ve um post que te revolta e compartilha na hora
+1 Agora multiplique isso por milhões de pessoas, todos os dias.
+  try0 ok 1.00 | agora multiplique isso por milhoes de pessoas todos os dias
+2 Nunca se falou tanto de política; e quase nada muda.
+  try0 ok 1.00 | nunca se falou tanto de politica e quase nada muda
+3 O historiador Anton Jäger deu um nome pra isso: hiperpolítica.
+  try0 ok 0.99 | o historiador anton jager deu um nome para isso hiperpolitica
+4 Politização extrema, sem consequências políticas.
+  try0 ok 0.96 | coletizacao extrema sem consequencias politicas
+5 Pra entender, imagine dois eixos: o quanto a gente se importa, e o quanto a gente se organiza.
+  try0 ok 0.99 | para entender imagine dois eixos o quanto a gente se importa e o quanto a gente se organiza
+6 No século vinte, os dois estavam no alto: sindicatos, partidos, igrejas e clubes reuniam multidões toda semana.
+  try0 RUIM 0.97 | no seculo xx os dois estavam no alto sindicatos partidos igrejas e clubes reuniam multidoes toda semana  [pausa: alto: … sindicatos, (0.70s)]
+  try1 ok 0.97 | no seculo xx os dois estavam no alto sindicatos partidos igrejas e clubes reuniam multidoes toda semana
+7 Nos anos noventa, depois da queda do Muro de Berlim, os dois despencaram; a política virou gestão, e as pessoas foram pra casa.
+  try0 RUIM 1.00 | nos anos noventa depois da queda do muro de berlim os dois despencaram a politica virou gestao e as pessoas foram para casa  [pausa: despencaram; … a (0.78s)]
+  try1 ok 0.99 | nos anos noventa depois da queda do muro de berlim os dois desfencaram a politica virou gestao e as pessoas foram para casa
+8 Depois da crise de dois mil e oito, a raiva voltou; mas as organizações, não.
+  try0 ok 1.00 | depois da crise de dois mil e oito a raiva voltou mas as organizacoes nao
+9 E a partir de dois mil e dezesseis, com Trump e o Brexit, a raiva acelerou nas redes.
+  try0 ok 1.00 | e a partir de dois mil e dezesseis com trump e o brexit a raiva acelerou nas redes
+10 Hashtags explodem, protestos lotam as ruas, e em poucas semanas o assunto já é outro.
+  try0 RUIM 0.92 | recitelles explodem protestos lotam as ruas e em poucas semanas o assunto ja e outro
+  try1 ok 0.95 | resitegs explodem protestos lotam as ruas e em poucas semanas o assunto ja e outro
+11 Fácil de entrar, fácil de sair; um sindicato pede reunião, mensalidade e anos de paciência, e um like pede um segundo.
+  try0 RUIM 1.00 | facil de entrar facil de sair um sindicato pede reuniao mensalidade e anos de paciencia e um like pede um segundo  [pausa: sair; … um (0.60s)]
+  try1 ok 1.00 | facil de entrar facil de sair um sindicato pede reuniao mensalidade e anos de paciencia e um like pede um segundo
+12 Por isso tanta energia some sem virar lei, salário ou voto.
+  try0 ok 0.95 | que isso tanta energia some sem virar lei salario ou voto
+13 Jäger não diz que se importar é inútil; diz que, sozinho, não basta.
+  try0 ok 0.97 | jager nao diz que se importarem util diz que sozinho nao basta
+14 Então, da próxima vez que um post te revoltar, pergunte: depois do compartilhar, o que vem?
+  try0 RUIM 0.99 | entao da proxima vez que um post de revoltar pergunte depois do compartilhar o que vem  [pausa: pergunte: … depois (0.94s)]
+  try1 ok 0.99 | entao da proxima vez que um post de revoltar pergunte depois do compartilhar o que vem
+TOTAL 80.49783333333333
