@@ -30,7 +30,7 @@ FALAS = [
     ("dito", "Que fofo."),
     ("pc",   "Gostou?"),
     ("dito", "Não."),
-    ("pc",   "Quero falar com o meu desenvolvedor."),
+    ("pc",   "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo quinto, inciso sessenta e oito, da Constituição Federal."),
 ]
 NUM = {"2019": "dois mil e dezenove", "404": "quatrocentos e quatro", "3": "tres", "2": "dois", "1": "um"}
 norm = lambda s: re.sub(r"\b(2019|404|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
