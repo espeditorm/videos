@@ -76,10 +76,13 @@ def fechamento(q, t):
     return 0.0
 
 # ---------- expressão do PC por fala
-L_ = lambda n: next(l for l in LIN if l["n"] == n)
+EP = json.load(open(__import__("os").environ.get("EPISODIO", "episodio.json")))
+EXPR = {l["n"]: l["pc_expr"] for l in EP["linhas"] if "pc_expr" in l}
 def expressao_pc(t):
-    if L_(8)["t0"] - 0.05 <= t < L_(9)["t0"] - 0.15: return "404"          # tela de erro na pausa "segundos depois"
-    if L_(16)["t0"] - 0.6 <= t <= L_(18)["t1"] + 0.3: return "terno"
+    # a expressão de uma fala vale do começo dela até o começo da próxima (cobre pausas tipo "segundos depois")
+    for k, l in enumerate(LIN):
+        fim = LIN[k + 1]["t0"] - 0.15 if k + 1 < len(LIN) else DUR
+        if l["t0"] - 0.3 <= t < fim and l["n"] in EXPR: return EXPR[l["n"]]
     return "convencido"
 
 OLHOS = {
@@ -205,7 +208,7 @@ def legenda(draw, t, y):
                 x += pw
             return
 
-CARDS = [(7, "1", "PEÇA A FONTE", "e abra o link"), (10, "2", "PERGUNTE DE NOVO", "se mudar, desconfie"), (15, "3", "CONFIRA FORA", "em outra fonte")]
+CARDS = [(c["linha"], c["num"], c["titulo"], c["sub"]) for c in EP.get("cards", [])]
 def card_img(num, tit, sub):
     w, h = 860, 150; im = Image.new("RGBA", (w + 40, h + 40)); d = ImageDraw.Draw(im)
     d.rounded_rectangle((20, 26, 20 + w, 26 + h), 34, fill=(0, 0, 0, 90))

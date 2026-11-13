@@ -10,28 +10,9 @@ t0 = time.time()
 log = lambda *a: print(f"[{time.time()-t0:5.0f}s]", *a, flush=True)
 
 # texto falado (grafia ajustada pra pronúncia) — o texto da legenda fica no roteiro.md
-FALAS = [
-    ("pc",   "Nós ganhamos um Óscar em dois mil e dezenove!"),
-    ("dito", "E de onde você tirou isso?"),
-    ("dito", "Onde você estava em dois mil e dezenove?"),
-    ("pc",   "Ganhando um Óscar, com você."),
-    ("dito", "É mesmo? Quero provas."),
-    ("pc",   "Eu tenho um link."),
-    ("dito", "Então abre o link."),
-    ("pc",   "Erro quatrocentos e quatro."),
-    ("dito", "Vou repetir a pergunta."),
-    ("dito", "Onde você estava em dois mil e dezenove?"),
-    ("pc",   "Em casa. Sozinho. Sem Óscar."),
-    ("dito", "A resposta mudou."),
-    ("dito", "E isso tem nome: alucinação."),
-    ("dito", "A IA prevê palavras, não confere fatos."),
-    ("dito", "E toda prova se confere fora daqui."),
-    ("pc",   "Dito, eu só queria ganhar um Óscar com você."),
-    ("dito", "Que fofo."),
-    ("pc",   "Gostou?"),
-    ("dito", "Não."),
-    ("pc",   "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo quinto, inciso sessenta e três, da Constituição Federal."),
-]
+import os, json as _json
+EP = _json.load(open(os.environ.get("EPISODIO", "episodio.json")))   # roteiro do episódio
+FALAS = [(l["quem"], l.get("fala", l["legenda"])) for l in EP["linhas"]]   # texto falado (grafia pra pronúncia)
 NUM = {"2019": "dois mil e dezenove", "404": "quatrocentos e quatro", "3": "tres", "2": "dois", "1": "um"}
 norm = lambda s: re.sub(r"\b(2019|404|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
 norm0 = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
@@ -42,18 +23,14 @@ def ouvir(a, sr):
     a16 = np.concatenate([np.zeros(8000, np.float32), a16, np.zeros(8000, np.float32)])  # folga pro Whisper ouvir a 1ª palavra
     return " ".join(s.text.strip() for s in w.transcribe(a16, language="pt")[0])
 
-# voz do Dito: voz "D" do design de voz (homem adulto, tom médio), escolhida pelo Dito.
-# Clonada a partir da própria amostra, igual ao PC, pra ficar idêntica em todas as falas e no mesmo "estúdio".
-txt = ["Eu nunca ganhei um Óscar. Isso tem nome, alucinação. Quando não sabe, inventa com confiança."]
-log("voz dito: D")
+# vozes fixas do formato (sintéticas, no repo): Dito = voz "D", PC = voz "B".
+# Cada fala é clonada a partir dessas amostras, pra ficar idêntica em todos os episódios.
+log("vozes: vozes/dito_D.wav + vozes/pc_B.wav")
 
 m = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
 sr = m.sampling_rate
-vozes = {
-    "dito": m.create_voice_clone_prompt(ref_audio="voz/dito_voz_D.wav", ref_text=" ".join(txt)),
-    "pc": m.create_voice_clone_prompt(ref_audio="voz/testes/pc_B.wav",
-          ref_text="Dito, você ganhou um Oscar em 2019. Mas soou verdade, né? Igual você em reunião."),
-}
+vozes = {q: m.create_voice_clone_prompt(ref_audio=f"vozes/{f}.wav", ref_text=open(f"vozes/{f}.txt").read().strip())
+         for q, f in [("dito", "dito_D"), ("pc", "pc_B")]}
 log("modelo ok")
 
 def trim(a, th=0.01):

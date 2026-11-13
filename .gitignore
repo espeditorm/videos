@@ -26,3 +26,5 @@ skit/voz/
 skit/prep/
 skit/out/
 skit/audio/*.wav
+!skit/vozes/*.wav
+skit/.venv/

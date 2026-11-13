@@ -5,32 +5,12 @@ from faster_whisper import WhisperModel
 
 SR = 48000
 INTRO, OUTRO = 1.5, 1.9
-# texto da legenda (como aparece na tela) e plano de cada fala
-ROTEIRO = [
-    ("S1",  "Nós ganhamos um Oscar em 2019!"),
-    ("S4",  "E de onde você tirou isso?"),
-    ("S2",  "Onde você estava em 2019?"),
-    ("S3",  "Ganhando um Oscar, com você."),
-    ("S2b", "É mesmo? Quero provas."),
-    ("S3",  "Eu tenho um link."),
-    ("S6",  "Então abre o link."),
-    ("S3b", "Erro 404."),
-    ("S2",  "Vou repetir a pergunta."),
-    ("S6",  "Onde você estava em 2019?"),
-    ("S3",  "Em casa. Sozinho. Sem Oscar."),
-    ("S4b", "A resposta mudou."),
-    ("S2",  "E isso tem nome: alucinação."),
-    ("S2b", "A IA prevê palavras, não confere fatos."),
-    ("S6",  "E toda prova se confere fora daqui."),
-    ("S5",  "Dito, eu só queria ganhar um Oscar com você."),
-    ("S4",  "Que fofo."),
-    ("S5b", "Gostou?"),
-    ("S4b", "Não."),
-    ("S3c", "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo 5º, inciso LXIII, da Constituição Federal."),
-]
+import os, json as _json
+EP = _json.load(open(os.environ.get("EPISODIO", "episodio.json")))   # roteiro do episódio
+ROTEIRO = [(l["plano"], l["legenda"]) for l in EP["linhas"]]
 # pausas curtas entre falas (método do Notion: tira o silêncio de cada fala e junta com respiros curtos)
 MESMO, TROCA = 0.18, 0.28          # mesma pessoa continua / outra pessoa responde
-PAUSA = {7: 0.3, 9: 1.3, 10: 0.3, 15: 0.3, 16: 0.6, 17: 0.4, 19: 0.3, 20: 0.3}   # respiros especiais antes da fala n (9: "segundos depois" do 404)
+PAUSA = {l["n"]: l["pausa_antes"] for l in EP["linhas"] if "pausa_antes" in l}   # respiros especiais antes da fala n
 
 def limpar(a, sr, lead=0.05, tail=0.08, max_pausa=0.28):
     """Corta silêncio do começo/fim (pelo volume) e encurta pausas internas longas."""
