@@ -260,6 +260,9 @@ def quadro(i):
         x0, y0 = int(x) - 2, int(y) - 2
         if 0 <= x0 < img.shape[1] - 5 and 0 <= y0 < img.shape[0] - 5:
             img[y0:y0 + 5, x0:x0 + 5] += STAR[..., None] * a
+    # rosto do PC quando ele não tem recorte próprio (ex.: S1)
+    if "pc_face" in c:   # sempre desenha também no fundo (o recorte pode não cobrir a tela toda)
+        tmp = img.clip(0, 255).astype(np.uint8); desenha_pc(tmp, c["pc_face"], t, BOCA["pc"][i]); img = tmp.astype(np.float32)
     # personagens: rosto desenhado + respiração
     for n, (m, box) in d["chars"].items():
         lay = d["full"].copy()
@@ -272,9 +275,6 @@ def quadro(i):
         x0, y0, x1, y1 = box
         roi = img[y0:y1, x0:x1]
         img[y0:y1, x0:x1] = roi * (1 - Mk[..., None]) + L.astype(np.float32) * Mk[..., None]
-    # rosto do PC quando ele não tem recorte próprio (ex.: S1)
-    if "pc_face" in c and "pc" not in d["chars"]:
-        tmp = img.clip(0, 255).astype(np.uint8); desenha_pc(tmp, c["pc_face"], t, BOCA["pc"][i]); img = tmp.astype(np.float32)
     # câmera
     fx, fy, z0, z1 = CAM[key]
     z = z0 + (z1 - z0) * ease((t - s0) / max(s1 - s0, 0.01))
