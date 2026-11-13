@@ -22,3 +22,9 @@ mech/preview.log
 mech/prev_tmp.mp4
 mech/story.log
 mech/prev_seq/
+skit/voz/
+skit/prep/
+skit/out/
+skit/audio/*.wav
+!skit/vozes/*.wav
+skit/.venv/

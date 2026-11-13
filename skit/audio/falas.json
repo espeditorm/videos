@@ -1,0 +1,162 @@
+[
+ {
+  "n": 1,
+  "quem": "pc",
+  "texto": "Nós ganhamos um Óscar em dois mil e dezenove!",
+  "ouvido": "Nós ganhamos um Oscar em 2019!",
+  "nota": 1.0,
+  "dur": 2.81
+ },
+ {
+  "n": 2,
+  "quem": "dito",
+  "texto": "E de onde você tirou isso?",
+  "ouvido": "E de onde você tirou isso?",
+  "nota": 1.0,
+  "dur": 1.55
+ },
+ {
+  "n": 3,
+  "quem": "dito",
+  "texto": "Onde você estava em dois mil e dezenove?",
+  "ouvido": "Onde você estava em 2019?",
+  "nota": 1.0,
+  "dur": 2.2
+ },
+ {
+  "n": 4,
+  "quem": "pc",
+  "texto": "Ganhando um Óscar, com você.",
+  "ouvido": "ganhando um Oscar com você.",
+  "nota": 1.0,
+  "dur": 1.94
+ },
+ {
+  "n": 5,
+  "quem": "dito",
+  "texto": "É mesmo? Quero provas.",
+  "ouvido": "É mesmo? Quero provas!",
+  "nota": 1.0,
+  "dur": 1.64
+ },
+ {
+  "n": 6,
+  "quem": "pc",
+  "texto": "Eu tenho um link.",
+  "ouvido": "Eu tenho um link.",
+  "nota": 1.0,
+  "dur": 1.36
+ },
+ {
+  "n": 7,
+  "quem": "dito",
+  "texto": "Então abre o link.",
+  "ouvido": "então abre o link",
+  "nota": 1.0,
+  "dur": 1.12
+ },
+ {
+  "n": 8,
+  "quem": "pc",
+  "texto": "Erro quatrocentos e quatro.",
+  "ouvido": "Erro 404.",
+  "nota": 1.0,
+  "dur": 1.92
+ },
+ {
+  "n": 9,
+  "quem": "dito",
+  "texto": "Vou repetir a pergunta.",
+  "ouvido": "Vou repetir a pergunta.",
+  "nota": 1.0,
+  "dur": 1.26
+ },
+ {
+  "n": 10,
+  "quem": "dito",
+  "texto": "Onde você estava em dois mil e dezenove?",
+  "ouvido": "Onde você estava em 2019?",
+  "nota": 1.0,
+  "dur": 2.15
+ },
+ {
+  "n": 11,
+  "quem": "pc",
+  "texto": "Em casa. Sozinho. Sem Óscar.",
+  "ouvido": "Em casa, sozinho, sem Oscar!",
+  "nota": 1.0,
+  "dur": 1.9
+ },
+ {
+  "n": 12,
+  "quem": "dito",
+  "texto": "A resposta mudou.",
+  "ouvido": "A resposta mudou.",
+  "nota": 1.0,
+  "dur": 1.17
+ },
+ {
+  "n": 13,
+  "quem": "dito",
+  "texto": "E isso tem nome: alucinação.",
+  "ouvido": "E isso tem nome à alucinação.",
+  "nota": 0.91,
+  "dur": 1.68
+ },
+ {
+  "n": 14,
+  "quem": "dito",
+  "texto": "A IA prevê palavras, não confere fatos.",
+  "ouvido": "Aí, a prevê palavras, não confere fatos.",
+  "nota": 0.86,
+  "dur": 2.2
+ },
+ {
+  "n": 15,
+  "quem": "dito",
+  "texto": "E toda prova se confere fora daqui.",
+  "ouvido": "E toda prova se confere fora daqui.",
+  "nota": 1.0,
+  "dur": 1.98
+ },
+ {
+  "n": 16,
+  "quem": "pc",
+  "texto": "Dito, eu só queria ganhar um Óscar com você.",
+  "ouvido": "Dito, eu só queria ganhar um Oscar com você.",
+  "nota": 1.0,
+  "dur": 2.7
+ },
+ {
+  "n": 17,
+  "quem": "dito",
+  "texto": "Que fofo.",
+  "ouvido": "Que fofo!",
+  "nota": 1.0,
+  "dur": 0.71
+ },
+ {
+  "n": 18,
+  "quem": "pc",
+  "texto": "Gostou?",
+  "ouvido": "Gostou?",
+  "nota": 1.0,
+  "dur": 1.25
+ },
+ {
+  "n": 19,
+  "quem": "dito",
+  "texto": "Não.",
+  "ouvido": "Não.",
+  "nota": 1.0,
+  "dur": 0.56
+ },
+ {
+  "n": 20,
+  "quem": "pc",
+  "texto": "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo quinto, inciso sessenta e três, da Constituição Federal.",
+  "ouvido": "Eu tenho direito de falar com o meu desenvolvedor baseado no artigo 5º inciso 63 da Constituição Federal.",
+  "nota": 0.81,
+  "dur": 7.83
+ }
+]
