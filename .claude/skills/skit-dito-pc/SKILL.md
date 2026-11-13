@@ -1,16 +1,37 @@
 ---
 name: skit-dito-pc
-description: Cria episódios do formato de skit do Dito com o mascote Dito PC (computadorzinho retrô convencido que rouba a cena), do tema ao vídeo 1080x1920 pronto pro Reels. Use quando o Dito pedir um vídeo novo do formato, roteiro de skit com o PC, novas cenas/B-rolls desses personagens, vozes, ou ajustes em um episódio. Tudo vive em skit/ deste repositório.
+description: Somente para o formato de skit animado do Dito com o mascote Dito PC (personagens 3D low-poly conversando, método "How I make my AI skits" do Notion), do tema ao vídeo 1080x1920. Use quando o Dito pedir um episódio desse skit, roteiro de diálogo com o Dito PC, cenas/B-rolls/cenários novos desses personagens ou ajustes num episódio. NÃO use para outros tipos de vídeo (vídeo narrado/ensaio, Reels falando pra câmera, explicadores animados, filmes 3D): esses têm skills próprias.
 ---
 
-# Skit Dito + Dito PC
+# Skit Dito + Dito PC (método do Notion)
 
 Formato: o Dito (humano, low-poly 3D) conversa com o **Dito PC**, um computadorzinho retrô
 creme com tela verde-água, que é **a piada**: convencido, inventa coisas, rouba a cena.
 Cenário fixo: estufa-biblioteca noturna com cúpula de vidro. Vídeo vertical 1080x1920, 30 fps,
-40–50 s, feito 100% em código a partir de imagens paradas (baseado no método "How I make my AI skits").
+40–50 s, feito 100% em código a partir de imagens paradas.
+
+**Escopo:** esta skill é só este formato, seguindo o método do Notion. Se o pedido for outro tipo
+de vídeo, não use esta skill (nem os scripts de `skit/`); use a skill daquele tipo.
 
 Tudo está em `skit/`. Leia `skit/episodio.json` (episódio 01, "Interrogatório") como modelo.
+
+## O método do Notion (siga nesta ordem)
+**character sheet → cenário → planos → roteiro → vozes → animação/edição em código → postar.**
+Num episódio comum os passos 1–3 já estão prontos (reaproveite); faça-os só para personagem,
+visual ou cenário novo (ex.: especial de Natal com `sheets/computador_natal.jpg`).
+
+1. **Character sheet** (16:9, 3 vistas: frente, 3/4, perfil; fundo cinza quente). Corrija com edição,
+   **uma mudança por vez**, sempre começando com "Keep EVERYTHING the same".
+2. **Sidekick** no mesmo estilo, usando o sheet do Dito como referência; **sem boca** (a boca é desenhada em código).
+3. **Cenário vazio** (9:16, sem personagens, câmera na altura dos olhos sentado) → **plano aberto com os dois**
+   (vira a referência mestra) → **planos**: aberto, Dito falando, PC falando, Dito reagindo,
+   PC close sincero, por trás dos dois (espaço pros cards). Sempre "empty space in the top third".
+4. **Roteiro** (regras abaixo).
+5. **Vozes**: uma fala por arquivo, silêncio cortado, juntas com pausas curtas.
+6. **Animação em código**: recortes respirando, boca pelo volume da voz, piscadas, push-in lento
+   (o mais forte no momento sincero), fundo vivo, legendas palavra por palavra (Whisper, Montserrat,
+   sem caixa), cards da entrega, **sem tremido** (sem grão; confira quadro a quadro).
+7. **Postar**: 1080x1920 30 fps; legenda do post repete a piada; termina com pergunta.
 
 ## Fluxo de um episódio novo
 
