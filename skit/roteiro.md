@@ -3,7 +3,7 @@
 Formato: Dito (você) interroga o Dito PC (o computadorzinho), que inventa provas e rouba a cena.
 Duração alvo: ~45 s, 1080x1920, 30 fps. Uma fala a cada ~2–2,5 s, cada fala é um corte.
 Entrega: o que é alucinação + 3 jeitos de checar uma resposta de IA (viram as "provas do processo").
-Sem CTA. Termina no pedido de "advogado", com citação de lei (errada, de propósito).
+Sem CTA. Termina no pedido de "advogado", com citação da Constituição (art. 5º, LXIII).
 
 | #  | Plano | Quem | Fala | Direção |
 |----|-------|------|------|---------|
@@ -27,7 +27,7 @@ Sem CTA. Termina no pedido de "advogado", com citação de lei (errada, de prop�
 | 17 | S4    | Você | Que fofo. | Amolecendo |
 | 18 | S5b   | PC   | Gostou? | Esperançoso |
 | 19 | S4b   | Você | Não. | Seco, corte rápido |
-| 20 | S3c   | PC   | Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo 5º, inciso LXVIII, da Constituição Federal. | Ofendido, push-in, fim (LXVIII é o habeas corpus: o PC alucina até a lei) |
+| 20 | S3c   | PC   | Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo 5º, inciso LXIII, da Constituição Federal. | Ofendido, push-in, fim (art. 5º, LXIII: assistência de advogado) |
 
 ## Cards (S6, céu estrelado)
 1. PEÇA A FONTE — e abra o link

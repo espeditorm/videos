@@ -26,7 +26,7 @@ ROTEIRO = [
     ("S4",  "Que fofo."),
     ("S5b", "Gostou?"),
     ("S4b", "Não."),
-    ("S3c", "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo 5º, inciso LXVIII, da Constituição Federal."),
+    ("S3c", "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo 5º, inciso LXIII, da Constituição Federal."),
 ]
 # pausas curtas entre falas (método do Notion: tira o silêncio de cada fala e junta com respiros curtos)
 MESMO, TROCA = 0.18, 0.28          # mesma pessoa continua / outra pessoa responde
