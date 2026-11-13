@@ -154,9 +154,9 @@
  {
   "n": 20,
   "quem": "pc",
-  "texto": "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo quinto, inciso sessenta e oito, da Constituição Federal.",
-  "ouvido": "Eu tenho direito de falar com meu desenvolvedor baseado no artigo 5º inciso 68 da Constituição Federal.",
-  "nota": 0.83,
-  "dur": 7.84
+  "texto": "Eu tenho direito de falar com meu desenvolvedor. Baseado no artigo quinto, inciso sessenta e três, da Constituição Federal.",
+  "ouvido": "Eu tenho direito de falar com o meu desenvolvedor baseado no artigo 5º inciso 63 da Constituição Federal.",
+  "nota": 0.81,
+  "dur": 7.83
  }
 ]
