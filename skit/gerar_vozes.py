@@ -14,7 +14,11 @@ import os, json as _json
 EP = _json.load(open(os.environ.get("EPISODIO", "episodio.json")))   # roteiro do episódio
 FALAS = [(l["quem"], l.get("fala", l["legenda"])) for l in EP["linhas"]]   # texto falado (grafia pra pronúncia)
 NUM = {"2019": "dois mil e dezenove", "404": "quatrocentos e quatro", "3": "tres", "2": "dois", "1": "um"}
-norm = lambda s: re.sub(r"\b(2019|404|3|2|1)\b", lambda m: NUM[m.group(1)], s.lower())
+EXTRA = [(r"\b101 ?%", "cento e um por cento"), (r"\b100 ?%", "cem por cento"), (r"\b8 ?k\b", "oito ca"), (r"\boito k\b", "oito ca")]
+def norm(s):   # números/siglas como o Whisper escreve -> como está no texto falado
+    s = s.lower()
+    for a, b in EXTRA: s = re.sub(a, b, s)
+    return re.sub(r"\b(2019|404|3|2|1)\b", lambda m: NUM[m.group(1)], s)
 norm0 = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()).split()
 
 w = WhisperModel("small", device="cpu", compute_type="int8")

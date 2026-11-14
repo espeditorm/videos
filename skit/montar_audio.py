@@ -72,12 +72,15 @@ for f, (shot, legenda) in zip(falas, ROTEIRO):
                    "palavras": [{"w": d, "t0": round(a_, 3), "t1": round(b_, 3)} for d, (a_, b_) in zip(disp, tempos)]})
     voz[quem].append((t0, a)); cur = t1; prev = quem
     print(f"{n:02d} {quem:4s} {shot:4s} {t0:6.2f}-{t1:6.2f} {legenda}")
+FINAL = EP.get("final")   # plano mudo depois da última fala (ex.: poker face do Dito)
+if FINAL: cur += FINAL["dur"]
 total = cur + OUTRO
 for quem, partes in voz.items():
     tr = np.zeros(int(total * SR) + SR, np.float32)
     for t0, a in partes:
         i = int(t0 * SR); tr[i:i + len(a)] += a
     sf.write(f"audio/trilha_{quem}.wav", tr[: int(total * SR)], SR)
-json.dump({"dur": round(total, 3), "intro": INTRO, "outro": OUTRO, "linhas": linhas},
+json.dump({"dur": round(total, 3), "intro": INTRO, "outro": OUTRO, "linhas": linhas,
+           **({"final": {"shot": FINAL["plano"], "t0": round(linhas[-1]["t1"] + 0.3, 3), "t1": round(cur, 3)}} if FINAL else {})},
           open("timeline.json", "w"), ensure_ascii=False, indent=1)
 print("total", round(total, 2), "s")

@@ -25,7 +25,9 @@ segs = [("S7in", 0.0)]
 for l in LIN:
     t = max(l["t0"] - 0.12, 0.01)
     if l["shot"] != segs[-1][0]: segs.append((l["shot"], t))
-segs.append(("S7out", LIN[-1]["t1"] + 0.55))
+if TL.get("final"):   # plano mudo depois da última fala (ex.: poker face), antes de abrir pra estufa
+    segs.append((TL["final"]["shot"], TL["final"]["t0"])); segs.append(("S7out", TL["final"]["t1"]))
+else: segs.append(("S7out", LIN[-1]["t1"] + 0.55))
 segs = [(k, t, segs[i + 1][1] if i + 1 < len(segs) else DUR) for i, (k, t) in enumerate(segs)]
 
 # ---------- carregamento das camadas preparadas
@@ -196,15 +198,18 @@ def legenda(draw, t, y):
         if a <= t < b:
             vis = [p for p in ws if p["t0"] - 0.04 <= t]
             txt = " ".join(p["w"] for p in ws)
-            tw = draw.textlength(txt, font=CAP); x = (W - tw) / 2
+            fnt = CAP; tw = draw.textlength(txt, font=fnt)
+            if tw > W - 90:   # bloco longo demais: diminui a fonte pra caber na tela
+                fnt = F(FT["900"], int(74 * (W - 90) / tw)); tw = draw.textlength(txt, font=fnt)
+            x = (W - tw) / 2
             for p in ws:
-                pw = draw.textlength(p["w"] + " ", font=CAP)
+                pw = draw.textlength(p["w"] + " ", font=fnt)
                 if p in vis:
                     k = min((t - p["t0"] + 0.04) / 0.10, 1)
                     atual = p["t0"] - 0.04 <= t < p["t1"] + 0.05
                     cor = COR[q] if atual else (255, 255, 255)
                     dy = (1 - k) * 10
-                    draw.text((x, y + dy), p["w"], font=CAP, fill=cor + (int(255 * k),), stroke_width=7, stroke_fill=(18, 14, 26, int(235 * k)))
+                    draw.text((x, y + dy), p["w"], font=fnt, fill=cor + (int(255 * k),), stroke_width=7, stroke_fill=(18, 14, 26, int(235 * k)))
                 x += pw
             return
 

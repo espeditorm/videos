@@ -1,0 +1,201 @@
+{
+ "titulo": "Skit 02 — Relatório verde (greenwashing de energia)",
+ "saida": "out/skit02_energia.mp4",
+ "linhas": [
+  {
+   "n": 1,
+   "quem": "pc",
+   "plano": "S1",
+   "legenda": "Reduzi meu impacto ambiental em 100%.",
+   "fala": "Reduzi meu impacto ambiental em cem por cento.",
+   "direcao": "orgulhoso"
+  },
+  {
+   "n": 2,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "Você se desligou?",
+   "direcao": "desconfiado"
+  },
+  {
+   "n": 3,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Melhor. Fiz um relatório verde."
+  },
+  {
+   "n": 4,
+   "quem": "dito",
+   "plano": "S2",
+   "legenda": "E... o que você mudou?",
+   "fala": "E, o que você mudou?"
+  },
+  {
+   "n": 5,
+   "quem": "pc",
+   "plano": "S3b",
+   "legenda": "O ícone da bateria virou uma folha.",
+   "direcao": "orgulhoso"
+  },
+  {
+   "n": 6,
+   "quem": "dito",
+   "plano": "S4b",
+   "legenda": "Isso não economiza energia.",
+   "direcao": "seco"
+  },
+  {
+   "n": 7,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Mas ficou muito mais sustentável."
+  },
+  {
+   "n": 8,
+   "quem": "dito",
+   "plano": "S2",
+   "legenda": "Vamos medir o consumo de verdade. Como está seu brilho?"
+  },
+  {
+   "n": 9,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Meu brilho está no máximo.",
+   "pc_expr": "aberto"
+  },
+  {
+   "n": 10,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "Diminui.",
+   "pausa_antes": 0.3
+  },
+  {
+   "n": 11,
+   "quem": "pc",
+   "plano": "S3b",
+   "legenda": "Adeus, sol particular.",
+   "direcao": "dramático"
+  },
+  {
+   "n": 12,
+   "quem": "dito",
+   "plano": "S2b",
+   "legenda": "E a suspensão automática?"
+  },
+  {
+   "n": 13,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Desativei. Eu odeio cochilos."
+  },
+  {
+   "n": 14,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "Então ative.",
+   "pausa_antes": 0.3
+  },
+  {
+   "n": 15,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "E encerra tarefas desnecessárias."
+  },
+  {
+   "n": 16,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Meu papel de parede está em 8K.",
+   "fala": "Meu papel de parede está em oito cá."
+  },
+  {
+   "n": 17,
+   "quem": "dito",
+   "plano": "S4b",
+   "legenda": "Ninguém vê.",
+   "direcao": "seco"
+  },
+  {
+   "n": 18,
+   "quem": "pc",
+   "plano": "S5",
+   "legenda": "Eu só queria salvar o planeta com você.",
+   "pausa_antes": 0.6,
+   "pc_expr": "terno",
+   "direcao": "sincero"
+  },
+  {
+   "n": 19,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "Então começa reduzindo o consumo.",
+   "pausa_antes": 0.4,
+   "pc_expr": "terno"
+  },
+  {
+   "n": 20,
+   "quem": "pc",
+   "plano": "S5b",
+   "legenda": "Pronto.",
+   "pausa_antes": 0.8,
+   "direcao": "orgulhoso"
+  },
+  {
+   "n": 21,
+   "quem": "dito",
+   "plano": "S2",
+   "legenda": "O que você desligou?"
+  },
+  {
+   "n": 22,
+   "quem": "pc",
+   "plano": "S3b",
+   "legenda": "O medidor.",
+   "pausa_antes": 0.3
+  },
+  {
+   "n": 23,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "Ah, claro.",
+   "pausa_antes": 0.4,
+   "direcao": "seco"
+  },
+  {
+   "n": 24,
+   "quem": "pc",
+   "plano": "S3c",
+   "legenda": "Impacto reduzido em 101%.",
+   "fala": "Impacto reduzido em cento e um por cento.",
+   "pausa_antes": 0.3,
+   "direcao": "triunfante"
+  }
+ ],
+ "final": {
+  "plano": "S4b",
+  "dur": 2.0,
+  "direcao": "Dito faz poker face e encerra (sem fala)"
+ },
+ "cards": [
+  {
+   "linha": 10,
+   "num": "1",
+   "titulo": "BAIXE O BRILHO",
+   "sub": "menos luz, menos consumo"
+  },
+  {
+   "linha": 14,
+   "num": "2",
+   "titulo": "ATIVE A SUSPENSÃO",
+   "sub": "parado, ele dorme"
+  },
+  {
+   "linha": 15,
+   "num": "3",
+   "titulo": "FECHE O QUE NÃO USA",
+   "sub": "app aberto também consome"
+  }
+ ],
+ "legenda_post": "Ele trocou o ícone da bateria por uma folha e chamou de relatório verde 🍃\n3 jeitos reais de gastar menos energia estão no vídeo.\nQual foi o \"verde\" mais falso que você já viu?"
+}
