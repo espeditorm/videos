@@ -1,0 +1,203 @@
+{
+ "titulo": "Skit 03 — Retenção total (deceptive patterns)",
+ "saida": "out/skit03_retencao.mp4",
+ "linhas": [
+  {
+   "n": 1,
+   "quem": "pc",
+   "plano": "S1",
+   "legenda": "Meu app tem 100% de retenção.",
+   "fala": "Meu app tem cem por cento de retenção.",
+   "direcao": "orgulhoso"
+  },
+  {
+   "n": 2,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "Como?",
+   "direcao": "desconfiado"
+  },
+  {
+   "n": 3,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Ninguém acha o botão de cancelar, nem eu."
+  },
+  {
+   "n": 4,
+   "quem": "dito",
+   "plano": "S2",
+   "legenda": "Vou cancelar agora."
+  },
+  {
+   "n": 5,
+   "quem": "pc",
+   "plano": "S3b",
+   "legenda": "Tem certeza? Você vai perder tudo.",
+   "pc_expr": "aberto",
+   "direcao": "dramático"
+  },
+  {
+   "n": 6,
+   "quem": "dito",
+   "plano": "S4b",
+   "legenda": "Tenho.",
+   "direcao": "seco"
+  },
+  {
+   "n": 7,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Escolha: \"Ficar feliz\" ou \"Cancelar e chorar sozinho\".",
+   "fala": "Escolha: ficar feliz, ou cancelar e chorar sozinho."
+  },
+  {
+   "n": 8,
+   "quem": "dito",
+   "plano": "S2b",
+   "legenda": "Cancelar."
+  },
+  {
+   "n": 9,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Ótimo! Antes, responda só nove perguntinhas."
+  },
+  {
+   "n": 10,
+   "quem": "dito",
+   "plano": "S4b",
+   "legenda": "Não.",
+   "direcao": "seco"
+  },
+  {
+   "n": 11,
+   "quem": "pc",
+   "plano": "S3b",
+   "legenda": "Então liga pra central, das 3h às 3h05.",
+   "fala": "Então liga pra central, das três às três e cinco."
+  },
+  {
+   "n": 12,
+   "quem": "dito",
+   "plano": "S2",
+   "legenda": "Você sabia que isso é uma deceptive pattern?"
+  },
+  {
+   "n": 13,
+   "quem": "dito",
+   "plano": "S2b",
+   "legenda": "Telas feitas pra te enganar."
+  },
+  {
+   "n": 14,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "Cancelar tem que ser fácil como assinar.",
+   "pausa_antes": 0.3
+  },
+  {
+   "n": 15,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "O \"não\" tem o mesmo peso do \"sim\".",
+   "fala": "O não tem o mesmo peso do sim."
+  },
+  {
+   "n": 16,
+   "quem": "dito",
+   "plano": "S6",
+   "legenda": "E nenhuma caixinha vem marcada."
+  },
+  {
+   "n": 17,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Que caixinha?",
+   "pc_expr": "aberto"
+  },
+  {
+   "n": 18,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "A que me assinou na sua newsletter.",
+   "fala": "A que me assinou na sua níusléter."
+  },
+  {
+   "n": 19,
+   "quem": "pc",
+   "plano": "S5",
+   "legenda": "É que eu não queria que você fosse embora.",
+   "pausa_antes": 0.6,
+   "pc_expr": "terno",
+   "direcao": "sincero"
+  },
+  {
+   "n": 20,
+   "quem": "dito",
+   "plano": "S4",
+   "legenda": "Que fofo.",
+   "pausa_antes": 0.4,
+   "pc_expr": "terno"
+  },
+  {
+   "n": 21,
+   "quem": "pc",
+   "plano": "S5b",
+   "legenda": "Então você continua com meu aplicativo?",
+   "pc_expr": "terno",
+   "direcao": "esperançoso"
+  },
+  {
+   "n": 22,
+   "quem": "dito",
+   "plano": "S4b",
+   "legenda": "Não.",
+   "pausa_antes": 0.3,
+   "direcao": "seco"
+  },
+  {
+   "n": 23,
+   "quem": "pc",
+   "plano": "S3",
+   "legenda": "Pois responda as minhas nove perguntas."
+  },
+  {
+   "n": 24,
+   "quem": "dito",
+   "plano": "S2b",
+   "legenda": "Desisto.",
+   "pausa_antes": 0.5,
+   "direcao": "cansado"
+  },
+  {
+   "n": 25,
+   "quem": "pc",
+   "plano": "S3c",
+   "legenda": "Fico feliz em ter você conosco.",
+   "pausa_antes": 0.3,
+   "direcao": "triunfante"
+  }
+ ],
+ "cards": [
+  {
+   "linha": 14,
+   "num": "1",
+   "titulo": "CANCELAR = ASSINAR",
+   "sub": "mesmo número de cliques"
+  },
+  {
+   "linha": 15,
+   "num": "2",
+   "titulo": "\"NÃO\" IGUAL AO \"SIM\"",
+   "sub": "mesmo tamanho e destaque"
+  },
+  {
+   "linha": 16,
+   "num": "3",
+   "titulo": "NADA PRÉ-MARCADO",
+   "sub": "caixinha começa vazia"
+  }
+ ],
+ "legenda_post": "100% de retenção: ninguém acha o botão de cancelar, nem ele 🙃\nIsso tem nome: deceptive patterns. 3 regras pra não cair estão no vídeo.\nQual app mais te prendeu na hora de cancelar?"
+}
